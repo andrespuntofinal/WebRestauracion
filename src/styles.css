@@ -1,1 +1,84 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+
+
+
+You can add global styles to this file, and also import other style files */
+
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+
+body {
+    background: linear-gradient(to right, #eef3f5, #a7c0da, #d5e1e6) !important;
+}
+
+h1,h2,h3,h4,h5 {
+    font-weight: 200;
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+hr{
+    color: white;
+}
+
+.navbar-brand {
+    font-weight: 200;
+    color: #bd4c5f !important;
+}
+
+.btn-outline-success {
+    border-color: #bd4c5f !important;;
+    color: #bd4c5f !important;;
+}
+
+.btn-outline-success:hover {
+    background-color: #272a36;
+    color: white !important;
+}
+
+.block {
+    display:block;
+}
+
+.p-menubar {
+    background: linear-gradient(to right, #145ca0, #3167b8, #05214d) !important;
+    padding:10px 20px;
+        font-size:10px;
+        text-decoration:none;
+        letter-spacing:1px;
+        text-transform:uppercase;
+}
+
+.p-menuitem-text, .p-menuitem-icon, .p-submenu-icon {
+    color:#b6bdc4 !important;
+}
+
+.p-menu-list:hover {
+    background-color: #000 !important;
+}
+
+/*Menubar
+.p-menubar {
+    background-color: var(--primary) !important;
+}
+.p-menu-list {
+    background-color: var(--primary) !important;
+}
+.p-menuitem {
+    background-color: var(--primary) !important;
+}
+.p-menu-list:hover {
+    background-color: #000 !important;
+}
+.p-menuitem:hover {
+    background-color: #000 !important;
+}
+.p-menuitem-text, .p-menuitem-icon, .p-submenu-icon {
+    color: var(--text-primary) !important;
+}*/
