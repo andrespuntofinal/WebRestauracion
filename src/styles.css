@@ -1,17 +1,10 @@
-/*
-
-
-
-You can add global styles to this file, and also import other style files */
-
-
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
 
 body {
-    background: linear-gradient(to right, #eef3f5, #a7c0da, #d5e1e6) !important;
+    background: linear-gradient(to right, #dae4f3, #355a92, #dae4f3) !important;
 }
 
 h1,h2,h3,h4,h5 {
@@ -63,22 +56,60 @@ hr{
     background-color: #000 !important;
 }
 
-/*Menubar
-.p-menubar {
-    background-color: var(--primary) !important;
+
+.puntero {
+    cursor: pointer;
 }
-.p-menu-list {
-    background-color: var(--primary) !important;
+
+.img-circle {
+    border-radius: 100%;
+    width: 150px;
 }
-.p-menuitem {
-    background-color: var(--primary) !important;
+
+.card-title,
+.card-text {
+    color: black;
 }
-.p-menu-list:hover {
-    background-color: #000 !important;
+
+.badge {
+    margin-left: 5px;
 }
-.p-menuitem:hover {
-    background-color: #000 !important;
+
+.btn-outline-success {
+    margin-left: 5px;
 }
-.p-menuitem-text, .p-menuitem-icon, .p-submenu-icon {
-    color: var(--text-primary) !important;
-}*/
+
+.img-thumb {
+    width: 50px;
+    height: 50px;
+}
+
+
+/* Animaciones */
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}

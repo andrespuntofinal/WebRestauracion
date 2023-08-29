@@ -33,18 +33,19 @@ export class NavbarComponent implements OnInit {
  
           },
           {
-              label: 'Admin',
-              icon: 'pi pi-fw pi-cog',
-              items: [
-                {
-                    label: 'Bookmark',
-                    icon: 'pi pi-fw pi-bookmark'
-                },
-                {
-                    label: 'Video',
-                    icon: 'pi pi-fw pi-video'
-                }
-            ]
+            label: 'Reflexiones',
+            icon: 'pi pi-fw pi-play'
+
+        },
+        {
+            label: 'Transmisiones',
+            icon: 'pi pi-fw pi-facebook'
+
+        },
+          {
+              label: 'Mi Cuenta',
+              icon: 'pi pi-fw pi-user',
+              routerLink: '/login'
           }
       ];
   }

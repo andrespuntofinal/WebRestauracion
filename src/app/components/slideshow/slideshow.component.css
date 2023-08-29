@@ -1,0 +1,11 @@
+.swiper {
+
+    height:350px;
+    width: 100%;
+    top: -45px;
+}
+
+.swiper-button-prev, .swiper-button-next {
+
+    color:cornflowerblue;
+}
