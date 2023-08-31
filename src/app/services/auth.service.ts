@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { UsuarioModel } from '../models/usuario.model';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AuthService {
   //login usuario
   //https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]
 
-  constructor( private http: HttpClient ) {
+  constructor( private router: Router,  private http: HttpClient ) {
 
     this.leerToken();
    }
@@ -28,6 +29,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('nombreusr');
     this.userToken = '';
+    //this.router.navigate(['Home']);
 
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   usuario: UsuarioModel = new UsuarioModel();
   recordarme: boolean;
-
+  
+  
   constructor( private auth: AuthService,
     private router: Router ) { }
 
@@ -54,12 +55,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('email', this.usuario.email);
       }
 
-      //console.log("xxxxxxxx" + resp['localId']);
+      
       localStorage.setItem('uid', resp['localId']);
       
-
-      this.router.navigateByUrl('/Homeadmin');
-
+      //this.ngOnInit();
+      
+      this.router.navigateByUrl('/homeadmin');
+      //window.location.reload();
+      //this.router.navigateByUrl('/homeadmin');
 
     }, (err) => {
       console.log(err.error.error.message);

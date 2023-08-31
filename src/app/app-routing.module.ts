@@ -6,6 +6,7 @@ import { ConsultarmiembrosComponent } from './pages/consultarmiembros/consultarm
 import { LoginComponent } from './pages/login/login.component';
 import { HomeadminComponent } from './pages/homeadmin/homeadmin.component';
 import { AuthGuard } from './guards/auth.guard';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 const routes: Routes = [
 
@@ -18,7 +19,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'Homeadmin',
+    path: 'homeadmin',
     canActivate: [ AuthGuard ],
     component: HomeadminComponent
   },
@@ -27,8 +28,12 @@ const routes: Routes = [
     component: ConsultarmiembrosComponent
   },
   {
-    path: 'miembros',
+    path: 'miembros', 
     component: ConsultarmiembrosComponent
+  },
+  {
+    path: 'navbar',
+    component: NavbarComponent
   },
   {
     path: '**',
