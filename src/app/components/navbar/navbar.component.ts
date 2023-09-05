@@ -134,15 +134,10 @@ export class NavbarComponent implements OnInit {
 
    salirApp(){
 
-    console.log("ssssssss");
     this.auth.loguot();
     this.ngOnInit();
-
     this.router.navigateByUrl('/home');
-    //this.router.navigate(['Home']);
-
-    //this.router.navigateByUrl('/home', {skipLocationChange: true}).then(()=>
-    //this.router.navigate(["navbar"]));
+ 
 
 
   }
