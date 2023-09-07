@@ -3,8 +3,12 @@
     flex-direction: column;
     min-height: 100vh;
     justify-content: space-between;
-    padding: 7rem 2rem 2rem 4rem;
-    transition: margin-left $transitionDuration;
+    padding: 3rem 2rem 20rem 23rem;
+    transition: margin-right $transitionDuration;
+    //position: fixed;
+    width: 1200px;
+
+    
 }
 
 .layout-main {

@@ -11,13 +11,6 @@ export class AppComponent {
 
   constructor( private miembrosService: MiembrosService){
 
-    this.miembrosService.getMiembros()
-        .subscribe( resp => {
-
-          console.log( resp);
-
-          
-        })
     
   
   }

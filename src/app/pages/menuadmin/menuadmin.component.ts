@@ -16,29 +16,29 @@ export class MenuadminComponent implements OnInit{
     ngOnInit() {
         this.model = [
             {
-                label: 'Home',
+                label: 'Módulo Administrativo',
                 items: [
-                    { label: 'Módulo principal', icon: 'pi pi-fw pi-home', routerLink: ['/homeadmin'] }
+                    { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: ['/homeadmin'] }
                 ]
             },
             
             {
-              label: 'Finanzas',
+              label: '',
               icon: 'pi pi-fw pi-briefcase',
               items: [
                   
                   {
-                      label: 'Movimientos',
-                      icon: 'pi pi-fw pi-user',
+                      label: 'Presupuesto',
+                      icon: 'pi pi-fw pi-dollar',
                       items: [
                           {
                               label: 'Registrar ingresos',
-                              icon: 'pi pi-fw pi-sign-in',
+                              icon: 'pi pi-fw pi-arrow-right',
                               routerLink: ['']
                           },
                           {
                               label: 'Registrar gastos',
-                              icon: 'pi pi-fw pi-times-circle',
+                              icon: 'pi pi-fw pi-arrow-left',
                               routerLink: ['']
                           }
                       ]
@@ -48,23 +48,23 @@ export class MenuadminComponent implements OnInit{
           },
 
             {
-                label: 'Membresía',
+                label: '',
                 icon: 'pi pi-fw pi-briefcase',
                 items: [
                     
                     {
-                        label: 'Miembros',
-                        icon: 'pi pi-fw pi-user',
+                        label: 'Miembros iglesia',
+                        icon: 'pi pi-fw pi-users',
                         items: [
                             {
                                 label: 'Crear miembro',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-fw pi-user-plus',
                                 routerLink: ['']
                             },
                             {
                                 label: 'Consultar miembro',
-                                icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['']
+                                icon: 'pi pi-fw pi-search',
+                                routerLink: ['/miembros']
                             }
                         ]
                     },
@@ -73,22 +73,22 @@ export class MenuadminComponent implements OnInit{
             },
 
             {
-              label: 'Eventos',
+              label: '',
               icon: 'pi pi-fw pi-briefcase',
               items: [
                   
                   {
-                      label: 'Evento',
-                      icon: 'pi pi-fw pi-user',
+                      label: 'Eventos',
+                      icon: 'pi pi-fw pi-calendar',
                       items: [
                           {
                               label: 'Crear evento',
-                              icon: 'pi pi-fw pi-sign-in',
+                              icon: 'pi pi-fw pi-calendar-plus',
                               routerLink: ['']
                           },
                           {
                               label: 'Consultar evento',
-                              icon: 'pi pi-fw pi-times-circle',
+                              icon: 'pi pi-fw pi-search',
                               routerLink: ['']
                           }
                       ]
@@ -98,23 +98,23 @@ export class MenuadminComponent implements OnInit{
           },
 
           {
-            label: 'Administración',
+            label: '',
             icon: 'pi pi-fw pi-briefcase',
             items: [
                 
                 {
-                    label: 'Usuarios',
-                    icon: 'pi pi-fw pi-user',
+                    label: 'Administración sistema',
+                    icon: 'pi pi-fw pi-cog',
                     items: [
                         {
                             label: 'Crear usuario',
-                            icon: 'pi pi-fw pi-sign-in',
+                            icon: 'pi pi-fw pi-user-plus',
                             routerLink: ['']
                         },
                         {
                             label: 'Consultar usuario',
-                            icon: 'pi pi-fw pi-times-circle',
-                            routerLink: ['']
+                            icon: 'pi pi-fw pi-search',
+                            routerLink: ['/usuarios']
                         }
                     ]
                 },

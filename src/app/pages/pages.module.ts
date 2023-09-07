@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
-import { ConsultarmiembrosComponent } from './consultarmiembros/consultarmiembros.component';
+import { MiembrosComponent } from './miembros/miembros.component';
 import { FormsModule } from '@angular/forms';
 import { ComponentsModule } from '../components/components.module';
 import { LoginComponent } from './login/login.component';
@@ -16,15 +16,22 @@ import { BadgeModule } from 'primeng/badge';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { RippleModule } from 'primeng/ripple';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { ButtonModule } from 'primeng/button';
+import { TooltipModule } from 'primeng/tooltip';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    ConsultarmiembrosComponent,
+    MiembrosComponent,
     LoginComponent,
     HomeadminComponent,
     MenuadminComponent,
-    MenuitemComponent
+    MenuitemComponent,
+    UsuariosComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +44,12 @@ import { RippleModule } from 'primeng/ripple';
     BadgeModule,
     RadioButtonModule,
     InputSwitchModule,
-    RippleModule
+    RippleModule,
+    TableModule,
+    ToastModule,
+    ToolbarModule,
+    ButtonModule,
+    TooltipModule
   ]
 })
 export class PagesModule { }

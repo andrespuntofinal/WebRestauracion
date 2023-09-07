@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { ConsultarmiembrosComponent } from './pages/consultarmiembros/consultarmiembros.component';
+import { MiembrosComponent } from './pages/miembros/miembros.component';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeadminComponent } from './pages/homeadmin/homeadmin.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -25,11 +26,15 @@ const routes: Routes = [
   },
   {
     path: 'miembro/:id',
-    component: ConsultarmiembrosComponent
+    component: MiembrosComponent
   },
   {
     path: 'miembros', 
-    component: ConsultarmiembrosComponent
+    component: MiembrosComponent
+  },
+  {
+    path: 'usuarios',
+    component: UsuariosComponent
   },
   {
     path: 'navbar',
