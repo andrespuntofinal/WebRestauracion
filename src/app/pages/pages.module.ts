@@ -22,6 +22,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { AvatarModule } from 'primeng/avatar';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     ToastModule,
     ToolbarModule,
     ButtonModule,
-    TooltipModule
+    TooltipModule,
+    AvatarModule
   ]
 })
 export class PagesModule { }

@@ -7,7 +7,7 @@ $gutter: 1rem; //for primeflex grid system
 
 
 body {
-    background: linear-gradient(to right, #798ea5, #acbbcc, #83939f) !important;
+    background: linear-gradient(to right, #596d80, #acbbcc, #596d80) !important;
 }
 
 h1,h2,h3,h4,h5 {
@@ -120,13 +120,13 @@ hr{
 /* Estilos generales del componente */
 .panel-component {
     position: fixed;
-    width: 500px;
-    height: calc(100vh - 9rem);
+    width: 900px;
+    height: calc(100vh - 7rem);
     z-index: 999;
     overflow-y: auto;
     user-select: none;
-    top: 7rem;
-    left: 23rem;
+    top: 5rem;
+    left: 22rem;
     transition: transform $transitionDuration, left $transitionDuration;
     background-color: var(--surface-overlay);
     border-radius: $borderRadius;
@@ -139,7 +139,7 @@ hr{
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      background-color: #e4eff5f7; /* Color de fondo del panel */
+      background-color: #b9c5d3; /* Color de fondo del panel */
   
       /* Estilos de la tabla */
       table {

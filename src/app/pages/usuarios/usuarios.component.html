@@ -5,36 +5,43 @@
 
 <div class="panel-component">
     <div class="panel">
-        <p-toolbar styleClass="mb-4 gap-2">
+        <p-toolbar styleClass="mb-3 gap-2">
             <ng-template pTemplate="left">
                 <p-button label="" icon="pi pi-plus" styleClass="p-button-secondary" pTooltip="Agregar nuevo registro"></p-button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <p-button label="" icon="pi pi-trash" styleClass="p-button-secondary" pTooltip="Eliminar registro"></p-button>
+                <p-button label="" icon="pi pi-trash" styleClass="p-button-secondary" pTooltip="Eliminar registro" (click)="deleteSelectedUsuarios()" [disabled]="!selectedUsuarios || !selectedUsuarios.length"></p-button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <p-button label="" icon="pi pi-file-edit" styleClass="p-button-secondary" pTooltip="Actualizar registro"></p-button>
-            </ng-template>
-        </p-toolbar>
-        <p-table #dt [value]="usuarios" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['nombre','emai','rol']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedUsuarios" selectionMode="multiple" [rowHover]="true" dataKey="id">
-        
-            <ng-template pTemplate="caption">
+            
                 <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                    <h5 class="m-0">Usuarios</h5>
+                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
                     <span class="block mt-2 md:mt-0 p-input-icon-left">
                         <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Search..."  class="w-full sm:w-auto"/>
+                        <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
                     </span>
                 </div>
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                <p-avatar label="USUARIOS"   size="large" [style]="{ 'background-color': '#B4C2CE', color: '#ffffff' , width: '100px' }"></p-avatar>
+            
             </ng-template>
-
+        </p-toolbar>
+        <p-table #dt [value]="usuarios" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['nombre','emai']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedUsuarios" selectionMode="multiple" [rowHover]="true" dataKey="uid">
+        
+    
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width: 3rem">
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
+                    <th pSortableColumn="uid">Id </th>
                     <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
                     <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
                     <th pSortableColumn="rol">Rol <p-sortIcon field="rol"></p-sortIcon></th>
-                    <th pSortableColumn="uid">Id </th>
                     <th pSortableColumn="estado">Estado <p-sortIcon field="estado"></p-sortIcon></th>
                     
                     <th></th>
@@ -44,12 +51,34 @@
             <ng-template pTemplate="body" let-usuario>
                 <tr>
                     <td>
-                        <p-tableCheckbox [value]="usuario.nombre"></p-tableCheckbox>
+                        <p-tableCheckbox [value]="usuario"></p-tableCheckbox>
                     </td>
-                    <td style="width:14%; min-width:10rem;"><span class="p-column-title">Nombre</span>
-                       {{ usuario.nombre }}
+                    <td style="width:14%; min-width:8rem;"><span class="p-column-title">Id</span>
+                       {{ usuario.uid }}
                     </td>
-                    
+
+                    <td style="width:14%; min-width:10rem;">
+                        <span class="p-column-title">nombre</span>
+                        {{usuario.nombre}}
+                    </td>
+
+                    <td style="width:14%; min-width:10rem;">
+                        <span class="p-column-title">Email</span>
+                        {{usuario.email}}
+                    </td>
+
+                    <td style="width:14%; min-width:8rem;">
+                        <span class="p-column-title">Rol</span>
+                        {{usuario.rol}}
+                    </td>
+
+                    <td style="width:14%; min-width:5rem;">
+                        <span class="p-column-title">Estado</span>
+                        {{usuario.estado}}
+                    </td>
+                    <td>
+                     
+                    </td>
                 </tr>
             </ng-template>
         

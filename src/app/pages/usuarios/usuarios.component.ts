@@ -4,6 +4,7 @@ import { UsuariosResponse } from 'src/app/interfaces/UsuariosResponse';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { AvatarModule } from 'primeng/avatar';
 
 @Component({
   selector: 'app-usuarios',
@@ -14,11 +15,11 @@ import { Table } from 'primeng/table';
 export class UsuariosComponent implements OnInit {
 
   //variables table crud
-  productDialog: boolean = false;
+  usuarioDialog: boolean = false;
 
-    deleteProductDialog: boolean = false;
+    deleteUsuarioDialog: boolean = false;
 
-    deleteProductsDialog: boolean = false;
+    deleteUsuarioSDialog: boolean = false;
 
     usuarios: UsuarioModel[] = [];
 
@@ -70,7 +71,19 @@ export class UsuariosComponent implements OnInit {
       table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
 
+  deleteUsuario(usuario: UsuarioModel) {
+    this.deleteUsuarioDialog = true;
+   // this.Usuario = { ...usuario };
+}
 
+deleteSelectedUsuarios() {
+  this.deleteUsuarioSDialog = true;
+}
+
+editUsuario(usuario: UsuarioModel) {
+    //this.Usuario = { ...usuario };
+    this.usuarioDialog= true;
+}
 
   
 }
