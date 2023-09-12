@@ -1,36 +1,27 @@
 <app-navbar></app-navbar>
-<div class="layout-sidebar">
-<app-menuadmin></app-menuadmin>
-</div>
 
-<div class="panel-component">
+
     <div class="panel">
-        <p-toolbar styleClass="mb-3 gap-2">
+        <p-toolbar styleClass="mb-2 gap-2" [style]="{ 'background-color': '#8198AB' }">
             <ng-template pTemplate="left">
-                <p-button label="" icon="pi pi-plus" styleClass="p-button-secondary" pTooltip="Agregar nuevo registro"></p-button>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <p-button label="" icon="pi pi-trash" styleClass="p-button-secondary" pTooltip="Eliminar registro" (click)="deleteSelectedUsuarios()" [disabled]="!selectedUsuarios || !selectedUsuarios.length"></p-button>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <p-button label="" icon="pi pi-file-edit" styleClass="p-button-secondary" pTooltip="Actualizar registro"></p-button>
-            
+                <p-avatar label="USUARIOS"   size="large" [style]="{ 'background-color': '#acbbcc', color: '#ffffff' , width: '100px' }"></p-avatar>
+                &nbsp;&nbsp;
+                <p-button label="" icon="pi pi-plus" [style]="{ 'background-color': '#2781AB' }" pTooltip="Agregar nuevo registro"></p-button>
+                &nbsp;&nbsp;
+                <p-button label="" icon="pi pi-trash" styleClass="p-button-danger" pTooltip="Eliminar registro" (click)="deleteSelectedUsuarios()" [disabled]="!selectedUsuarios || !selectedUsuarios.length"></p-button>
+                
                 <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
-                    &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;
                     <span class="block mt-2 md:mt-0 p-input-icon-left">
                         <i class="pi pi-search"></i>
                         <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
                     </span>
                 </div>
-                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                <p-avatar label="USUARIOS"   size="large" [style]="{ 'background-color': '#B4C2CE', color: '#ffffff' , width: '100px' }"></p-avatar>
-            
+                          
+                           
             </ng-template>
         </p-toolbar>
-        <p-table #dt [value]="usuarios" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['nombre','emai']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedUsuarios" selectionMode="multiple" [rowHover]="true" dataKey="uid">
+        <p-table #dt [value]="usuarios" [columns]="cols" responsiveLayout="scroll" [rows]="5" [globalFilterFields]="['nombre','emai']" [paginator]="true" [rowsPerPageOptions]="[5,10,15]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedUsuarios" selectionMode="multiple" [rowHover]="true" dataKey="uid">
         
     
             <ng-template pTemplate="header">
@@ -77,12 +68,13 @@
                         {{usuario.estado}}
                     </td>
                     <td>
-                     
+                        <div class="flex">
+                            <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#50585F', width:'30px', height:'30px' }" (click)="editUsuario(usuario)"  pTooltip="Editar registro"></button>
+
+                        </div>
                     </td>
                 </tr>
             </ng-template>
         
         </p-table>
     </div>
-  </div>
-  

@@ -7,7 +7,7 @@ $gutter: 1rem; //for primeflex grid system
 
 
 body {
-    background: linear-gradient(to right, #596d80, #acbbcc, #596d80) !important;
+    background: linear-gradient(to right, #596d80, #728397, #596d80) !important;
 }
 
 h1,h2,h3,h4,h5 {
@@ -43,7 +43,7 @@ hr{
 }
 
 .p-menubar {
-    background: linear-gradient(to right, #05214d, #607387, #05214d) !important;
+    background: linear-gradient(to right, #05214d, #455a6e, #05214d) !important;
     padding:10px 20px;
         font-size:10px;
         text-decoration:none;
@@ -126,7 +126,7 @@ hr{
     overflow-y: auto;
     user-select: none;
     top: 5rem;
-    left: 22rem;
+    left: 1rem;
     transition: transform $transitionDuration, left $transitionDuration;
     background-color: var(--surface-overlay);
     border-radius: $borderRadius;
@@ -135,6 +135,8 @@ hr{
     
     /* Estilos del panel */
     .panel {
+        
+       
       border: 1px solid #ccc;
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -164,15 +166,12 @@ hr{
   }
   
   /* Estilos para pantallas de tamaño pequeño (dispositivos móviles) */
-  @media (max-width: 767px) {
-    .panel-component {
-      padding: 10px; /* Espaciado reducido */
+  @media screen and (min-width: 1960px) {
+    .panel-component, .panel {
+        width: 1504px;
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
-    .panel {
-      padding: 10px; /* Espaciado reducido */
-    }
-    table {
-      font-size: 14px; /* Tamaño de fuente reducido */
-    }
-  }
+
+}
   

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input  } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,8 @@ export class NavbarComponent implements OnInit {
   items: MenuItem[] | undefined;
   nombreusr: string;
   control: string;
+  @Output() eventActionSidebar = new EventEmitter<boolean>();
+  @Input() sidebarVisible!: boolean;
 
   
   constructor( public auth: AuthService,
@@ -37,51 +39,40 @@ export class NavbarComponent implements OnInit {
        
         this.items = [
             {
-                label: 'Nosotros',
-                icon: 'pi pi-fw pi-eject',
-                routerLink: '/miembros'
+                label: 'Home',
+                icon: 'pi pi-fw pi-home',
+                command: ()=> this.salirApp(),
   
             },
             
             {
-                label: 'Poderosito',
-                icon: 'pi pi-fw pi-discord'
+                label: 'Presupuesto',
+                icon: 'pi pi-fw pi-dollar'
+                
          
             },
             {
-                label: 'Eventos',
-                icon: 'pi pi-fw pi-calendar'
+                label: 'Miembresía',
+                icon: 'pi pi-fw pi-users'
    
             },
             {
-              label: 'Reflexiones',
-              icon: 'pi pi-fw pi-play'
+              label: 'Eventos',
+              icon: 'pi pi-fw pi-calendar'
   
           },
           {
-              label: 'Transmisiones',
-              icon: 'pi pi-fw pi-facebook'
+              label: 'Administración',
+              icon: 'pi pi-fw pi-cog',
+              routerLink: '/usuarios'
   
           },
-            {
-                label: username,
-                icon: 'pi pi-fw pi-user',
-                items: [
-                 
-                    {
-                        label: 'Mi perfil',
-                        icon: 'pi pi-fw pi-user-plus',
-                        routerLink: '/homeadmin'
-                    
-                    },
-                    {
-                        label: 'Cerrar sesión',
-                        icon: 'pi pi-fw pi-power-off',
-                        command: () => this.salirApp(),
-                    }
-                ]
-                
-            }
+          {
+            label: 'Cerrar sesión',
+            icon: 'pi pi-fw pi-user',
+            command: ()=> this.salirApp(),
+
+        }
         ];
 
         return true;

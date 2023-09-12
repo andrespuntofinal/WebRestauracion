@@ -33,7 +33,7 @@ export class UsuariosComponent implements OnInit {
 
     statuses: any[] = [];
 
-    rowsPerPageOptions = [5, 10, 20];
+    rowsPerPageOptions = [5, 10, 15];
 
   public listUsuarios: UsuarioModel[];
 

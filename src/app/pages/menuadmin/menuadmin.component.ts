@@ -53,7 +53,7 @@ export class MenuadminComponent implements OnInit{
                 items: [
                     
                     {
-                        label: 'Miembros iglesia',
+                        label: 'Miembresía',
                         icon: 'pi pi-fw pi-users',
                         items: [
                             {
