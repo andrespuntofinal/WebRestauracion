@@ -1,6 +1,6 @@
 export class UsuarioModel {
 
-    nombre:string;
+    nombre?:string;
     email?:string;
     rol:string;
     uid?:string;

@@ -6,7 +6,7 @@
             <ng-template pTemplate="left">
                 <p-avatar label="USUARIOS"   size="large" [style]="{ 'background-color': '#acbbcc', color: '#ffffff' , width: '100px' }"></p-avatar>
                 &nbsp;&nbsp;
-                <p-button label="" icon="pi pi-plus" [style]="{ 'background-color': '#2781AB' }" pTooltip="Agregar nuevo registro"></p-button>
+                <p-button label="" icon="pi pi-plus" [style]="{ 'background-color': '#2781AB' }" pTooltip="Agregar nuevo registro" (click)="openNew()"></p-button>
                 &nbsp;&nbsp;
                 <p-button label="" icon="pi pi-trash" styleClass="p-button-danger" pTooltip="Eliminar registro" (click)="deleteSelectedUsuarios()" [disabled]="!selectedUsuarios || !selectedUsuarios.length"></p-button>
                 
@@ -78,3 +78,42 @@
         
         </p-table>
     </div>
+
+    <p-dialog [(visible)]="usuarioDialog" [style]="{width: '450px'}" header="" [modal]="true" class="p-fluid">
+      
+       
+        <p-avatar label="REGISTRO USUARIOS"   size="large" [style]="{ 'background-color': '#2781AB', color: '#ffffff' , width: '410px' }"></p-avatar>
+        
+        <ng-template pTemplate="content">
+            
+            <div class="field">
+                <label for="uid">Identificación</label>
+                <p-inputNumber id="uid" [(ngModel)]="Usuario['uid']"></p-inputNumber>
+                 <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['uid']">Identificación requerida</small>
+             
+            </div>
+            <div class="field">
+                <label for="name">Name</label>
+                <input input pInputText id="nombre" [(ngModel)]="Usuario['nombre']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['nombre']}"/>
+                 <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['nombre']">Nombre requerido</small>
+             
+            </div>
+            <div class="field">
+                <label for="email">Email</label>
+                <input input pInputText id="email" type="email" [(ngModel)]="Usuario['email']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['email']}"/>
+                <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['email']">Email requerido</small>
+                
+            </div>
+
+            <div class="field">
+                <label for="email">Rol</label>
+                <p-dropdown [options]="roles" [(ngModel)]="selectedRole" optionLabel="name"></p-dropdown>
+            </div>
+            
+        </ng-template>
+
+        <ng-template pTemplate="footer">
+            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUsuario()"></button>
+        </ng-template>
+    </p-dialog>

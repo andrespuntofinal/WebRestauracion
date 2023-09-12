@@ -5,7 +5,12 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { AvatarModule } from 'primeng/avatar';
+import { Usuario } from '../../interfaces/MiembrosResponse';
 
+interface Rol {
+  name: string;
+  
+}
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -13,6 +18,10 @@ import { AvatarModule } from 'primeng/avatar';
   //styleUrls: ['./usuarios.component.css']
 })
 export class UsuariosComponent implements OnInit {
+
+  roles: Rol[] | undefined;
+
+    selectedRole: Rol | undefined;
 
   //variables table crud
   usuarioDialog: boolean = false;
@@ -25,6 +34,8 @@ export class UsuariosComponent implements OnInit {
 
     Usuario: UsuarioModel[] = [];
 
+    //UsuariosResponse: Usuarios = {};
+
     selectedUsuarios: UsuarioModel[] = [];
 
     submitted: boolean = false;
@@ -36,6 +47,7 @@ export class UsuariosComponent implements OnInit {
     rowsPerPageOptions = [5, 10, 15];
 
   public listUsuarios: UsuarioModel[];
+  //usuario: any;
 
   constructor(private usuariosService: UsuariosService, private messageService: MessageService ) {
   }
@@ -46,6 +58,8 @@ export class UsuariosComponent implements OnInit {
     .subscribe( data => {
 
       this.usuarios= data.usuarios;
+
+      //this.Usuario = data.;
          
     console.log( "data:", this.usuarios  );
  
@@ -83,6 +97,32 @@ deleteSelectedUsuarios() {
 editUsuario(usuario: UsuarioModel) {
     //this.Usuario = { ...usuario };
     this.usuarioDialog= true;
+}
+
+hideDialog() {
+  this.usuarioDialog = false;
+  this.submitted = false;
+}
+
+saveUsuario() {
+  this.submitted = true;
+ 
+}
+
+openNew() {
+
+  console.log("dialogo");
+  this.Usuario = [];
+  this.submitted = false;
+  this.usuarioDialog = true;
+
+  this.roles = [
+    { name: 'USER_ROLE' },
+    { name: 'ADMIN_ROLE' },
+    { name: 'CONTA_ROLE' }
+    
+];
+  
 }
 
   

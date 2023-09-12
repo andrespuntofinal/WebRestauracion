@@ -23,6 +23,10 @@ import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { AvatarModule } from 'primeng/avatar';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -51,7 +55,11 @@ import { AvatarModule } from 'primeng/avatar';
     ToolbarModule,
     ButtonModule,
     TooltipModule,
-    AvatarModule
+    AvatarModule,
+    DialogModule,
+    InputNumberModule,
+    DropdownModule,
+    InputTextareaModule
   ]
 })
 export class PagesModule { }
