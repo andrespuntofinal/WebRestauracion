@@ -7,10 +7,7 @@ import { Table } from 'primeng/table';
 import { AvatarModule } from 'primeng/avatar';
 import { Usuario } from '../../interfaces/MiembrosResponse';
 
-interface Rol {
-  name: string;
-  
-}
+
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -19,9 +16,9 @@ interface Rol {
 })
 export class UsuariosComponent implements OnInit {
 
-  roles: Rol[] | undefined;
+  //selectedRoles: any = null;
 
-    selectedRole: Rol | undefined;
+  //roles: any[] = [{name: 'General', key: 'USER_ROL'}, {name: 'Admin', key: 'USER_ROL'}, {name: 'Contable', key: 'CONTA_ROL'}];
 
   //variables table crud
   usuarioDialog: boolean = false;
@@ -53,6 +50,8 @@ export class UsuariosComponent implements OnInit {
   }
   
   ngOnInit() {
+
+   // this.selectedRoles = this.roles[0];
 
     this.usuariosService.getUsuarios()
     .subscribe( data => {
@@ -106,6 +105,22 @@ hideDialog() {
 
 saveUsuario() {
   this.submitted = true;
+
+  const usuariosPost: UsuarioModel = {
+
+    nombre: this.Usuario['nombre'],
+    email:  this.Usuario['email'],
+    rol:    this.Usuario['rol'],
+    uid:    this.Usuario['uid'],
+    estado: true,
+    
+  };
+
+  if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usuario['email']?.trim() && this.Usuario['rol']?.trim()) {
+   console.log('55555',this.Usuario['rol'] );
+
+
+}
  
 }
 
@@ -116,12 +131,7 @@ openNew() {
   this.submitted = false;
   this.usuarioDialog = true;
 
-  this.roles = [
-    { name: 'USER_ROLE' },
-    { name: 'ADMIN_ROLE' },
-    { name: 'CONTA_ROLE' }
-    
-];
+
   
 }
 

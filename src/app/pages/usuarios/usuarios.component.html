@@ -79,10 +79,10 @@
         </p-table>
     </div>
 
-    <p-dialog [(visible)]="usuarioDialog" [style]="{width: '450px'}" header="" [modal]="true" class="p-fluid">
+    <p-dialog [(visible)]="usuarioDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid">
       
        
-        <p-avatar label="REGISTRO USUARIOS"   size="large" [style]="{ 'background-color': '#2781AB', color: '#ffffff' , width: '410px' }"></p-avatar>
+        <p-avatar label="REGISTRO USUARIOS"   size="large" [style]="{ 'background-color': '#2781AB', color: '#ffffff' , width: '370px' }"></p-avatar>
         
         <ng-template pTemplate="content">
             
@@ -106,8 +106,22 @@
             </div>
 
             <div class="field">
-                <label for="email">Rol</label>
-                <p-dropdown [options]="roles" [(ngModel)]="selectedRole" optionLabel="name"></p-dropdown>
+                <label class="mb-1">Rol</label>
+                <div class="formgrid grid">
+                    <div class="field-radiobutton col-8">
+                        <p-radioButton id="rol1" name="rol" value="USER_ROL" [(ngModel)]="Usuario['rol']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['rol']}"></p-radioButton>
+                        <label for="category1">Básico</label>
+                        &nbsp;
+                        <p-radioButton id="rol2" name="rol" value="ADMIN_ROL" [(ngModel)]="Usuario['rol']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['rol']}"></p-radioButton>
+                        <label for="category2">Admin</label>
+                        &nbsp;
+                        <p-radioButton id="rol3" name="category" value="CONTA_ROL" [(ngModel)]="Usuario['rol']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['rol']}"></p-radioButton>
+                        <label for="category3">Contable</label>
+                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['rol']">Seleccione un rol</small>
+                    </div>
+                                     
+                
+                </div>
             </div>
             
         </ng-template>
