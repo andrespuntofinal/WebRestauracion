@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { UsuariosResponse } from 'src/app/interfaces/UsuariosResponse';
 import { UsuarioModel } from 'src/app/models/usuario.model';
@@ -6,7 +7,7 @@ import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { AvatarModule } from 'primeng/avatar';
 import { Usuario } from '../../interfaces/MiembrosResponse';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usuarios',
@@ -23,15 +24,15 @@ export class UsuariosComponent implements OnInit {
   //variables table crud
   usuarioDialog: boolean = false;
 
+  uid: any;
+
     deleteUsuarioDialog: boolean = false;
 
-    deleteUsuarioSDialog: boolean = false;
+    deleteUsuariosSDialog: boolean = false;
 
     usuarios: UsuarioModel[] = [];
 
-    Usuario: UsuarioModel[] = [];
-
-    //UsuariosResponse: Usuarios = {};
+    Usuario: UsuarioModel= {}
 
     selectedUsuarios: UsuarioModel[] = [];
 
@@ -46,37 +47,46 @@ export class UsuariosComponent implements OnInit {
   public listUsuarios: UsuarioModel[];
   //usuario: any;
 
-  constructor(private usuariosService: UsuariosService, private messageService: MessageService ) {
+  constructor(
+    private usuariosService: UsuariosService, private messageService: MessageService,
+    private route:ActivatedRoute, private router:Router ) {
   }
   
-  ngOnInit() {
+  ngOnInit(): void {
 
-   // this.selectedRoles = this.roles[0];
+    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Usuario creado', life: 3000 });
 
-    this.usuariosService.getUsuarios()
-    .subscribe( data => {
+    this.cargarUsuarios();
 
-      this.usuarios= data.usuarios;
 
-      //this.Usuario = data.;
-         
-    console.log( "data:", this.usuarios  );
- 
-    this.cols = [
-      { field: 'nombre', header: 'Nombre' },
-      { field: 'email', header: 'Email' },
-      { field: 'rol', header: 'Rol' },
-      { field: 'estado', header: 'Estado' }
-  ];
+    }
 
-  this.statuses = [
-      { label: 'INSTOCK', value: 'instock' },
-      { label: 'LOWSTOCK', value: 'lowstock' },
-      { label: 'OUTOFSTOCK', value: 'outofstock' }
-  ];
-      
-    })
+    cargarUsuarios(){
+// this.selectedRoles = this.roles[0];
 
+this.usuariosService.getUsuarios()
+.subscribe( data => {
+
+  this.usuarios= data.usuarios;
+
+  //this.Usuario = data.;
+     
+console.log( "data:", this.usuarios  );
+
+this.cols = [
+  { field: 'nombre', header: 'Nombre' },
+  { field: 'email', header: 'Email' },
+  { field: 'rol', header: 'Rol' },
+  { field: 'estado', header: 'Estado' }
+];
+
+this.statuses = [
+  { label: 'INSTOCK', value: 'instock' },
+  { label: 'LOWSTOCK', value: 'lowstock' },
+  { label: 'OUTOFSTOCK', value: 'outofstock' }
+];
+  
+})
 
     }
 
@@ -84,13 +94,44 @@ export class UsuariosComponent implements OnInit {
       table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
 
-  deleteUsuario(usuario: UsuarioModel) {
+  deleteUsuario(Usuario: UsuarioModel) {
+    
     this.deleteUsuarioDialog = true;
-   // this.Usuario = { ...usuario };
+    this.Usuario = { ...Usuario };
+
+    
 }
 
 deleteSelectedUsuarios() {
-  this.deleteUsuarioSDialog = true;
+  this.deleteUsuarioDialog = true;
+
+}
+
+confirmDelete() {
+
+this.uid = this.Usuario['_id'];
+
+console.log("seleccionadoxxxxx", this.uid);
+
+this.usuariosService.deleteUsuarios(this.uid).subscribe(data => {
+  this.deleteUsuarioDialog = false;
+  this.cargarUsuarios();
+
+
+  })
+
+
+ // this.uidUser = this.usuarios.filter(val => val.uid !== this.Usuario['uid']);
+
+  
+  //this.deleteUsuariosDialog = false;
+  //this.usuarios = this.usuarios.filter(val => val.uid !== this.Usuario['uid']);
+  //this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+ // this.Usuario = {};
+
+ 
+
+
 }
 
 editUsuario(usuario: UsuarioModel) {
@@ -112,14 +153,45 @@ saveUsuario() {
     email:  this.Usuario['email'],
     rol:    this.Usuario['rol'],
     uid:    this.Usuario['uid'],
+    password:    'Poder4017',
     estado: true,
     
   };
 
   if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usuario['email']?.trim() && this.Usuario['rol']?.trim()) {
-   console.log('55555',this.Usuario['rol'] );
+   console.log('55555', usuariosPost );
 
+   this.usuariosService.postUsuarios(usuariosPost).subscribe( data => {
+    console.log("dataaa", usuariosPost );
 
+    
+      
+    });
+
+    Swal.fire({
+      title: 'Creación Usuario',
+     text: this.Usuario['nombre'],
+      icon: 'success',
+     confirmButtonText: 'Aceptar'
+    })
+
+  
+   
+   this.usuarios.push(usuariosPost);
+   
+   this.usuarioDialog = false;
+
+   //this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Usuario creado', life: 3000 });
+    
+    //this.usuarios = [];
+   // this.Usuario = [];
+  
+    //window.location.reload();
+
+    //this.router.navigateByUrl('usuarios', {skipLocationChange: true}).then(()=>
+    //this.router.navigate(["usuarios"])); 
+
+    //this.cargarUsuarios();
 }
  
 }
@@ -127,7 +199,7 @@ saveUsuario() {
 openNew() {
 
   console.log("dialogo");
-  this.Usuario = [];
+  this.Usuario = {};
   this.submitted = false;
   this.usuarioDialog = true;
 

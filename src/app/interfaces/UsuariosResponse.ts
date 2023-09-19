@@ -9,6 +9,7 @@ export interface Usuarios {
     email:  string;
     rol:    string;
     uid:    string;
+    password: string;
     estado: boolean;
     __v:    number;
 }

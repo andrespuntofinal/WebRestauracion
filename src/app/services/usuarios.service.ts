@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UsuariosResponse } from '../interfaces/UsuariosResponse';
+import { UsuarioModel } from 'src/app/models/usuario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,21 @@ export class UsuariosService {
 
     return this.http.get<UsuariosResponse>(this.myAppUrl + this.myAppUrlApi);
     //.pipe(map( data=> data['usuarios']));
+    
+  }
+
+  postUsuarios(usuarios: UsuarioModel):Observable<any>{
+
+    console.log("ANTES DE POST" ,usuarios);
+
+   return this.http.post(this.myAppUrl + this.myAppUrlApi, usuarios, this.httpOptions ).pipe(map((data: any) => {
+
+   }))
+    
+  }
+
+  deleteUsuarios(uid: any):Observable<UsuarioModel> {
+    return this.http.delete<UsuarioModel>(this.myAppUrl + this.myAppUrlApi + uid);
     
   }
 }
