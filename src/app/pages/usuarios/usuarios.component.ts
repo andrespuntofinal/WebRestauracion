@@ -17,18 +17,12 @@ import Swal from 'sweetalert2';
 })
 export class UsuariosComponent implements OnInit {
 
-  //selectedRoles: any = null;
-
-  //roles: any[] = [{name: 'General', key: 'USER_ROL'}, {name: 'Admin', key: 'USER_ROL'}, {name: 'Contable', key: 'CONTA_ROL'}];
-
-  //variables table crud
+  
   usuarioDialog: boolean = false;
 
   uid: any;
-
-    deleteUsuarioDialog: boolean = false;
-
-    deleteUsuariosSDialog: boolean = false;
+  accion = 'CREAR USUARIO';
+   
 
     usuarios: UsuarioModel[] = [];
 
@@ -54,15 +48,14 @@ export class UsuariosComponent implements OnInit {
   
   ngOnInit(): void {
 
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Usuario creado', life: 3000 });
-
+   
     this.cargarUsuarios();
 
 
     }
 
     cargarUsuarios(){
-// this.selectedRoles = this.roles[0];
+
 
 this.usuariosService.getUsuarios()
 .subscribe( data => {
@@ -96,47 +89,54 @@ this.statuses = [
 
   deleteUsuario(Usuario: UsuarioModel) {
     
-    this.deleteUsuarioDialog = true;
+    
     this.Usuario = { ...Usuario };
+
+    Swal.fire({
+      title: 'Eliminación Usuario',
+      text: this.Usuario['nombre'],
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.confirmDelete();
+        Swal.fire(
+          'Eliminado',
+          'Registro eliminado correctamente',
+          'success'
+        )
+      }
+    })
 
     
 }
 
-deleteSelectedUsuarios() {
-  this.deleteUsuarioDialog = true;
-
-}
 
 confirmDelete() {
 
 this.uid = this.Usuario['_id'];
 
-console.log("seleccionadoxxxxx", this.uid);
+//console.log("seleccionadoxxxxx", this.uid);
 
 this.usuariosService.deleteUsuarios(this.uid).subscribe(data => {
-  this.deleteUsuarioDialog = false;
-  this.cargarUsuarios();
+this.cargarUsuarios();
 
 
   })
 
 
- // this.uidUser = this.usuarios.filter(val => val.uid !== this.Usuario['uid']);
-
-  
-  //this.deleteUsuariosDialog = false;
-  //this.usuarios = this.usuarios.filter(val => val.uid !== this.Usuario['uid']);
-  //this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
- // this.Usuario = {};
-
- 
-
-
 }
 
-editUsuario(usuario: UsuarioModel) {
-    //this.Usuario = { ...usuario };
+editUsuario(Usuario: UsuarioModel) {
+
+   this.accion = 'ACTUALIZAR USUARIO';
+   this.Usuario = { ...Usuario };
     this.usuarioDialog= true;
+
+    this.uid = this.Usuario['_id'];
 }
 
 hideDialog() {
@@ -145,8 +145,78 @@ hideDialog() {
 }
 
 saveUsuario() {
-  this.submitted = true;
 
+  if (this.accion === 'CREAR USUARIO') {
+
+     this.crearUsuario();
+    
+  }
+
+  if (this.accion === 'ACTUALIZAR USUARIO') {
+
+    this.updateUsuario();
+
+    
+  }
+  
+ 
+   
+ 
+}
+
+updateUsuario(){
+
+this.uid = this.Usuario['_id'];
+
+this.submitted = true;
+
+const usuariosPut: UsuarioModel = {
+
+  nombre: this.Usuario['nombre'],
+  email:  this.Usuario['email'],
+  rol:    this.Usuario['rol'],
+  uid:    this.Usuario['uid'],
+
+  
+};
+
+if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usuario['email']?.trim() && this.Usuario['rol']?.trim()) {
+   
+  this.usuariosService.putUsuarios(this.uid, usuariosPut).subscribe( data => {
+       
+      
+   });
+
+   Swal.fire({
+     title: 'Actualización Usuario',
+    text: this.Usuario['nombre'],
+     icon: 'success',
+    confirmButtonText: 'Aceptar'
+   })
+
+   
+   //this.usuarios = [];
+   //this.Usuario =  {};
+   //this.cargarUsuarios();
+  //this.usuarios.push(usuariosPut);
+
+  this.usuarios[this.findIndexById(this.Usuario.uid)] = this.Usuario;
+
+  console.log('iddd', this.Usuario['uid']);
+
+ // this.usuarios.push(this.Usuario);
+  this.usuarioDialog = false;
+  this.accion = '';
+}
+
+
+
+}
+
+crearUsuario(){
+
+  this.submitted = true;
+  
   const usuariosPost: UsuarioModel = {
 
     nombre: this.Usuario['nombre'],
@@ -159,12 +229,9 @@ saveUsuario() {
   };
 
   if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usuario['email']?.trim() && this.Usuario['rol']?.trim()) {
-   console.log('55555', usuariosPost );
-
+   
    this.usuariosService.postUsuarios(usuariosPost).subscribe( data => {
-    console.log("dataaa", usuariosPost );
-
-    
+        
       
     });
 
@@ -175,36 +242,36 @@ saveUsuario() {
      confirmButtonText: 'Aceptar'
     })
 
-  
-   
    this.usuarios.push(usuariosPost);
-   
    this.usuarioDialog = false;
+   this.accion = '';
 
-   //this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Usuario creado', life: 3000 });
-    
-    //this.usuarios = [];
-   // this.Usuario = [];
-  
-    //window.location.reload();
-
-    //this.router.navigateByUrl('usuarios', {skipLocationChange: true}).then(()=>
-    //this.router.navigate(["usuarios"])); 
-
-    //this.cargarUsuarios();
+   
 }
- 
+
 }
 
 openNew() {
 
-  console.log("dialogo");
+  this.accion = 'CREAR USUARIO';
   this.Usuario = {};
   this.submitted = false;
   this.usuarioDialog = true;
 
 
   
+}
+
+findIndexById(uid: string): number {
+  let index = -1;
+  for (let i = 0; i < this.usuarios.length; i++) {
+      if (this.usuarios[i].uid === uid) {
+          index = i;
+          break;
+      }
+  }
+
+  return index;
 }
 
   

@@ -43,7 +43,7 @@ hr{
 }
 
 .p-menubar {
-    background: linear-gradient(to right, #05214d, #455a6e, #05214d) !important;
+    background: linear-gradient(to right, #01151f, #305a85, #01151f) !important;
     padding:10px 20px;
         font-size:10px;
         text-decoration:none;
@@ -163,6 +163,48 @@ hr{
         }
       }
     }
+  }
+
+  .label {
+    color: rgb(245, 240, 240);
+    
+        
+  }
+  
+    .terciario {background: linear-gradient(to right, #909da4, #305a85, #909da4); 
+    color:#f0f4f7; 
+    margin-left: -11px;
+    margin-top: -6px;
+    font-family: 'Roboto', sans-serif;
+    padding: 8px;
+    font-size: 16px;
+    text-shadow: 2px 2px 4px #000000;
+	border-top-right-radius: 10px 10px;
+    border-top-left-radius: 10px 10px;
+    border-bottom-right-radius: 10px 10px;
+    border-bottom-left-radius: 10px 10px;
+    text-align: center;
+    width:180px;
+    top: 88px;
+	
+  }
+
+  .acciones {background: linear-gradient(to right, #01151f, #305a85, #01151f); 
+    color:#f0f4f7; 
+    margin-left: -3px;
+    margin-top: -2px;
+    font-family: 'Roboto', sans-serif;
+    padding: 8px;
+    font-size: 16px;
+    text-shadow: 2px 2px 4px #000000;
+	border-top-right-radius: 10px 10px;
+    border-top-left-radius: 10px 10px;
+    border-bottom-right-radius: 10px 10px;
+    border-bottom-left-radius: 10px 10px;
+    text-align: center;
+    width:370px;
+    top: 88px;
+	
   }
   
   /* Estilos para pantallas de tamaño pequeño (dispositivos móviles) */

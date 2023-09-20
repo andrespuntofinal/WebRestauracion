@@ -4,7 +4,7 @@
     <div class="panel">
         <p-toolbar styleClass="mb-2 gap-2" [style]="{ 'background-color': '#8198AB' }">
             <ng-template pTemplate="left">
-                <p-avatar label="USUARIOS"   size="large" [style]="{ 'background-color': '#acbbcc', color: '#ffffff' , width: '100px' }"></p-avatar>
+                <label class="terciario"> USUARIOS </label>
                 &nbsp;&nbsp;
                 <p-button label="" icon="pi pi-plus" [style]="{ 'background-color': '#2781AB' }" pTooltip="Agregar nuevo registro" (click)="openNew()"></p-button>
   
@@ -83,8 +83,8 @@
     <p-dialog [(visible)]="usuarioDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid">
       
        
-        <p-avatar label="REGISTRO USUARIOS"   size="large" [style]="{ 'background-color': '#2781AB', color: '#ffffff' , width: '370px' }"></p-avatar>
-        
+        <label class="acciones"> {{ accion }} </label>
+       
         <ng-template pTemplate="content">
             
             <div class="field">
@@ -133,13 +133,4 @@
         </ng-template>
     </p-dialog>
 
-    <p-dialog [(visible)]="deleteUsuarioDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-        <div class="flex align-items-center justify-content-center">
-            <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-            <span *ngIf="Usuario">Está seguro de eliminar el usuario <b>{{Usuario['nombre']}}</b>?</span>
-        </div>
-        <ng-template pTemplate="footer">
-            <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteUsuarioDialog = false"></button>
-            <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes" (click)="confirmDelete()"></button>
-        </ng-template>
-    </p-dialog>
+   

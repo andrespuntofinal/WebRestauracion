@@ -51,4 +51,10 @@ export class UsuariosService {
     return this.http.delete<UsuarioModel>(this.myAppUrl + this.myAppUrlApi + uid);
     
   }
+
+  putUsuarios( uid: any, usuarios: UsuarioModel ):Observable<UsuarioModel> {
+
+    return this.http.put<UsuarioModel>(this.myAppUrl + this.myAppUrlApi + uid, usuarios, this.httpOptions);
+
+  }
 }
