@@ -89,8 +89,8 @@
             
             <div class="field">
                 <label for="uid">Identificación</label>
-                <p-inputNumber id="uid" [(ngModel)]="Usuario['uid']"></p-inputNumber>
-                 <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['uid']">Identificación requerida</small>
+                <input input pInputText id="uid" [(ngModel)]="Usuario['uid']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['uid']}"/>
+                <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['uid']">Identificación requerida</small>
              
             </div>
             <div class="field">

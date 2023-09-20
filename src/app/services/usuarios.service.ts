@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError  } from 'rxjs';
+import { map, catchError  } from 'rxjs/operators';
 import { UsuariosResponse } from '../interfaces/UsuariosResponse';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 
@@ -41,9 +41,21 @@ export class UsuariosService {
 
     console.log("ANTES DE POST" ,usuarios);
 
-   return this.http.post(this.myAppUrl + this.myAppUrlApi, usuarios, this.httpOptions ).pipe(map((data: any) => {
+   return this.http.post(this.myAppUrl + this.myAppUrlApi, usuarios, this.httpOptions )
+   .pipe(map((data: any) => {
 
-   }))
+   }),
+   
+   catchError((error: any) => {
+    if (error.status === 400) {
+      console.error('El correo que está registrando ya existe');
+      // Aquí puedes realizar acciones específicas para manejar el error 400.
+    } else {
+      // Maneja otros errores aquí si es necesario.
+      console.error('Error:', error);
+    }
+    return throwError(error);
+  }))
     
   }
 

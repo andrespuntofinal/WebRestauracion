@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { UsuariosResponse } from 'src/app/interfaces/UsuariosResponse';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { MessageService } from 'primeng/api';
@@ -8,6 +9,7 @@ import { Table } from 'primeng/table';
 import { AvatarModule } from 'primeng/avatar';
 import { Usuario } from '../../interfaces/MiembrosResponse';
 import Swal from 'sweetalert2';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-usuarios',
@@ -22,6 +24,7 @@ export class UsuariosComponent implements OnInit {
 
   uid: any;
   accion = 'CREAR USUARIO';
+  controlError: number = 0;
    
 
     usuarios: UsuarioModel[] = [];
@@ -43,7 +46,8 @@ export class UsuariosComponent implements OnInit {
 
   constructor(
     private usuariosService: UsuariosService, private messageService: MessageService,
-    private route:ActivatedRoute, private router:Router ) {
+    private route:ActivatedRoute, private router:Router,
+    private auth: AuthService ) {
   }
   
   ngOnInit(): void {
@@ -200,7 +204,7 @@ if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usua
    //this.cargarUsuarios();
   //this.usuarios.push(usuariosPut);
 
-  this.usuarios[this.findIndexById(this.Usuario.uid)] = this.Usuario;
+  this.usuarios[this.findIndexById(this.Usuario._id)] = this.Usuario;
 
   console.log('iddd', this.Usuario['uid']);
 
@@ -231,10 +235,8 @@ crearUsuario(){
   if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usuario['email']?.trim() && this.Usuario['rol']?.trim()) {
    
    this.usuariosService.postUsuarios(usuariosPost).subscribe( data => {
-        
-      
-    });
 
+    console.log('SIN control error');
     Swal.fire({
       title: 'Creación Usuario',
      text: this.Usuario['nombre'],
@@ -245,9 +247,37 @@ crearUsuario(){
    this.usuarios.push(usuariosPost);
    this.usuarioDialog = false;
    this.accion = '';
+   this.auth.nuevoUsuario( usuariosPost )
+   .subscribe ( resp =>  {
 
-   
+})
+      
+    },
+      (error: any) => {
+
+      if (error.status === 400) {
+        
+        Swal.fire({
+        title: 'Creación Usuario Fallida',
+        text: 'El correo ' + this.Usuario['email'] + ' ya existe',
+        icon: 'error',
+        confirmButtonText: 'Aceptar'
+    })
+
+   this.usuarioDialog = false;
+   this.accion = '';
+      }
+     
+      
+    }
+    );
+
+        
+
+ 
+    
 }
+    
 
 }
 
@@ -262,10 +292,10 @@ openNew() {
   
 }
 
-findIndexById(uid: string): number {
+findIndexById(_id: string): number {
   let index = -1;
   for (let i = 0; i < this.usuarios.length; i++) {
-      if (this.usuarios[i].uid === uid) {
+      if (this.usuarios[i]._id === _id) {
           index = i;
           break;
       }
