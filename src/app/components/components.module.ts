@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
 import { MenubarModule } from 'primeng/menubar';
+import { MenuModule } from 'primeng/menu';
 import { RouterModule } from '@angular/router';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     MenubarModule,
-    RouterModule
+    RouterModule,
+    AvatarModule,
+    AvatarGroupModule,
+    MenuModule
   ]
 })
 export class ComponentsModule { }

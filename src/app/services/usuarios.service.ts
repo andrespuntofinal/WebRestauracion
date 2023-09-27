@@ -13,6 +13,7 @@ export class UsuariosService {
 
   myAppUrl= environment.myAppUrl ;
   myAppUrlApi="api/usuarios/";
+  myAppUrlApiBus="api/buscar/usuarios/";
 
   httpOptions={
 
@@ -34,6 +35,18 @@ export class UsuariosService {
 
     return this.http.get<UsuariosResponse>(this.myAppUrl + this.myAppUrlApi);
     //.pipe(map( data=> data['usuarios']));
+    
+  }
+
+  getUsuariosEmail(email: any):Observable<UsuarioModel>{
+
+    console.log("55555555" + this.myAppUrl + this.myAppUrlApiBus + email)
+
+    //return this.http.get<UsuariosResponse[]>(this.myAppUrl + this.myAppUrlApi)
+           //        .pipe(map( data=> data['usuarios']));
+
+    return this.http.get<UsuarioModel>(this.myAppUrl + this.myAppUrlApiBus + email)
+    .pipe(map( data=> data['results']));
     
   }
 

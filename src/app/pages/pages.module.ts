@@ -27,6 +27,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
+import { StyleClassModule } from 'primeng/styleclass';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { DialogModule } from 'primeng/dialog';
     DialogModule,
     InputNumberModule,
     DropdownModule,
-    InputTextareaModule
+    InputTextareaModule,
+    StyleClassModule,
+    CardModule
   ]
 })
 export class PagesModule { }

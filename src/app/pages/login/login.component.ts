@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   usuario: UsuarioModel = new UsuarioModel();
   recordarme: boolean;
+  @Output() usuarioapp: string;
   
   
   constructor( private auth: AuthService,
@@ -58,7 +59,7 @@ export class LoginComponent implements OnInit {
       
       localStorage.setItem('uid', resp['localId']);
       
-      //this.ngOnInit();
+      this.usuarioapp = 'prueba desde login';
       
       this.router.navigateByUrl('/homeadmin');
       //window.location.reload();
