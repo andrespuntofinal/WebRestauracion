@@ -121,7 +121,17 @@ export class NavbarComponent implements OnInit {
     {
         label: 'Administración',
         icon: 'pi pi-fw pi-cog',
-        routerLink: '/usuarios'
+       
+        items: [
+          {
+            label: 'Usuarios',
+            icon: 'pi pi-fw pi-user',
+            routerLink: '/usuarios'
+  
+          } 
+  
+  
+        ]
 
     },
     {

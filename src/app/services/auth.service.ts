@@ -1,17 +1,31 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { UsuarioModel } from '../models/usuario.model';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Observable, throwError  } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private url = 'https://identitytoolkit.googleapis.com/v1/accounts';
-  private apikey = 'AIzaSyBMwHSn93JmIwv4t7lZ7ofAR_v_A869hAM';
+  private url = environment.urlgoogle;
+  private apikey = environment.apikeygoogle;
   private userToken: string;
+
+  myAppUrl= environment.myAppUrl ;
+  myAppUrlApi="api/auth/login";
+
+  httpOptions={
+
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+
+    })
+  };
 
   //crear usuario
   //https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
@@ -28,6 +42,8 @@ export class AuthService {
 
     localStorage.removeItem('token');
     localStorage.removeItem('nombreusr');
+    localStorage.removeItem('expira');
+    localStorage.removeItem('uid');
     this.userToken = '';
     //this.router.navigate(['Home']);
 
@@ -76,7 +92,7 @@ export class AuthService {
       map( resp=> {
 
         
-        this.guardarToken( resp['idToken'] );
+       // this.guardarToken( resp['idToken'] );
         return resp;
       })
 
@@ -91,7 +107,7 @@ export class AuthService {
     
 
     let hoy = new Date();
-    hoy.setSeconds( 3600 );
+    hoy.setSeconds( 18000 );
 
     localStorage.setItem('expira', hoy.getTime().toString() );
   }
@@ -136,6 +152,24 @@ export class AuthService {
     }
 
     return this.userToken.length > 2;
+
+  }
+
+  obtenerTokenApi(usuarioToken: any){
+  
+   // console.log('998877', this.myAppUrl + this.myAppUrlApi, usuarioToken, this.httpOptions);
+   return this.http.post(this.myAppUrl + this.myAppUrlApi, usuarioToken, this.httpOptions )
+   .pipe(
+    map( resp=> {
+
+     // console.log('tokennnnnnnnnnn', resp['token']);
+      this.guardarToken( resp['token'] );
+
+     // console.log('tokennn', resp['token']);
+     return resp;
+    })
+
+  );
 
   }
 }

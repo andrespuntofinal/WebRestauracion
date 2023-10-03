@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -10,6 +10,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { Usuario } from '../../interfaces/MiembrosResponse';
 import Swal from 'sweetalert2';
 import { state } from '@angular/animations';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-usuarios',
@@ -17,9 +18,9 @@ import { state } from '@angular/animations';
   providers: [MessageService]
   //styleUrls: ['./usuarios.component.css']
 })
-export class UsuariosComponent implements OnInit {
+export class UsuariosComponent implements OnInit, OnDestroy {
 
-  
+  private miSuscripcion: Subscription;
   usuarioDialog: boolean = false;
 
   uid: any;
@@ -58,34 +59,57 @@ export class UsuariosComponent implements OnInit {
 
     }
 
-    cargarUsuarios(){
-
-
-this.usuariosService.getUsuarios()
-.subscribe( data => {
-
-  this.usuarios= data.usuarios;
-
-  //this.Usuario = data.;
-     
-console.log( "data:", this.usuarios  );
-
-this.cols = [
-  { field: 'nombre', header: 'Nombre' },
-  { field: 'email', header: 'Email' },
-  { field: 'rol', header: 'Rol' },
-  { field: 'estado', header: 'Estado' }
-];
-
-this.statuses = [
-  { label: 'INSTOCK', value: 'instock' },
-  { label: 'LOWSTOCK', value: 'lowstock' },
-  { label: 'OUTOFSTOCK', value: 'outofstock' }
-];
+    ngOnDestroy() {
+      this.miSuscripcion.unsubscribe();
+    
+      }
   
-})
 
+   
+
+cargarUsuarios(){
+
+
+  console.log('tooken', localStorage.getItem('token'));
+  
+  this.miSuscripcion = this.usuariosService.getUsuarios()
+  .subscribe( data => {
+
+    this.usuarios= data.usuarios;
+
+    //this.Usuario = data.;
+      
+  console.log( "data:", this.usuarios  );
+
+  this.cols = [
+    { field: 'nombre', header: 'Nombre' },
+    { field: 'email', header: 'Email' },
+    { field: 'rol', header: 'Rol' },
+    { field: 'estado', header: 'Estado' }
+  ];
+
+  this.statuses = [
+    { label: 'INSTOCK', value: 'instock' },
+    { label: 'LOWSTOCK', value: 'lowstock' },
+    { label: 'OUTOFSTOCK', value: 'outofstock' }
+  ];
+
+    
+  },
+  (error: any) => {
+
+    
+ console.log('codigo error', error.status);
+
+    if (error.status === 401) {
+
+      this.ngOnDestroy();
+      this.router.navigateByUrl('/login');
+      
     }
+  })
+
+}
 
     onGlobalFilter(table: Table, event: Event) {
       table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
@@ -266,6 +290,11 @@ crearUsuario(){
 
    this.usuarioDialog = false;
    this.accion = '';
+      }
+
+      if (error.status === 401) {
+        
+        this.router.navigateByUrl('/login');
       }
      
       

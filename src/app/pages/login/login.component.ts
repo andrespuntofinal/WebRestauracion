@@ -24,6 +24,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
+    
+    localStorage.removeItem('token');
+    localStorage.removeItem('nombreusr');
+    localStorage.removeItem('expira');
+    localStorage.removeItem('uid');
+
 
     this.recordarme = false;
     if ( localStorage.getItem('email')) {
@@ -59,7 +65,17 @@ export class LoginComponent implements OnInit {
       
       localStorage.setItem('uid', resp['localId']);
       
-      this.usuarioapp = 'prueba desde login';
+      const email = this.usuario.email;
+      const password = this.usuario.password;
+
+      const usuarioToken = { email: email, password: password };
+
+      
+
+      this.auth.obtenerTokenApi(usuarioToken).subscribe( resp => {
+       
+        console.log('token desde apitoken', resp['token']);
+      });
       
       this.router.navigateByUrl('/homeadmin');
       //window.location.reload();
