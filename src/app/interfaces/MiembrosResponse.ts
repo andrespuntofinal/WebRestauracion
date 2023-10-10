@@ -1,9 +1,9 @@
 export interface MiembrosResponse {
     total:    number;
-    miembros: Miembro[];
+    miembros: Miembros[];
 }
 
-export interface Miembro {
+export interface Miembros {
     _id:              string;
     nombre:           string;
     numero_id:        string;
@@ -23,10 +23,5 @@ export interface Miembro {
     lider_contacto:   string;
     ministerio:       string;
     estado:           boolean;
-    usuario:          Usuario;
-}
-
-export interface Usuario {
-    _id:    string;
-    nombre: string;
+   
 }

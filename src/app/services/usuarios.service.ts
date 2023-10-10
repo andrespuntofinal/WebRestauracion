@@ -45,15 +45,11 @@ export class UsuariosService  implements OnInit {
     }
     }
 
- // getUsuarios():Observable<UsuariosResponse[]>{
-  getUsuarios():Observable<UsuariosResponse>{
+   getUsuarios():Observable<UsuariosResponse>{
 
     this.ngOnInit();
 
     console.log("token desde el servicio", localStorage.getItem('token'));
-
-    //return this.http.get<UsuariosResponse[]>(this.myAppUrl + this.myAppUrlApi)
-     //               .pipe(map( data=> data['usuarios']));
 
     return this.http.get<UsuariosResponse>(this.myAppUrl + this.myAppUrlApi, this.httpOptions )
     .pipe(map( data=> data),
@@ -61,9 +57,9 @@ export class UsuariosService  implements OnInit {
     catchError((error: any) => {
       if (error.status === 401) {
         console.error('Token caducado');
-        // Aquí puedes realizar acciones específicas para manejar el error 400.
+       
       } else {
-        // Maneja otros errores aquí si es necesario.
+        
         console.error('Error:', error);
       }
       return throwError(error);
@@ -75,10 +71,7 @@ export class UsuariosService  implements OnInit {
   getUsuariosEmail(email: any):Observable<UsuarioModel>{
 
     console.log("55555555" + this.myAppUrl + this.myAppUrlApiBus + email)
-
-    //return this.http.get<UsuariosResponse[]>(this.myAppUrl + this.myAppUrlApi)
-           //        .pipe(map( data=> data['usuarios']));
-
+   
     return this.http.get<UsuarioModel>(this.myAppUrl + this.myAppUrlApiBus + email)
     .pipe(map( data=> data['results']));
     
@@ -96,9 +89,9 @@ export class UsuariosService  implements OnInit {
    catchError((error: any) => {
     if (error.status === 400) {
       console.error('El correo que está registrando ya existe');
-      // Aquí puedes realizar acciones específicas para manejar el error 400.
+   
     } else {
-      // Maneja otros errores aquí si es necesario.
+    
       console.error('Error:', error);
     }
     return throwError(error);
@@ -107,7 +100,7 @@ export class UsuariosService  implements OnInit {
   }
 
   deleteUsuarios(uid: any):Observable<UsuarioModel> {
-    return this.http.delete<UsuarioModel>(this.myAppUrl + this.myAppUrlApi + uid);
+    return this.http.delete<UsuarioModel>(this.myAppUrl + this.myAppUrlApi + uid, this.httpOptions);
     
   }
 

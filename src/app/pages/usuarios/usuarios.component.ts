@@ -2,12 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { UsuariosResponse } from 'src/app/interfaces/UsuariosResponse';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { AvatarModule } from 'primeng/avatar';
-import { Usuario } from '../../interfaces/MiembrosResponse';
 import Swal from 'sweetalert2';
 import { state } from '@angular/animations';
 import { Subscription } from 'rxjs';
@@ -282,7 +280,7 @@ crearUsuario(){
       if (error.status === 400) {
         
         Swal.fire({
-        title: 'Creación Usuario Fallida',
+        title: 'Creación registro Fallida',
         text: 'El correo ' + this.Usuario['email'] + ' ya existe',
         icon: 'error',
         confirmButtonText: 'Aceptar'

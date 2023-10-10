@@ -110,7 +110,8 @@ export class NavbarComponent implements OnInit {
       },
       {
           label: 'Miembresía',
-          icon: 'pi pi-fw pi-users'
+          icon: 'pi pi-fw pi-users',
+          routerLink: '/miembros'
 
       },
       {
