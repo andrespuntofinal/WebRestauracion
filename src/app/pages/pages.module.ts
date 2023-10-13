@@ -29,6 +29,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DialogModule } from 'primeng/dialog';
 import { StyleClassModule } from 'primeng/styleclass';
 import { CardModule } from 'primeng/card';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { CardModule } from 'primeng/card';
     DropdownModule,
     InputTextareaModule,
     StyleClassModule,
-    CardModule
+    CardModule,
+    FileUploadModule
   ]
 })
 export class PagesModule { }

@@ -79,7 +79,7 @@ export class MiembrosService  implements OnInit {
 
   postMiembros(usuarios: MiembroModel):Observable<any>{
 
-    console.log("ANTES DE POST" ,usuarios);
+    console.log("ANTES DE POST miembros" ,localStorage.getItem('token'));
 
    return this.http.post(this.myAppUrl + this.myAppUrlApi, usuarios, this.httpOptions )
    .pipe(map((data: any) => {

@@ -16,7 +16,13 @@ import { Subscription } from 'rxjs';
   providers: [MessageService]
   //styleUrls: ['./usuarios.component.css']
 })
+
+
 export class MiembrosComponent implements OnInit, OnDestroy {
+
+  
+  uploadedFiles: any[] = [];
+
 
   private miSuscripcion: Subscription;
   miembroDialog: boolean = false;
@@ -61,10 +67,12 @@ export class MiembrosComponent implements OnInit, OnDestroy {
       this.miSuscripcion.unsubscribe();
     
       }
+
+    onBasicUpload() {
+        this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode' });
+    }
   
-
-   
-
+    
 cargarMiembros(){
 
 
@@ -237,8 +245,10 @@ crearMiembro(){
   
   const miembrosPost: MiembroModel = {
 
+    numero_id: this.Miembro['numero_id'],
     nombre: this.Miembro['nombre'],
     email:  this.Miembro['email'],
+    ministerio:  'MEDIOS',
      estado: true,
     
   };
@@ -247,7 +257,7 @@ crearMiembro(){
    
    this.miembrosService.postMiembros(miembrosPost).subscribe( data => {
 
-    console.log('SIN control error');
+    
     Swal.fire({
       title: 'Creación Miembro',
      text: this.Miembro['nombre'],

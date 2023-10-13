@@ -29,9 +29,14 @@
                     <th style="width: 3rem">
                        
                     </th>
-                    <th pSortableColumn="numero_id">Id </th>
+                   
                     <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
-                    <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
+                    <th pSortableColumn="celular">Celular </th>
+                    <th pSortableColumn="barrio">Barrio <p-sortIcon field="barrio"></p-sortIcon></th>
+                    <th pSortableColumn="direccion">Dirección </th>
+                    <th pSortableColumn="poblacion">Población <p-sortIcon field="poblacion"></p-sortIcon></th>
+                    <th pSortableColumn="fecha_nacimiento">Fecha nacimiento </th>
+                    <th pSortableColumn="tipo_miembro">Tipo miembro <p-sortIcon field="fecha_nacimiento"></p-sortIcon></th>
                     
                     
                     <th></th>
@@ -43,18 +48,40 @@
                     <td>
                         
                     </td>
-                    <td style="width:14%; min-width:8rem;"><span class="p-column-title">Id</span>
-                       {{ miembro.numero_id }}
-                    </td>
-
+                   
                     <td style="width:14%; min-width:10rem;">
                         <span class="p-column-title">nombre</span>
                         {{miembro.nombre}}
                     </td>
+                  
+                    <td style="width:14%; min-width:10rem;">
+                        <span class="p-column-title">Celular</span>
+                        {{miembro.celular}}
+                    </td>
 
                     <td style="width:14%; min-width:10rem;">
-                        <span class="p-column-title">Email</span>
-                        {{miembro.email}}
+                        <span class="p-column-title">Barrio</span>
+                        {{miembro.barrio}}
+                    </td>
+
+                    <td style="width:14%; min-width:10rem;">
+                        <span class="p-column-title">Dirección</span>
+                        {{miembro.direccion}}
+                    </td>
+
+                    <td style="width:14%; min-width:10rem;">
+                        <span class="p-column-title">Población</span>
+                        {{miembro.poblacion}}
+                    </td>
+
+                    <td style="width:14%; min-width:10rem;">
+                        <span class="p-column-title">Fecha nacimiento</span>
+                        {{miembro.fecha_nacimiento | date:'dd/MM/yyyy'}}
+                    </td>
+
+                    <td style="width:14%; min-width:10rem;">
+                        <span class="p-column-title">Tipo miembro</span>
+                        {{miembro.tipo_miembro}}
                     </td>
 
                     <td>
@@ -78,22 +105,36 @@
         <ng-template pTemplate="content">
             
             <div class="field">
-                <label for="uid">Identificación</label>
-                <input input pInputText id="uid" [(ngModel)]="Miembro['numero_id']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['numero_id']}"/>
+                               
+            <p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" [maxFileSize]="1000000" (onUpload)="onBasicUpload()"></p-fileUpload>
+              
+            </div>
+
+            <div class="field">
+                <span class="p-float-label">
+                <input input pInputText id="uid"  [(ngModel)]="Miembro['uid']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['numero_id']}"/>
                 <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['numero_id']">Identificación requerida</small>
-             
+                <label htmlFor="uid">Identificación</label>
+            </span>
             </div>
+            
+           <br>
             <div class="field">
-                <label for="name">Name</label>
-                <input input pInputText id="nombre" [(ngModel)]="Miembro['nombre']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['nombre']}"/>
+                <span class="p-float-label">
+                <input input pInputText id="nombre"  [(ngModel)]="Miembro['nombre']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['nombre']}"/>
                  <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['nombre']">Nombre requerido</small>
-             
+                 <label htmlFor="nombre">Nombre</label>
+                 </span>
             </div>
+
+            <br>
+            
             <div class="field">
-                <label for="email">Email</label>
+                <span class="p-float-label">
                 <input input pInputText id="email" type="email" [(ngModel)]="Miembro['email']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['email']}"/>
                 <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['email']">Email requerido</small>
-                
+                <label htmlFor="email">Email</label>
+            </span>
             </div>
 
       
