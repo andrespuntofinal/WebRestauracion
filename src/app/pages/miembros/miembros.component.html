@@ -21,82 +21,95 @@
                            
             </ng-template>
         </p-toolbar>
-        <p-table #dt [value]="miembros" [columns]="cols" responsiveLayout="scroll" [rows]="5" [globalFilterFields]="['nombre','emai']" [paginator]="true" [rowsPerPageOptions]="[5,10,15]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedMiembros" selectionMode="multiple" [rowHover]="true" dataKey="numero_id">
-        
-    
-            <ng-template pTemplate="header">
-                <tr>
-                    <th style="width: 3rem">
-                       
-                    </th>
-                   
-                    <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
-                    <th pSortableColumn="celular">Celular </th>
-                    <th pSortableColumn="barrio">Barrio <p-sortIcon field="barrio"></p-sortIcon></th>
-                    <th pSortableColumn="direccion">Dirección </th>
-                    <th pSortableColumn="poblacion">Población <p-sortIcon field="poblacion"></p-sortIcon></th>
-                    <th pSortableColumn="fecha_nacimiento">Fecha nacimiento </th>
-                    <th pSortableColumn="tipo_miembro">Tipo miembro <p-sortIcon field="fecha_nacimiento"></p-sortIcon></th>
-                    
-                    
-                    <th></th>
-                </tr>
-            </ng-template>
+       
 
-            <ng-template pTemplate="body" let-miembro>
-                <tr>
-                    <td>
+        <div class="card">
+            <p-table  #dt [value]="miembros" sortField="nombre" sortMode="single" [globalFilterFields]="['nombre','emai']" dataKey="numero_id" rowGroupMode="subheader" groupRowsBy="nombre" [tableStyle]="{'min-width': '70rem'}">
+                <ng-template pTemplate="header">
+                    <tr>
                         
-                    </td>
-                   
-                    <td style="width:14%; min-width:10rem;">
-                        <span class="p-column-title">nombre</span>
-                        {{miembro.nombre}}
-                    </td>
-                  
-                    <td style="width:14%; min-width:10rem;">
-                        <span class="p-column-title">Celular</span>
-                        {{miembro.celular}}
-                    </td>
+                        <th style="width:10%">Celular</th>
+                        <th style="width:20%">Dirección</th>
+                        <th style="width:20%">Barrio</th>
+                        <th style="width:15%">Población</th>
+                        <th style="width:20%">Ministerio</th>
+                        <th style="width:10%">Posición</th>
+                        <th style="width:5%">Bautizado</th>
+                        <th style="width:10%">Nacimiento</th>
+                        <th style="width:15%">E.Civil</th>
+                        <th style="width:15%">F.Membresia</th>
+                        <th style="width:15%">Contacto</th>
+                        
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="groupheader" let-miembros let-rowIndex="rowIndex" let-expanded="expanded">
+                    <tr>
+                        <td colspan="11">
+                            <button type="button" pButton pRipple [pRowToggler]="miembros" class="p-button-text p-button-rounded p-button-plain mr-2" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                            <img [alt]="miembros.nombre" src="{{miembros.imagen}}" width="50" style="vertical-align: middle" />
+                            <span class="font-bold ml-2">{{miembros.nombre}}</span>
+                            
+                        </td>
+                    </tr>
+              
+                </ng-template>
+              
+                <ng-template pTemplate="rowexpansion" let-miembro>
+                    <tr>
+                        <td>
+                            {{miembro.celular}}
+                        </td>
+                        
+                        <td>
+                            {{miembro.direccion}}
+                        </td>
+                        
+                        <td>
+                            {{miembro.barrio}}
+                        </td>
 
-                    <td style="width:14%; min-width:10rem;">
-                        <span class="p-column-title">Barrio</span>
-                        {{miembro.barrio}}
-                    </td>
+                        <td>
+                            {{miembro.poblacion}}
+                        </td>
+                        <td>
+                            {{miembro.ministerio}}
+                        </td>
+                        <td>
+                            {{miembro.tipo_miembro}}
+                        </td>
+                        <td>
+                            {{miembro.bautizado}}
+                        </td>
+                        <td>
+                            {{miembro.fecha_nacimiento | date:'dd/MM/yyyy'}}
+                        </td>
+                        <td>
+                            {{miembro.estado_civil}}
+                        </td>
+                        <td>
+                            {{miembro.fecha_membresia | date:'dd/MM/yyyy'}}
+                        </td>
+                        <td>
+                            {{miembro.lider_contacto}}
+                        </td>
 
-                    <td style="width:14%; min-width:10rem;">
-                        <span class="p-column-title">Dirección</span>
-                        {{miembro.direccion}}
-                    </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#50585F', width:'30px', height:'30px' }" (click)="editMiembro(miembro)"  pTooltip="Editar registro"></button>
+                                &nbsp;
+                                <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'30px', height:'30px' }"  (click)="deleteMiembro(miembro)" pTooltip="Eliminar registro"></p-button>
+                                &nbsp;
+                                <p-button label="" icon="pi pi-image" [style]="{ 'background-color': '#4979aa', width:'30px', height:'30px' }"  (click)="openNewimage(miembro)" pTooltip="Subir imágen"></p-button>
+                            </div>
+                        </td>
+                        
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
 
-                    <td style="width:14%; min-width:10rem;">
-                        <span class="p-column-title">Población</span>
-                        {{miembro.poblacion}}
-                    </td>
 
-                    <td style="width:14%; min-width:10rem;">
-                        <span class="p-column-title">Fecha nacimiento</span>
-                        {{miembro.fecha_nacimiento | date:'dd/MM/yyyy'}}
-                    </td>
 
-                    <td style="width:14%; min-width:10rem;">
-                        <span class="p-column-title">Tipo miembro</span>
-                        {{miembro.tipo_miembro}}
-                    </td>
-
-                    <td>
-                        <div class="flex">
-                            <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#50585F', width:'30px', height:'30px' }" (click)="editMiembro(miembro)"  pTooltip="Editar registro"></button>
-                            &nbsp;
-                            <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'30px', height:'30px' }"  (click)="deleteMiembro(miembro)" pTooltip="Eliminar registro"></p-button>
-                            &nbsp;
-                            <p-button label="" icon="pi pi-image" [style]="{ 'background-color': '#4979aa', width:'30px', height:'30px' }"  (click)="openNewimage(miembro)" pTooltip="Subir imágen"></p-button>
-                        </div>
-                    </td>
-                </tr>
-            </ng-template>
-        
-        </p-table>
     </div>
 
     <p-dialog [(visible)]="miembroDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid">
@@ -314,7 +327,7 @@
                     url="https://www.primefaces.org/cdn/api/upload.php"
                       (onUpload)="onUpload($event)"
                        accept="image/*"
-                       [maxFileSize]="1000000">
+                       [maxFileSize]="99999999999">
                     <ng-template pTemplate="content">
                         <ul *ngIf="uploadedFiles.length">
                             <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
