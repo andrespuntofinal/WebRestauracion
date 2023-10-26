@@ -13,6 +13,7 @@ export class MiembrosService  implements OnInit {
 
   myAppUrl= environment.myAppUrl ;
   myAppUrlApi="api/miembros/";
+  myAppUrlApiUpload="api/uploads/miembros/";
   myAppUrlApiBus="api/buscar/miembros/";
 
   
@@ -107,6 +108,17 @@ export class MiembrosService  implements OnInit {
   putMiembros( uid: any, usuarios: MiembroModel ):Observable<MiembroModel> {
 
     return this.http.put<MiembroModel>(this.myAppUrl + this.myAppUrlApi + uid, usuarios, this.httpOptions);
+
+  }
+
+  uploadFile( uid: any, file: File ):Observable<any> {
+
+    const formData: FormData = new FormData();
+    formData.append('archivo', file, file.name);
+
+    console.log("ANTES DE POST UPLOAD" , file);
+
+    return this.http.put<any>(this.myAppUrl + this.myAppUrlApiUpload + uid, formData);
 
   }
 }

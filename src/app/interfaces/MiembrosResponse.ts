@@ -15,11 +15,11 @@ export interface Miembros {
     sexo:             string;
     poblacion:        string;
     estado_civil:     string;
-    fecha_nacimiento: Date;
+    fecha_nacimiento: string;
     imagen:           string;
     tipo_miembro:     string;
     bautizado:        string;
-    fecha_membresia:  Date;
+    fecha_membresia:  string;
     lider_contacto:   string;
     ministerio:       string;
     estado:           boolean;

@@ -30,7 +30,8 @@ import { DialogModule } from 'primeng/dialog';
 import { StyleClassModule } from 'primeng/styleclass';
 import { CardModule } from 'primeng/card';
 import { FileUploadModule } from 'primeng/fileupload';
-
+import { CalendarModule } from 'primeng/calendar';
+import { MultiSelectModule } from "primeng/multiselect";
 @NgModule({
   declarations: [
     HomeComponent,
@@ -65,7 +66,9 @@ import { FileUploadModule } from 'primeng/fileupload';
     InputTextareaModule,
     StyleClassModule,
     CardModule,
-    FileUploadModule
+    FileUploadModule,
+    CalendarModule,
+    MultiSelectModule
   ]
 })
 export class PagesModule { }

@@ -13,8 +13,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-miembros',
   templateUrl: './miembros.component.html',
-  providers: [MessageService]
-  //styleUrls: ['./usuarios.component.css']
+  providers: [MessageService],
+  styleUrls: ['./miembros.component.css']
 })
 
 
@@ -26,6 +26,7 @@ export class MiembrosComponent implements OnInit, OnDestroy {
 
   private miSuscripcion: Subscription;
   miembroDialog: boolean = false;
+  imageDialog: boolean = false;
 
   numero_id: any;
   accion = 'CREAR MIEMBROS';
@@ -36,7 +37,17 @@ export class MiembrosComponent implements OnInit, OnDestroy {
 
     Miembro: MiembroModel= {}
 
+    estadocivil: any[] = [];
+
+    tipomiembro: any[] = [];
+
+    poblacion: any[] = [];
+
+    ministerio: any[] = [];
+
     selectedMiembros: MiembroModel[] = [];
+
+    valoresSeleccionadosString: string;
 
     submitted: boolean = false;
 
@@ -46,6 +57,7 @@ export class MiembrosComponent implements OnInit, OnDestroy {
 
     rowsPerPageOptions = [5, 10, 15];
 
+    
   public listMiembros: MiembroModel[];
   //usuario: any;
 
@@ -57,7 +69,41 @@ export class MiembrosComponent implements OnInit, OnDestroy {
   
   ngOnInit(): void {
 
-   
+    this.estadocivil = [
+      { label: 'Casado', value: 'CASADO' },
+      { label: 'Soltero', value: 'SOLTERO' },
+      { label: 'Unión libre', value: 'UNION LIBRE' },
+      { label: 'Otro', value: 'OTRO' }
+  ];
+
+  this.tipomiembro = [
+    { label: 'Líder', value: 'LIDER' },
+    { label: 'Nuevo', value: 'NUEVO' },
+    { label: 'Asistente rregular', value: 'ASISTENTE REGULAR' },
+    { label: 'Asistente irregular', value: 'ASISTENTE IREGULAR' }
+];
+
+this.poblacion = [
+  { label: 'Infante', value: 'INFANTE' },
+  { label: 'Niño', value: 'NIÑO' },
+  { label: 'Adolescente', value: 'ADOLESCENTE' },
+  { label: 'Joven', value: 'JOVEN' },
+  { label: 'Adulto', value: 'ADULTO' },
+  { label: 'Anciano', value: 'ANCIANO' }
+];
+
+this.ministerio = [
+  { label: 'Maestro ED', value: 'MAESTRO ED' },
+  { label: 'Jovenes', value: 'JOVENES' },
+  { label: 'Alabanza', value: 'ALABANZA' },
+  { label: 'Diaconado', value: 'DIACONADO' },
+  { label: 'Evangelismo', value: 'EVANGELISMO' },
+  { label: 'Medios', value: 'MEDIOS' },
+  { label: 'Ventas', value: 'VENTAS' },
+  { label: 'Líder célula', value: 'LIDER CELULA' },
+  { label: 'Ninguno', value: 'NINGUNO' }
+];
+
     this.cargarMiembros();
 
 
@@ -146,7 +192,7 @@ confirmDelete() {
 
 this.numero_id = this.Miembro['_id'];
 
-//console.log("seleccionadoxxxxx", this.uid);
+console.log("id eliminar", this.numero_id);
 
 this.miembrosService.deleteMiembros(this.numero_id).subscribe(data => {
 this.cargarMiembros();
@@ -202,7 +248,20 @@ const miembrosPut: MiembroModel = {
   nombre: this.Miembro['nombre'],
   email:  this.Miembro['email'],
   numero_id:  this.Miembro['numero_id'],
-  
+  telefono:  this.Miembro['telefono'],
+  celular:  this.Miembro['celular'],
+  barrio:  this.Miembro['barrio'],
+  direccion:  this.Miembro['direccion'],
+  sexo:  this.Miembro['sexo'],
+  poblacion:  this.Miembro['poblacion'],
+  estado_civil:  this.Miembro['estado_civil'],
+  tipo_miembro:  this.Miembro['tipo_miembro'],
+  bautizado:  this.Miembro['bautizado'],
+  fecha_membresia:  this.Miembro['fecha_membresia'],
+  lider_contacto:  this.Miembro['lider_contacto'],
+  ministerio:  this.Miembro['ministerio'],
+  estado:  true,
+ 
   
 };
 
@@ -245,15 +304,28 @@ crearMiembro(){
   
   const miembrosPost: MiembroModel = {
 
-    numero_id: this.Miembro['numero_id'],
     nombre: this.Miembro['nombre'],
     email:  this.Miembro['email'],
-    ministerio:  'MEDIOS',
-     estado: true,
+    numero_id:  this.Miembro['numero_id'],
+    telefono:  this.Miembro['telefono'],
+    celular:  this.Miembro['celular'],
+    barrio:  this.Miembro['barrio'],
+    direccion:  this.Miembro['direccion'],
+    sexo:  this.Miembro['sexo'],
+    poblacion:  this.Miembro['poblacion']['value'],
+    estado_civil:  this.Miembro['estado_civil']['value'],
+    tipo_miembro:  this.Miembro['tipo_miembro']['value'],
+    bautizado:  this.Miembro['bautizado'],
+    fecha_membresia:  this.Miembro['fecha_membresia'],
+    fecha_nacimiento:  this.Miembro['fecha_nacimiento'],
+    lider_contacto:  this.Miembro['lider_contacto'],
+    ministerio:  this.valoresSeleccionadosString,
     
   };
 
-  if ( this.Miembro['numero_id'] != null  && this.Miembro['nombre']?.trim() && this.Miembro['email']?.trim()) {
+  if ( this.Miembro['numero_id'] != null  && this.Miembro['nombre']?.trim()) {
+
+    console.log('data antes postttttt', miembrosPost);
    
    this.miembrosService.postMiembros(miembrosPost).subscribe( data => {
 
@@ -303,6 +375,13 @@ crearMiembro(){
 
 }
 
+onMultiSelectChange(event: any) {
+  // Obtén los valores seleccionados y conviértelos en una cadena separada por comas
+  this.valoresSeleccionadosString = event.value.map(item => item.value).join(',');
+
+  console.log("ttttttttt", this.valoresSeleccionadosString);
+}
+
 openNew() {
 
   this.accion = 'CREAR MIEMBRO';
@@ -310,6 +389,14 @@ openNew() {
   this.submitted = false;
   this.miembroDialog = true;
 
+
+  
+}
+
+openNewimage(Miembro: MiembroModel) {
+
+this.Miembro = { ...Miembro };
+this.imageDialog = true;
 
   
 }
@@ -324,6 +411,24 @@ findIndexById(_id: string): number {
   }
 
   return index;
+}
+
+onUpload(event: any)  {
+  //for (const file of event.files) {
+     // this.uploadedFiles.push(file);
+  //}
+  this.numero_id = this.Miembro['_id'];
+  const file: File = event.files[0];
+
+  console.log('imagennnn', file);
+
+  this.miembrosService.uploadFile(this.numero_id, file).subscribe( data => {
+
+   
+             
+  });
+
+ 
 }
 
   

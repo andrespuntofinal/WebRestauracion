@@ -89,6 +89,8 @@
                             <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#50585F', width:'30px', height:'30px' }" (click)="editMiembro(miembro)"  pTooltip="Editar registro"></button>
                             &nbsp;
                             <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'30px', height:'30px' }"  (click)="deleteMiembro(miembro)" pTooltip="Eliminar registro"></p-button>
+                            &nbsp;
+                            <p-button label="" icon="pi pi-image" [style]="{ 'background-color': '#4979aa', width:'30px', height:'30px' }"  (click)="openNewimage(miembro)" pTooltip="Subir imágen"></p-button>
                         </div>
                     </td>
                 </tr>
@@ -98,53 +100,229 @@
     </div>
 
     <p-dialog [(visible)]="miembroDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid">
-      
        
         <label class="acciones"> {{ accion }} </label>
        
         <ng-template pTemplate="content">
-            
-            <div class="field">
-                               
-            <p-fileUpload mode="basic" name="demo[]" url="./upload.php" accept="image/*" [maxFileSize]="1000000" (onUpload)="onBasicUpload()"></p-fileUpload>
-              
-            </div>
-
-            <div class="field">
-                <span class="p-float-label">
-                <input input pInputText id="uid"  [(ngModel)]="Miembro['uid']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['numero_id']}"/>
-                <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['numero_id']">Identificación requerida</small>
-                <label htmlFor="uid">Identificación</label>
-            </span>
-            </div>
-            
+            <br>
+                       
            <br>
+           <div class="formgrid grid">
             <div class="field">
                 <span class="p-float-label">
-                <input input pInputText id="nombre"  [(ngModel)]="Miembro['nombre']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['nombre']}"/>
-                 <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['nombre']">Nombre requerido</small>
-                 <label htmlFor="nombre">Nombre</label>
+                <input input pInputText id="numero_id"  type="text" class="input-con-fondo" [(ngModel)]="Miembro['numero_id']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['numero_id']}"/>
+                 <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['numero_id']">Identifiación requerida</small>
+                 <label htmlFor="numero_id">Identificación</label>
                  </span>
             </div>
 
-            <br>
+            &nbsp;
             
             <div class="field">
                 <span class="p-float-label">
-                <input input pInputText id="email" type="email" [(ngModel)]="Miembro['email']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['email']}"/>
-                <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['email']">Email requerido</small>
-                <label htmlFor="email">Email</label>
+                <input input pInputText id="nombre" type="text" class="input-con-fondo" [(ngModel)]="Miembro['nombre']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['nombre']}"/>
+                <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['nombre']">Nombre requerido</small>
+                <label htmlFor="nombre">Nombre</label>
+            </span>
+            </div>
+        </div>
+
+            <br>
+            <div class="formgrid grid">
+            <div class="field">
+                <span class="p-float-label">
+                <input input pInputText id="telefono" type="text" class="input-con-fondo" [(ngModel)]="Miembro['telefono']" />
+                
+                <label htmlFor="telefono">Teléfono</label>
             </span>
             </div>
 
-      
+            &nbsp;
+            
+            <div class="field">
+                <span class="p-float-label">
+                <input input pInputText id="celular" type="text" class="input-con-fondo" [(ngModel)]="Miembro['celular']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['celular']}"/>
+                <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['celular']">Celular requerido</small>
+                <label htmlFor="celular">Celular</label>
+            </span>
+            </div>
+
+        </div>        
+     <br>
+
+            <div class="formgrid grid">
+
+            <div class="field">
+                <span class="p-float-label">
+                    <p-dropdown inputId="estado_civil"  [autoDisplayFirst]="false" [options]="estadocivil" [(ngModel)]="Miembro['estado_civil']" optionLabel="label"></p-dropdown>
+                    <label for="estado_civil">Estado civil</label>
+                </span>
+            </div>
+
+            &nbsp;
+
+            
+            
+            <div class="field">
+                <span class="p-float-label">
+                    <p-calendar [(ngModel)]="Miembro['fecha_nacimiento']"  class="input-con-fondo" [showIcon]="true"></p-calendar>
+                <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['fecha_nacimiento']">Fecha nacimiento requerida</small>
+                <label htmlFor="fecha_nacimiento">Fecha nacimiento</label>
+            </span>
+            </div>
+        </div>
+        <br>
+        <div class="formgrid grid">    
+            <div class="field">
+                <span class="p-float-label">
+                <input input pInputText id="direccion" type="text" class="input-con-fondo" [(ngModel)]="Miembro['direccion']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['direccion']}"/>
+                <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['direccion']">Dirección requerida</small>
+                <label htmlFor="direccion">Dirección</label>
+            </span>
+            </div>
+
+            &nbsp;
+            
+            <div class="field">
+                <span class="p-float-label">
+                <input input pInputText id="barrio" type="text" class="input-con-fondo" [(ngModel)]="Miembro['barrio']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['barrio']}"/>
+                <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['barrio']">Barrio requerido</small>
+                <label htmlFor="barrio">Barrio</label>
+            </span>
+            </div>
+
+            <div class="field">
+                <label class="mb-1">Género</label>
+                <div class="formgrid grid">
+                    <div class="field-radiobutton col-8">
+                        <p-radioButton id="sexoM" name="sexo" value="MASCULINO" [(ngModel)]="Miembro['sexo']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['sexo']}"></p-radioButton>
+                        <label for="sexoM">Masculino</label>
+                        &nbsp;
+                        <p-radioButton id="sexoF" name="sexo" value="FEMENINO" [(ngModel)]="Miembro['sexo']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['sexo']}"></p-radioButton>
+                        <label for="sexoF">Femenino</label>
+                       
+                    </div>
+                                     
+                
+                </div>
+            </div>
+
+            &nbsp; &nbsp; &nbsp; &nbsp;
+
+            <div class="field">
+                <label class="mb-1">Bautizado</label>
+                <div class="formgrid grid">
+                    <div class="field-radiobutton col-8">
+                        <p-radioButton id="bautizadoSI" name="bautizado" value="SI" [(ngModel)]="Miembro['bautizado']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['bautizado']}"></p-radioButton>
+                        <label for="category1">SI</label>
+                        &nbsp;
+                        <p-radioButton id="bautizadoNO" name="bautizado" value="NO" [(ngModel)]="Miembro['bautizado']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['bautizado']}"></p-radioButton>
+                        <label for="category2">NO</label>
+                       
+                    </div>
+                                     
+                
+                </div>
+            </div>
+                       
+        </div>
+
+
+
+        <br>
+        <div class="formgrid grid">  
+        <div class="field">
+            <span class="p-float-label">
+                <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="tipomiembro" [(ngModel)]="Miembro['tipo_miembro']" optionLabel="label"></p-dropdown>
+                <label for="dropdown">Tipo miembro</label>
+            </span>
+        </div>
+
+        &nbsp;
+
+        <div class="field">
+            <span class="p-float-label">
+                <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="poblacion" [(ngModel)]="Miembro['poblacion']" optionLabel="label"></p-dropdown>
+                <label for="dropdown">Población</label>
+            </span>
+        </div>
+
+    </div>
+
+    <br>
+    <div class="formgrid grid">  
+        <div class="field">
+            <span class="p-float-label">
+                <p-multiSelect inputId="ministerio" [options]="ministerio" (onChange)="onMultiSelectChange($event)" [(ngModel)]="Miembro['ministerio']" optionLabel="label" [filter]="false"></p-multiSelect>
+                <label for="ministerio">Ministerio</label>
+            </span>
+    </div>
+
+    &nbsp;
+
+            
+            
+    <div class="field">
+        <span class="p-float-label">
+            <p-calendar [(ngModel)]="Miembro['fecha_membresia']" [showIcon]="true"></p-calendar>
+        <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['fecha_membresia']">Fecha membresía requerida</small>
+        <label htmlFor="fecha_membresia">Fecha membresía</label>
+    </span>
+    </div>
+
+    </div>
+
+    <br>
+
+    <div class="formgrid grid">
+
+    <div class="field">
+        <span class="p-float-label">
+        <input input pInputText id="lider_contacto" type="text" class="input-con-fondo" [(ngModel)]="Miembro['lider_contacto']" />
+        <label htmlFor="lider_contacto">Líder contacto</label>
+    </span>
+    </div>
+    &nbsp;
+    <div class="field">
+        <span class="p-float-label">
+        <input input pInputText id="email" type="text" class="input-con-fondo" [(ngModel)]="Miembro['email']" />
+        <label htmlFor="email">Email</label>
+    </span>
+    </div>
+
+
+</div>
+
+
             
         </ng-template>
 
-        <ng-template pTemplate="footer">
+        <ng-template pTemplate="footer" >
             <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
             <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveMiembro()"></button>
         </ng-template>
     </p-dialog>
 
-   
+    <p-dialog [(visible)]="imageDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid">
+       
+    <label class="acciones"> CARGAR IMAGEN </label>
+    <div class="grid">
+        <div class="col-12">
+            <div class="card"> 
+                <label class="imagen"> {{ Miembro['nombre'] }}  </label>
+                <p-fileUpload name="miembro"
+                    url="https://www.primefaces.org/cdn/api/upload.php"
+                      (onUpload)="onUpload($event)"
+                       accept="image/*"
+                       [maxFileSize]="1000000">
+                    <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                        </ul>
+                    </ng-template>
+                </p-fileUpload>
+               
+            </div>
+        </div>
+    </div>
+</p-dialog>
