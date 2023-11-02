@@ -32,6 +32,9 @@ import { CardModule } from 'primeng/card';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from "primeng/multiselect";
+import { NoimagePipe } from '../pipes/noimage.pipe';
+import { DatePipe } from '@angular/common';
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -40,7 +43,8 @@ import { MultiSelectModule } from "primeng/multiselect";
     HomeadminComponent,
     MenuadminComponent,
     MenuitemComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    NoimagePipe
   ],
   imports: [
     CommonModule,
@@ -69,6 +73,7 @@ import { MultiSelectModule } from "primeng/multiselect";
     FileUploadModule,
     CalendarModule,
     MultiSelectModule
-  ]
+  ],
+  providers: [DatePipe],
 })
 export class PagesModule { }

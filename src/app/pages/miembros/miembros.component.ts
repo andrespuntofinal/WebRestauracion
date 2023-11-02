@@ -9,6 +9,7 @@ import { AvatarModule } from 'primeng/avatar';
 import Swal from 'sweetalert2';
 import { state } from '@angular/animations';
 import { Subscription } from 'rxjs';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-miembros',
@@ -64,44 +65,46 @@ export class MiembrosComponent implements OnInit, OnDestroy {
   constructor(
     private miembrosService: MiembrosService, private messageService: MessageService,
     private route:ActivatedRoute, private router:Router,
-    private auth: AuthService ) {
+    private auth: AuthService,
+    private datePipe: DatePipe
+   ) {
   }
   
   ngOnInit(): void {
 
     this.estadocivil = [
-      { label: 'Casado', value: 'CASADO' },
-      { label: 'Soltero', value: 'SOLTERO' },
-      { label: 'Unión libre', value: 'UNION LIBRE' },
-      { label: 'Otro', value: 'OTRO' }
+      { label: 'CASADO', value: 'CASADO' },
+      { label: 'SOLTERO', value: 'SOLTERO' },
+      { label: 'UNION LIBRE', value: 'UNION LIBRE' },
+      { label: 'OTRO', value: 'OTRO' }
   ];
 
   this.tipomiembro = [
-    { label: 'Líder', value: 'LIDER' },
-    { label: 'Nuevo', value: 'NUEVO' },
-    { label: 'Asistente rregular', value: 'ASISTENTE REGULAR' },
-    { label: 'Asistente irregular', value: 'ASISTENTE IREGULAR' }
+    { label: 'LIDER', value: 'LIDER' },
+    { label: 'NUEVO', value: 'NUEVO' },
+    { label: 'ASISTENTE REGULAR', value: 'ASISTENTE REGULAR' },
+    { label: 'ASISTENTE IREGULAR', value: 'ASISTENTE IREGULAR' }
 ];
 
 this.poblacion = [
-  { label: 'Infante', value: 'INFANTE' },
-  { label: 'Niño', value: 'NIÑO' },
-  { label: 'Adolescente', value: 'ADOLESCENTE' },
-  { label: 'Joven', value: 'JOVEN' },
-  { label: 'Adulto', value: 'ADULTO' },
-  { label: 'Anciano', value: 'ANCIANO' }
+  { label: 'INFANTE', value: 'INFANTE' },
+  { label: 'NIÑO', value: 'NIÑO' },
+  { label: 'ADOLESCENTE', value: 'ADOLESCENTE' },
+  { label: 'JOVEN', value: 'JOVEN' },
+  { label: 'ADULTO', value: 'ADULTO' },
+  { label: 'ANCIANO', value: 'ANCIANO' }
 ];
 
 this.ministerio = [
-  { label: 'Maestro ED', value: 'MAESTRO ED' },
-  { label: 'Jovenes', value: 'JOVENES' },
-  { label: 'Alabanza', value: 'ALABANZA' },
-  { label: 'Diaconado', value: 'DIACONADO' },
-  { label: 'Evangelismo', value: 'EVANGELISMO' },
-  { label: 'Medios', value: 'MEDIOS' },
-  { label: 'Ventas', value: 'VENTAS' },
-  { label: 'Líder célula', value: 'LIDER CELULA' },
-  { label: 'Ninguno', value: 'NINGUNO' }
+  { label: 'MAESTRO ED', value: 'MAESTRO ED' },
+  { label: 'JOVENES', value: 'JOVENES' },
+  { label: 'ALABANZA', value: 'ALABANZA' },
+  { label: 'DIACONADO', value: 'DIACONADO' },
+  { label: 'EVANGELISMO', value: 'EVANGELISMO' },
+  { label: 'MEDIOS', value: 'MEDIOS' },
+  { label: 'VENTAS', value: 'VENTAS' },
+  { label: 'LIDER CELULA', value: 'LIDER CELULA' },
+  { label: 'NINGUNO', value: 'NINGUNO' }
 ];
 
     this.cargarMiembros();
@@ -128,10 +131,15 @@ cargarMiembros(){
   .subscribe( data => {
 
     this.miembros= data.miembros;
+    //this.miembros['fecha_nacimiento'] = '01/12/2023';
+   
+
 
     //this.Usuario = data.;
       
   console.log( "data:", this.miembros  );
+
+  //this.Miembro['fecha_nacimiento'] = '30/10/2023';
 
   this.cols = [
     { field: 'nombre', header: 'Nombre' },
@@ -153,6 +161,7 @@ cargarMiembros(){
       
     }
   })
+  
 
 }
 
@@ -257,7 +266,8 @@ const miembrosPut: MiembroModel = {
   estado_civil:  this.Miembro['estado_civil'],
   tipo_miembro:  this.Miembro['tipo_miembro'],
   bautizado:  this.Miembro['bautizado'],
-  fecha_membresia:  this.Miembro['fecha_membresia'],
+  fecha_membresia:  this.datePipe.transform(this.Miembro['fecha_membresia'], 'MM/dd/yyyy'),
+  fecha_nacimiento:  this.datePipe.transform(this.Miembro['fecha_nacimiento'], 'MM/dd/yyyy'),
   lider_contacto:  this.Miembro['lider_contacto'],
   ministerio:  this.Miembro['ministerio'],
   estado:  true,
@@ -266,7 +276,7 @@ const miembrosPut: MiembroModel = {
 };
 
 if ( this.Miembro['numero_id'] != null  && this.Miembro['nombre']?.trim() && this.Miembro['email']?.trim()) {
-   
+  console.log('data antes put', miembrosPut);
   this.miembrosService.putMiembros(this.numero_id, miembrosPut).subscribe( data => {
        
       
@@ -301,6 +311,8 @@ if ( this.Miembro['numero_id'] != null  && this.Miembro['nombre']?.trim() && thi
 crearMiembro(){
 
   this.submitted = true;
+
+ // const fechaFormateada: string = this.datePipe.transform(this.Miembro['fecha_nacimiento'], 'MM/dd/yyyy');
   
   const miembrosPost: MiembroModel = {
 
@@ -312,12 +324,12 @@ crearMiembro(){
     barrio:  this.Miembro['barrio'],
     direccion:  this.Miembro['direccion'],
     sexo:  this.Miembro['sexo'],
-    poblacion:  this.Miembro['poblacion']['value'],
-    estado_civil:  this.Miembro['estado_civil']['value'],
-    tipo_miembro:  this.Miembro['tipo_miembro']['value'],
+    poblacion:  this.Miembro['poblacion'],
+    estado_civil:  this.Miembro['estado_civil'],
+    tipo_miembro:  this.Miembro['tipo_miembro'],
     bautizado:  this.Miembro['bautizado'],
-    fecha_membresia:  this.Miembro['fecha_membresia'],
-    fecha_nacimiento:  this.Miembro['fecha_nacimiento'],
+    fecha_membresia:  this.datePipe.transform(this.Miembro['fecha_membresia'], 'MM/dd/yyyy'),
+    fecha_nacimiento:  this.datePipe.transform(this.Miembro['fecha_nacimiento'], 'MM/dd/yyyy'),
     lider_contacto:  this.Miembro['lider_contacto'],
     ministerio:  this.valoresSeleccionadosString,
     
@@ -325,7 +337,7 @@ crearMiembro(){
 
   if ( this.Miembro['numero_id'] != null  && this.Miembro['nombre']?.trim()) {
 
-    console.log('data antes postttttt', miembrosPost);
+    console.log('data antes POST', miembrosPost);
    
    this.miembrosService.postMiembros(miembrosPost).subscribe( data => {
 
@@ -337,6 +349,7 @@ crearMiembro(){
      confirmButtonText: 'Aceptar'
     })
 
+   this.ngOnInit();
    this.miembros.push(miembrosPost);
    this.miembroDialog = false;
    this.accion = '';
@@ -344,17 +357,19 @@ crearMiembro(){
     },
       (error: any) => {
 
-      if (error.status === 400) {
+      if (error.status != 200) {
         
         Swal.fire({
-        title: 'Creación registro Fallida',
-        text: 'El correo ' + this.Miembro['email'] + ' ya existe',
+        title: 'Error',
+        text: 'Creación registro Fallida',
         icon: 'error',
         confirmButtonText: 'Aceptar'
     })
 
    this.miembroDialog = false;
    this.accion = '';
+
+   
       }
 
       if (error.status === 401) {
@@ -424,12 +439,25 @@ onUpload(event: any)  {
 
   this.miembrosService.uploadFile(this.numero_id, file).subscribe( data => {
 
-   
+    this.ngOnInit();
+    this.imageDialog = false;
+
+    Swal.fire({
+      title: 'Imágen actualizada',
+     text: this.Miembro['nombre'],
+      icon: 'success',
+     confirmButtonText: 'Aceptar'
+    })
              
+  }, error => {
+    console.error('Error al subir el archivo', error);
+    // Maneja el error según tus necesidades
   });
 
  
 }
+
+
 
   
 }

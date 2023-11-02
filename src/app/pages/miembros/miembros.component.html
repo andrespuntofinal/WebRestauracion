@@ -24,30 +24,31 @@
        
 
         <div class="card">
-            <p-table  #dt [value]="miembros" sortField="nombre" sortMode="single" [globalFilterFields]="['nombre','emai']" dataKey="numero_id" rowGroupMode="subheader" groupRowsBy="nombre" [tableStyle]="{'min-width': '70rem'}">
+            <p-table  #dt [value]="miembros" [columns]="cols" responsiveLayout="scroll" [globalFilterFields]="['nombre','emai']" dataKey="numero_id" rowGroupMode="subheader" groupRowsBy="nombre"  [rowHover]="true" [tableStyle]="{'min-width': '70rem'}">
+                
                 <ng-template pTemplate="header">
                     <tr>
                         
-                        <th style="width:10%">Celular</th>
-                        <th style="width:20%">Dirección</th>
-                        <th style="width:20%">Barrio</th>
-                        <th style="width:15%">Población</th>
-                        <th style="width:20%">Ministerio</th>
-                        <th style="width:10%">Posición</th>
-                        <th style="width:5%">Bautizado</th>
-                        <th style="width:10%">Nacimiento</th>
-                        <th style="width:15%">E.Civil</th>
-                        <th style="width:15%">F.Membresia</th>
-                        <th style="width:15%">Contacto</th>
+                        <th pSortableColumn style="width:10%; background-color:#7a8c9d; color:#f0f4f7">Celular</th>
+                        <th pSortableColumn style="width:20%; background-color:#7a8c9d; color:#f0f4f7">Dirección</th>
+                        <th pSortableColumn style="width:20%; background-color:#7a8c9d; color:#f0f4f7">Barrio</th>
+                        <th pSortableColumn style="width:15%; background-color:#7a8c9d; color:#f0f4f7">Población</th>
+                        <th pSortableColumn style="width:20%; background-color:#7a8c9d; color:#f0f4f7">Ministerio</th>
+                        <th pSortableColumn style="width:10%; background-color:#7a8c9d; color:#f0f4f7">Posición</th>
+                        <th pSortableColumn style="width:5%; background-color:#7a8c9d; color:#f0f4f7">Bautizado</th>
+                        <th pSortableColumn style="width:10%; background-color:#7a8c9d; color:#f0f4f7">Nacimiento</th>
+                        <th pSortableColumn style="width:15%; background-color:#7a8c9d; color:#f0f4f7">E.Civil</th>
+                        <th pSortableColumn style="width:15%; background-color:#7a8c9d; color:#f0f4f7">F.Membresía</th>
+                        <th pSortableColumn style="width:15%; background-color:#7a8c9d; color:#f0f4f7">Contacto</th>
                         
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="groupheader" let-miembros let-rowIndex="rowIndex" let-expanded="expanded">
                     <tr>
-                        <td colspan="11">
+                        <td colspan="11" style="background-color:#bccad6">
                             <button type="button" pButton pRipple [pRowToggler]="miembros" class="p-button-text p-button-rounded p-button-plain mr-2" [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
-                            <img [alt]="miembros.nombre" src="{{miembros.imagen}}" width="50" style="vertical-align: middle" />
-                            <span class="font-bold ml-2">{{miembros.nombre}}</span>
+                            <img [src]="miembros.imagen "  width="70" style="border-radius: 50%" />
+                            <label class="cardnombre"> {{miembros.nombre}}</label>
                             
                         </td>
                     </tr>
@@ -95,11 +96,11 @@
 
                         <td>
                             <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#50585F', width:'30px', height:'30px' }" (click)="editMiembro(miembro)"  pTooltip="Editar registro"></button>
+                                <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#50585F', width:'30px', height:'30px' }" (click)="editMiembro(miembro)"  pTooltip="Editar"></button>
                                 &nbsp;
-                                <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'30px', height:'30px' }"  (click)="deleteMiembro(miembro)" pTooltip="Eliminar registro"></p-button>
+                                <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'30px', height:'30px' }"  (click)="deleteMiembro(miembro)" pTooltip="Eliminar"></p-button>
                                 &nbsp;
-                                <p-button label="" icon="pi pi-image" [style]="{ 'background-color': '#4979aa', width:'30px', height:'30px' }"  (click)="openNewimage(miembro)" pTooltip="Subir imágen"></p-button>
+                                <p-button label="" icon="pi pi-image" [style]="{ 'background-color': '#4979aa', width:'30px', height:'30px' }"  (click)="openNewimage(miembro)" pTooltip="Imágen"></p-button>
                             </div>
                         </td>
                         
@@ -167,7 +168,7 @@
 
             <div class="field">
                 <span class="p-float-label">
-                    <p-dropdown inputId="estado_civil"  [autoDisplayFirst]="false" [options]="estadocivil" [(ngModel)]="Miembro['estado_civil']" optionLabel="label"></p-dropdown>
+                    <p-dropdown inputId="estado_civil"  [autoDisplayFirst]="false" [options]="estadocivil" [(ngModel)]="Miembro['estado_civil']" ></p-dropdown>
                     <label for="estado_civil">Estado civil</label>
                 </span>
             </div>
@@ -178,9 +179,9 @@
             
             <div class="field">
                 <span class="p-float-label">
-                    <p-calendar [(ngModel)]="Miembro['fecha_nacimiento']"  class="input-con-fondo" [showIcon]="true"></p-calendar>
+                    <p-calendar [(ngModel)]="Miembro['fecha_nacimiento']"  inputId="icon"></p-calendar>
                 <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['fecha_nacimiento']">Fecha nacimiento requerida</small>
-                <label htmlFor="fecha_nacimiento">Fecha nacimiento</label>
+                <label htmlFor="fecha_nacimiento">Fecha nacimiento   </label>
             </span>
             </div>
         </div>
@@ -246,7 +247,7 @@
         <div class="formgrid grid">  
         <div class="field">
             <span class="p-float-label">
-                <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="tipomiembro" [(ngModel)]="Miembro['tipo_miembro']" optionLabel="label"></p-dropdown>
+                <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="tipomiembro" [(ngModel)]="Miembro['tipo_miembro']" ></p-dropdown>
                 <label for="dropdown">Tipo miembro</label>
             </span>
         </div>
@@ -255,7 +256,7 @@
 
         <div class="field">
             <span class="p-float-label">
-                <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="poblacion" [(ngModel)]="Miembro['poblacion']" optionLabel="label"></p-dropdown>
+                <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="poblacion" [(ngModel)]="Miembro['poblacion']" ></p-dropdown>
                 <label for="dropdown">Población</label>
             </span>
         </div>
@@ -266,7 +267,7 @@
     <div class="formgrid grid">  
         <div class="field">
             <span class="p-float-label">
-                <p-multiSelect inputId="ministerio" [options]="ministerio" (onChange)="onMultiSelectChange($event)" [(ngModel)]="Miembro['ministerio']" optionLabel="label" [filter]="false"></p-multiSelect>
+                <p-multiSelect inputId="ministerio" [options]="ministerio" (onChange)="onMultiSelectChange($event)" [(ngModel)]="Miembro['ministerio']" [selectedItemsLabel]="Miembro['ministerio']"  optionLabel="label" [filter]="false"></p-multiSelect>
                 <label for="ministerio">Ministerio</label>
             </span>
     </div>
@@ -279,7 +280,7 @@
         <span class="p-float-label">
             <p-calendar [(ngModel)]="Miembro['fecha_membresia']" [showIcon]="true"></p-calendar>
         <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['fecha_membresia']">Fecha membresía requerida</small>
-        <label htmlFor="fecha_membresia">Fecha membresía</label>
+        <label htmlFor="fecha_membresia">Fecha membresía </label>
     </span>
     </div>
 

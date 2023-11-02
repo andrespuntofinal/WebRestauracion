@@ -241,6 +241,24 @@ hr{
 	
   }
 
+  .cardnombre {background: linear-gradient(to right, #5ea2c6, #575c60, #5ea2c6); 
+    color:#f0f4f7; 
+    margin-left: 1px;
+    margin-top: -6px;
+    font-family: 'Roboto', sans-serif;
+    padding: 3px;
+    font-size: 13px;
+    text-shadow: 2px 2px 4px rgb(6, 6, 5);
+	border-top-right-radius: 10px 10px;
+    border-top-left-radius: 10px 10px;
+    border-bottom-right-radius: 10px 10px;
+    border-bottom-left-radius: 10px 10px;
+    text-align: center;
+    width:200px;
+    top: 88px;
+	
+  }
+
   .acciones {background: linear-gradient(to right, #909da4, #305a85, #909da4); 
     color:#f0f4f7; 
     margin-left: -3px;

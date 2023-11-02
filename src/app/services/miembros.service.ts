@@ -88,8 +88,8 @@ export class MiembrosService  implements OnInit {
    }),
    
    catchError((error: any) => {
-    if (error.status === 400) {
-      console.error('El correo que está registrando ya existe');
+    if (error.status != 200) {
+      console.error('Creación fallida');
    
     } else {
     
