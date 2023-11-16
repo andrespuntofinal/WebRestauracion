@@ -34,6 +34,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { MultiSelectModule } from "primeng/multiselect";
 import { NoimagePipe } from '../pipes/noimage.pipe';
 import { DatePipe } from '@angular/common';
+import { ImageModule } from 'primeng/image';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { DatePipe } from '@angular/common';
     CardModule,
     FileUploadModule,
     CalendarModule,
-    MultiSelectModule
+    MultiSelectModule,
+    ImageModule
   ],
   providers: [DatePipe],
 })

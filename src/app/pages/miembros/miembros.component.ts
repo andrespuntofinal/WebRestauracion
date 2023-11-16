@@ -23,7 +23,8 @@ export class MiembrosComponent implements OnInit, OnDestroy {
 
   
   uploadedFiles: any[] = [];
-
+  isFlipped: boolean = false;
+  cardStates: { [key: number]: boolean } = {};
 
   private miSuscripcion: Subscription;
   miembroDialog: boolean = false;
@@ -455,6 +456,10 @@ onUpload(event: any)  {
   });
 
  
+}
+
+toggleCard(index: number) {
+  this.cardStates[index] = !this.cardStates[index];
 }
 
 

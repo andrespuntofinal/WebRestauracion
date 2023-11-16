@@ -12,6 +12,7 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 })
 export class NavbarComponent implements OnInit {
   items: MenuItem[] | undefined;
+  menuItems: MenuItem[] = [];
  
   nombreusr: string;
   nombreapp: string = '';
@@ -78,12 +79,14 @@ export class NavbarComponent implements OnInit {
     .subscribe( data => {
     
      // this.Usuario= data;
+
+     
     
       this.Usuario = data['0'];
 
       this.nombreapp = this.Usuario.nombre;
          
-    console.log( "data user ind:", this.Usuario.nombre );
+      console.log( "data img", this.Usuario.imagen);
     
     this.cargarManuActive();
       
@@ -134,33 +137,25 @@ export class NavbarComponent implements OnInit {
   
         ]
 
-    },
-    {
-      label: this.nombreapp,
-      icon: 'pi pi-fw pi-user',
-
-      items: [
-        {
-          label: 'Perfil',
-          icon: 'pi pi-fw pi-cog',
-          routerLink: '/usuarios'
-
-        },
-
-        {
-          label: 'Cerrar Sesión',
-          icon: 'pi pi-sign-out',
-          command: ()=> this.salirApp(),
-
-        }
-
-
-
-      ]
-     
-
-  }
+    }
+    
   ];
+
+  this.menuItems = [
+    {
+      label: 'Perfil',
+      icon: 'pi pi-fw pi-cog',
+      routerLink: '/usuarios'
+
+    },
+
+    {
+      label: 'Cerrar Sesión',
+      icon: 'pi pi-sign-out',
+      command: ()=> this.salirApp(),
+
+    },
+];
 
   return true;
   }

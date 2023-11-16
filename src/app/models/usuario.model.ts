@@ -7,5 +7,6 @@ export class UsuarioModel {
     estado?: boolean;
     password?:string;
     _id?:string;
+    imagen?:string;
 
 }   

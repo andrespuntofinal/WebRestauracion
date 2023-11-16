@@ -21,63 +21,77 @@
                            
             </ng-template>
         </p-toolbar>
-        <p-table #dt [value]="usuarios" [columns]="cols" responsiveLayout="scroll" [rows]="5" [globalFilterFields]="['nombre','emai']" [paginator]="true" [rowsPerPageOptions]="[5,10,15]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedUsuarios" selectionMode="multiple" [rowHover]="true" dataKey="uid">
-        
-    
-            <ng-template pTemplate="header">
-                <tr>
-                    <th style="width: 3rem">
-                       
-                    </th>
-                    <th pSortableColumn="uid">Id </th>
-                    <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
-                    <th pSortableColumn="email">Email <p-sortIcon field="email"></p-sortIcon></th>
-                    <th pSortableColumn="rol">Rol <p-sortIcon field="rol"></p-sortIcon></th>
-                    <th pSortableColumn="estado">Estado <p-sortIcon field="estado"></p-sortIcon></th>
-                    
-                    <th></th>
-                </tr>
-            </ng-template>
+       
 
-            <ng-template pTemplate="body" let-usuario>
-                <tr>
-                    <td>
+        <div class="card">
+            <p-table scrollDirection="both" [scrollable]="true" scrollHeight="365px" #dt [value]="usuarios" [columns]="cols" responsiveLayout="scroll" [globalFilterFields]="['nombre','ministerio']" dataKey="numero_id" rowGroupMode="subheader" groupRowsBy="nombre"  [rowHover]="true" [tableStyle]="{'min-width': '70rem'}">
+                
+                <ng-template pTemplate="header">
+                    <tr>                                                                     
+                      
+                        <th style="width:30%; background-color:#6f7f8e; color:#f0f4f7" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nombre </th>
+                        <th style="width:15%; background-color:#6f7f8e; color:#f0f4f7" >Id </th>
+                        <th style="width:30%; background-color:#6f7f8e; color:#f0f4f7">Email </th>
+                        <th style="width:15%; background-color:#6f7f8e; color:#f0f4f7">Rol </th>
+                        <th style="width:15%; background-color:#6f7f8e; color:#f0f4f7">Estado </th>
+                        <th style="width:15%; background-color:#6f7f8e; color:#f0f4f7"></th>
+                     
                         
-                    </td>
-                    <td style="width:14%; min-width:8rem;"><span class="p-column-title">Id</span>
-                       {{ usuario.uid }}
-                    </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-usuario>
+                   
+                    <tr>
 
-                    <td style="width:14%; min-width:10rem;">
-                        <span class="p-column-title">nombre</span>
-                        {{usuario.nombre}}
-                    </td>
+                        <td colspan="3" style="background-color:#ffffff">
+                           
+                            <p-image [src]="usuario.imagen " alt="Image" width="70" [preview]="true">
+                                <ng-template pTemplate="indicator">
+                                    
+                                </ng-template>
+                            </p-image>
+                            <label class="cardnombre"> {{usuario.nombre}}</label>
+                            
+                        </td>
+                       
+                        <td style="width:15%; background-color:#ffffff">
+                           {{ usuario.uid }}
+                        </td>
+    
+                            
+                        <td style="width:30%; background-color:#ffffff">
+                            
+                            {{usuario.email}}
+                        </td>
+    
+                        <td style="width:15%; background-color:#ffffff">
+                          
+                            {{usuario.rol}}
+                        </td>
+    
+                        <td style="width:15%; background-color:#ffffff">
+                            
+                            {{usuario.estado}}
+                        </td>
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#50585F', width:'30px', height:'30px' }" (click)="editUsuario(usuario)"  pTooltip="Editar registro"></button>
+                                &nbsp;
+                                <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'30px', height:'30px' }"  (click)="deleteUsuario(usuario)" pTooltip="Eliminar registro"></p-button>
+                                &nbsp;
+                                <p-button label="" icon="pi pi-image" [style]="{ 'background-color': '#4979aa', width:'30px', height:'30px' }"  (click)="openNewimage(usuario)" pTooltip="Imágen"></p-button>
+                            </div>
+                        </td>
+                    </tr>
+              
+                </ng-template>
 
-                    <td style="width:14%; min-width:10rem;">
-                        <span class="p-column-title">Email</span>
-                        {{usuario.email}}
-                    </td>
+             
+            </p-table>
+        </div>
 
-                    <td style="width:14%; min-width:8rem;">
-                        <span class="p-column-title">Rol</span>
-                        {{usuario.rol}}
-                    </td>
 
-                    <td style="width:14%; min-width:5rem;">
-                        <span class="p-column-title">Estado</span>
-                        {{usuario.estado}}
-                    </td>
-                    <td>
-                        <div class="flex">
-                            <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#50585F', width:'30px', height:'30px' }" (click)="editUsuario(usuario)"  pTooltip="Editar registro"></button>
-                            &nbsp;
-                            <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'30px', height:'30px' }"  (click)="deleteUsuario(usuario)" pTooltip="Eliminar registro"></p-button>
-                        </div>
-                    </td>
-                </tr>
-            </ng-template>
-        
-        </p-table>
+
     </div>
 
     <p-dialog [(visible)]="usuarioDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid">
@@ -131,6 +145,30 @@
             <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
             <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUsuario()"></button>
         </ng-template>
+    </p-dialog>
+
+    <p-dialog [(visible)]="imageDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid">
+       
+        <label class="acciones"> CARGAR IMAGEN </label>
+        <div class="grid">
+            <div class="col-12">
+                <div class="card"> 
+                    <label class="imagen"> {{ Usuario['nombre'] }}  </label>
+                    <p-fileUpload name="miembro"
+                        url="https://www.primefaces.org/cdn/api/upload.php"
+                          (onUpload)="onUpload($event)"
+                           accept="image/*"
+                           [maxFileSize]="99999999999">
+                        <ng-template pTemplate="content">
+                            <ul *ngIf="uploadedFiles.length">
+                                <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                            </ul>
+                        </ng-template>
+                    </p-fileUpload>
+                   
+                </div>
+            </div>
+        </div>
     </p-dialog>
 
    

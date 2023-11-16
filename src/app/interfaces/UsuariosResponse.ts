@@ -12,4 +12,5 @@ export interface Usuarios {
     password: string;
     estado: boolean;
     __v:    number;
+    imagen: string;
 }

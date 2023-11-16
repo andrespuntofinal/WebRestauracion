@@ -121,21 +121,7 @@ hr{
     animation-name: fadeIn;
 }
 
-.card {
-    background:#e6e9ec;
-    border: 1px solid ;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow:#305a85;
-    border-radius: 8px;
-    
-  
 
-    &:last-child {
-        margin-bottom: 0;
-        
-    }
-}
 
 .gridc {
     display: flex;
@@ -143,6 +129,7 @@ hr{
     margin-right: -0rem;
     margin-left: -0.5rem;
     margin-top: 1.5rem;
+    
   }
   
   .gridc > .col,
@@ -286,4 +273,30 @@ hr{
     }
 
 }
+
+.input-con-fondo {
+    background-color: rgb(235, 243, 249); /* Puedes cambiar 'yellow' por cualquier color o valor de fondo que desees */
+  }
+
+
+
+  .imagen {background: linear-gradient(to right, #909da4, #a4b5c6, #909da4); 
+    color:#f0f4f7; 
+    margin-left: -3px;
+    margin-top: -2px;
+    font-family: 'Roboto', sans-serif;
+    padding: 8px;
+    font-size: 16px;
+    text-shadow: 2px 2px 4px #000000;
+	border-top-right-radius: 10px 10px;
+    border-top-left-radius: 10px 10px;
+    border-bottom-right-radius: 10px 10px;
+    border-bottom-left-radius: 10px 10px;
+    text-align: center;
+    width:315px;
+    top: 88px;
+	
+  }
+
+
   

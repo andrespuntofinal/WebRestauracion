@@ -14,7 +14,7 @@ export class UsuariosService  implements OnInit {
   myAppUrl= environment.myAppUrl ;
   myAppUrlApi="api/usuarios/";
   myAppUrlApiBus="api/buscar/usuarios/";
-
+  myAppUrlApiUpload="api/uploads/usuarios/";
   
   httpOptions={
 
@@ -107,6 +107,17 @@ export class UsuariosService  implements OnInit {
   putUsuarios( uid: any, usuarios: UsuarioModel ):Observable<UsuarioModel> {
 
     return this.http.put<UsuarioModel>(this.myAppUrl + this.myAppUrlApi + uid, usuarios, this.httpOptions);
+
+  }
+
+  uploadFile( uid: any, file: File ):Observable<any> {
+
+    const formData: FormData = new FormData();
+    formData.append('archivo', file, file.name);
+
+    console.log("ANTES DE POST UPLOAD" , file);
+
+    return this.http.put<any>(this.myAppUrl + this.myAppUrlApiUpload + uid, formData);
 
   }
 }

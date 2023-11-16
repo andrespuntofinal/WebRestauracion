@@ -18,8 +18,12 @@ import { Subscription } from 'rxjs';
 })
 export class UsuariosComponent implements OnInit, OnDestroy {
 
+  uploadedFiles: any[] = [];
+
   private miSuscripcion: Subscription;
   usuarioDialog: boolean = false;
+
+  imageDialog: boolean = false;
 
   uid: any;
   accion = 'CREAR USUARIO';
@@ -266,6 +270,9 @@ crearUsuario(){
      confirmButtonText: 'Aceptar'
     })
 
+
+
+   this.ngOnInit();
    this.usuarios.push(usuariosPost);
    this.usuarioDialog = false;
    this.accion = '';
@@ -314,10 +321,16 @@ openNew() {
   this.Usuario = {};
   this.submitted = false;
   this.usuarioDialog = true;
-
-
   
 }
+
+openNewimage(Usuario: UsuarioModel) {
+
+  this.Usuario = { ...Usuario };
+  this.imageDialog = true;
+  
+    
+  }
 
 findIndexById(_id: string): number {
   let index = -1;
@@ -329,6 +342,35 @@ findIndexById(_id: string): number {
   }
 
   return index;
+}
+
+onUpload(event: any)  {
+  //for (const file of event.files) {
+     // this.uploadedFiles.push(file);
+  //}
+  this.uid = this.Usuario['_id'];
+  const file: File = event.files[0];
+
+  console.log('imagennnn', file);
+
+  this.usuariosService.uploadFile(this.uid, file).subscribe( data => {
+
+    this.ngOnInit();
+    this.imageDialog = false;
+
+    Swal.fire({
+      title: 'Imágen actualizada',
+     text: this.Usuario['nombre'],
+      icon: 'success',
+     confirmButtonText: 'Aceptar'
+    })
+             
+  }, error => {
+    console.error('Error al subir el archivo', error);
+    // Maneja el error según tus necesidades
+  });
+
+ 
 }
 
   
