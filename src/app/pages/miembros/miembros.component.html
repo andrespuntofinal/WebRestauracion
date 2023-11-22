@@ -18,32 +18,42 @@
                 </span>
 
             </div>
-
-
+            
         </ng-template>
     </p-toolbar>
 
 
     <div class="gridc">
 
-
         <div class="col-12 lg:col-8 xl:col-3" *ngFor="let miembros of miembros; let i = index">
+            
             <p-card class="card" [ngClass]="{'flipped': cardStates[i]}">
+                
 
                 <ng-template pTemplate="header">
 
                     <p-image [src]="miembros.imagen" alt="Image" [style]="{ width: '90px', height: '90px'  }"
                         [preview]="true">
                     </p-image><p-avatar [label]="miembros.nombre" styleClass="mr-2"
-                        [style]="{ 'background-color': '#305a85', color: '#ffffff', height:'20px', width: '150px' }"></p-avatar>
+                        [style]="{ 'background-color': '#72C5DE', color: '#ffffff', height:'20px', width: '150px' }"></p-avatar>
+                        &nbsp;
+                        &nbsp;
+                        
+               <tr><td>&nbsp;</td> </tr>
+               <tr>
+                <td>
+                <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#5C9068', width:'20px', height:'20px' }" (click)="editMiembro(miembros)"  pTooltip="Editar"></button>
+                &nbsp;
+                <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'20px', height:'20px' }"  (click)="deleteMiembro(miembros)" pTooltip="Eliminar"></p-button>
+                &nbsp;
+                <p-button label="" icon="pi pi-image" [style]="{ 'background-color': '#C8C85D', width:'20px', height:'20px' }"  (click)="openNewimage(miembros)" pTooltip="Imágen"></p-button>
+                &nbsp;
+                <p-button label="" icon="pi pi-chevron-right" [style]="{ 'background-color': '#606E76', width:'20px', height:'20px' }" (click)="toggleCard(i)" pTooltip="Más información"></p-button>
 
-                    <p-button label="" icon="pi pi-chevron-right"
-                        [style]="{ 'background-color': '#4979aa', width:'20px', height:'20px' }"
-                        (click)="toggleCard(i)"></p-button>
+
+               </td></tr>
 
                         
-                            
-
                 </ng-template>
 
                 <div class="custom-card-content">
@@ -53,7 +63,7 @@
 
                         <tr>
                             <td><p-avatar icon="pi pi-phone" pTooltip="Celular-fijo" styleClass="mr-2"
-                                    [style]="{'background-color': '#bfc8d0', 'color': '#ffffff'}"></p-avatar></td>
+                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
                             <td> {{ miembros.celular }} </td>
                             <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td> {{ miembros.telefono }} </td>
@@ -62,25 +72,25 @@
                         <p></p>
                         <tr>
                             <td><p-avatar icon="pi pi-map-marker" pTooltip="Dirección" styleClass="mr-2"
-                                    [style]="{'background-color': '#bfc8d0', 'color': '#ffffff'}"></p-avatar></td>
+                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
                             <td> {{ miembros.direccion }} </td>
                         </tr>
 
                         <p></p>
                     <tr>
-                    <td><p-avatar icon="pi pi-home" pTooltip="Barrio"  styleClass="mr-2" [style]="{'background-color': '#bfc8d0', 'color': '#ffffff'}"></p-avatar></td>
+                    <td><p-avatar icon="pi pi-home" pTooltip="Barrio"  styleClass="mr-2" [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
                     <td>  {{ miembros.barrio }} </td>
                     </tr>
 
                     <p></p>
                     <tr>
-                    <td><p-avatar icon="pi pi-calendar" pTooltip="Fecha nacimiento" styleClass="mr-2" [style]="{'background-color': '#bfc8d0', 'color': '#ffffff'}"></p-avatar></td>
+                    <td><p-avatar icon="pi pi-calendar" pTooltip="Fecha nacimiento" styleClass="mr-2" [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
                     <td>  {{ miembros.fecha_nacimiento }} </td>
                     </tr>
 
                     <p></p>
                     <tr>
-                    <td><p-avatar icon="pi pi-heart-fill" pTooltip="Estado civil" styleClass="mr-2" [style]="{'background-color': '#bfc8d0', 'color': '#ffffff'}"></p-avatar></td>
+                    <td><p-avatar icon="pi pi-heart-fill" pTooltip="Estado civil" styleClass="mr-2" [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
                     <td>  {{ miembros.estado_civil }} </td>
                     </tr>
 
@@ -91,34 +101,34 @@
                     <div class="back-content">
                         <tr>
                             <td><p-avatar icon="pi pi-user" pTooltip="Tipo miembro" styleClass="mr-2"
-                                    [style]="{'background-color': '#bfc8d0', 'color': '#ffffff'}"></p-avatar></td>
+                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
                             <td> {{ miembros.tipo_miembro }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td><p-avatar icon="pi pi-id-card" pTooltip="Bautizado" styleClass="mr-2"
-                                    [style]="{'background-color': '#bfc8d0', 'color': '#ffffff'}"></p-avatar></td>
+                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
                             <td> BAUTIZADO: {{ miembros.bautizado }} </td>
                         </tr>
                         <p></p>
                         <tr>
                             <td><p-avatar icon="pi pi-microphone" pTooltip="Ministerio" styleClass="mr-2"
-                                    [style]="{'background-color': '#bfc8d0', 'color': '#ffffff'}"></p-avatar></td>
+                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
                             <td> {{ miembros.ministerio }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td><p-avatar icon="pi pi-users" pTooltip="Población" styleClass="mr-2"
-                                    [style]="{'background-color': '#bfc8d0', 'color': '#ffffff'}"></p-avatar></td>
+                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
                             <td> {{ miembros.poblacion }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td><p-avatar icon="pi pi-question-circle" pTooltip="Contacto" styleClass="mr-2"
-                                    [style]="{'background-color': '#bfc8d0', 'color': '#ffffff'}"></p-avatar></td>
+                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
                             <td> {{ miembros.lider_contacto }} </td>
                         </tr>
 

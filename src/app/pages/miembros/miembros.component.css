@@ -2,14 +2,14 @@
 .card {
     
     perspective: 1000px;
-    background:#e6e9ec;
+    background:#46515e;
     border: 1px solid ;
     padding: 1rem;
     margin-bottom: 1rem;
     box-shadow:#305a85;
     border-radius: 8px;
     width: 300px;
-    height: 370px;
+    height: 400px;
     
    
   }
@@ -19,6 +19,7 @@
     height: 180px;
     transition: transform 0.5s;
     transform-style: preserve-3d;
+    margin-top: -0.9rem;
     
   }
   
@@ -52,6 +53,7 @@
     position: absolute;
     width: 300px;
     height: 400px;
+    
   }
   
   .flipped .custom-card-content {
