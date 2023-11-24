@@ -15,7 +15,7 @@ import { DatePipe } from '@angular/common';
   selector: 'app-miembros',
   templateUrl: './miembros.component.html',
   providers: [MessageService],
-  styleUrls: ['./miembros.component.css']
+  //styleUrls: ['./miembros.component.css']
 })
 
 
@@ -131,23 +131,10 @@ cargarMiembros(){
   this.miSuscripcion = this.miembrosService.getMiembros()
   .subscribe( data => {
 
-    this.miembros= data.miembros;
-    //this.miembros['fecha_nacimiento'] = '01/12/2023';
-   
-
-
-    //this.Usuario = data.;
+  this.miembros= data.miembros;
       
   console.log( "data:", this.miembros  );
-
-  //this.Miembro['fecha_nacimiento'] = '30/10/2023';
-
-  this.cols = [
-    { field: 'nombre', header: 'Nombre' },
-    { field: 'email', header: 'Email' }
- 
-  ];
-
+  
     
   },
   (error: any) => {
@@ -164,6 +151,19 @@ cargarMiembros(){
   })
   
 
+}
+
+filtrar(termino: any){
+
+ 
+  this.miSuscripcion = this.miembrosService.getMiembrosFiltro(termino)
+  .subscribe( data => {
+
+    this.miembros= data['results'];
+   
+                
+  })
+  
 }
 
     onGlobalFilter(table: Table, event: Event) {

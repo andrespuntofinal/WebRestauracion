@@ -1,8 +1,9 @@
 <app-navbar></app-navbar>
 
-
 <div class="panel">
-    <p-toolbar styleClass="mb-2 gap-2" [style]="{ 'background-color': '#8198AB' }">
+
+    <p-toolbar styleClass="mb-2 gap-2" [style]="{ 'background-color': '#8198AB', 'margin-top': '64px'}">
+    
         <ng-template pTemplate="left">
             <label class="terciario"> MIEMBROS </label>
             &nbsp;&nbsp;
@@ -14,7 +15,8 @@
                 &nbsp;&nbsp;&nbsp;
                 <span class="block mt-2 md:mt-0 p-input-icon-left">
                     <i class="pi pi-search"></i>
-                    <input pInputText type="text" placeholder="Buscar..." class="w-full sm:w-auto" />
+                    <input #termino type="text" (keyup)="filtrar(termino.value)" pInputText type="text" placeholder="Buscar..." class="w-full sm:w-auto" />
+                    
                 </span>
 
             </div>
@@ -34,21 +36,21 @@
 
                     <p-image [src]="miembros.imagen" alt="Image" [style]="{ width: '90px', height: '90px'  }"
                         [preview]="true">
-                    </p-image><p-avatar [label]="miembros.nombre" styleClass="mr-2"
-                        [style]="{ 'background-color': '#72C5DE', color: '#ffffff', height:'20px', width: '150px' }"></p-avatar>
+                    </p-image>
+                    <label class="terciarionombre">{{ miembros.nombre }} </label>
                         &nbsp;
                         &nbsp;
                         
                <tr><td>&nbsp;</td> </tr>
                <tr>
-                <td>
-                <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#5C9068', width:'20px', height:'20px' }" (click)="editMiembro(miembros)"  pTooltip="Editar"></button>
+                <td style="background-color:#46515e;">
+                <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#5C9068', width:'25px', height:'25px' }" (click)="editMiembro(miembros)"  pTooltip="Editar"></button>
                 &nbsp;
-                <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'20px', height:'20px' }"  (click)="deleteMiembro(miembros)" pTooltip="Eliminar"></p-button>
+                <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'25px', height:'25px' }"  (click)="deleteMiembro(miembros)" pTooltip="Eliminar"></p-button>
                 &nbsp;
-                <p-button label="" icon="pi pi-image" [style]="{ 'background-color': '#C8C85D', width:'20px', height:'20px' }"  (click)="openNewimage(miembros)" pTooltip="Imágen"></p-button>
+                <p-button label="" icon="pi pi-image" [style]="{ 'background-color': '#C8C85D', width:'25px', height:'25px' }"  (click)="openNewimage(miembros)" pTooltip="Imágen"></p-button>
                 &nbsp;
-                <p-button label="" icon="pi pi-chevron-right" [style]="{ 'background-color': '#606E76', width:'20px', height:'20px' }" (click)="toggleCard(i)" pTooltip="Más información"></p-button>
+                <p-button label="" icon="pi pi-chevron-right" [style]="{ 'background-color': '#7D88B6', width:'25px', height:'25px' }" (click)="toggleCard(i)" pTooltip="Más información"></p-button>
 
 
                </td></tr>
@@ -380,12 +382,12 @@
     </ng-template>
 </p-dialog>
 
-<p-dialog [(visible)]="imageDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid">
+<p-dialog [(visible)]="imageDialog" [style]="{width: '380px'}" header="" [modal]="true" class="p-fluid">
 
-    <label class="acciones"> CARGAR IMAGEN </label>
+    <label class="acciones" [style]="{'margin-left': '-13px'}"> CARGAR IMAGEN </label>
     <div class="grid">
         <div class="col-12">
-            <div class="card">
+            <div class="cardimg">
                 <label class="imagen"> {{ Miembro['nombre'] }} </label>
                 <p-fileUpload name="miembro" url="https://www.primefaces.org/cdn/api/upload.php"
                     (onUpload)="onUpload($event)" accept="image/*" [maxFileSize]="99999999999">

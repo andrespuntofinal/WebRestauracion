@@ -1,9 +1,10 @@
 <app-navbar></app-navbar>
-<div class="container mt-5">
+
+<div [style]="{'margin-top': '90px'}">
     <br>
 <div class="limiter animated fadeInLeft">
     <div class="container-login100">    
-        <div class="wrap-login100 p-t-50 p-b-80">
+        <div class="wrap-login100 p-t-50 p-b-60">
             <form (ngSubmit)="login( f  )"
             #f="ngForm"                       
             class="login100-form validate-form flex-sb flex-w">

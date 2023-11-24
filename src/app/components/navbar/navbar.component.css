@@ -1,0 +1,12 @@
+:host ::ng-deep .p-menubar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Ajusta el z-index según sea necesario para evitar conflictos con otros elementos */
+  }
+
+  @media screen and (max-width: 767px) {
+    :host ::ng-deep .p-menubar {
+      position: fixed; /* O el valor que necesites para el diseño responsivo */
+    }
+  }

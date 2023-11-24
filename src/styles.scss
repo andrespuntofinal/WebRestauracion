@@ -128,7 +128,7 @@ hr{
     flex-wrap: wrap;
     margin-right: 1rem;
     margin-left: -0.5rem;
-    margin-top: -0.8rem;
+    margin-top: -0.5rem;
     
   }
   
@@ -228,13 +228,31 @@ hr{
 	
   }
 
+  .terciarionombre {background: linear-gradient(to right, #7f9098, #2781AB, #7f9098); 
+    color:#f0f4f7; 
+    margin-left: -1px;
+    margin-top: -6px;
+    font-family: 'Roboto', sans-serif;
+    padding: 2px;
+    font-size: 12px;
+    text-shadow: 2px 2px 4px #000000;
+	border-top-right-radius: 10px 10px;
+    border-top-left-radius: 10px 10px;
+    border-bottom-right-radius: 10px 10px;
+    border-bottom-left-radius: 10px 10px;
+    text-align: center;
+    width:160px;
+    top: 88px;
+	
+  }
+
   .cardnombre {background: linear-gradient(to right, #5ea2c6, #575c60, #5ea2c6); 
     color:#f0f4f7; 
     margin-left: 1px;
     margin-top: -6px;
     font-family: 'Roboto', sans-serif;
     padding: 3px;
-    font-size: 13px;
+    font-size: 12px;
     text-shadow: 2px 2px 4px rgb(6, 6, 5);
 	border-top-right-radius: 10px 10px;
     border-top-left-radius: 10px 10px;
@@ -259,7 +277,7 @@ hr{
     border-bottom-right-radius: 10px 10px;
     border-bottom-left-radius: 10px 10px;
     text-align: center;
-    width:370px;
+    width:365px;
     top: 88px;
 	
   }
@@ -293,10 +311,91 @@ hr{
     border-bottom-right-radius: 10px 10px;
     border-bottom-left-radius: 10px 10px;
     text-align: center;
-    width:315px;
+    width:338px;
     top: 88px;
 	
   }
 
+  /* app.component.css */
+.card {
+    
+    perspective: 1000px;
+    background:#46515e;
+    border: 1px solid ;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow:#305a85;
+    border-radius: 8px;
+    width: 300px;
+    height: 400px;
+    
+   
+  }
+  
+  .custom-card-content {
+    width: 200px;
+    height: 180px;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    margin-top: -0.9rem;
+    
+  }
+  
+  .front-content,
+  .back-content {
+   
+    width: 50px;
+    height: 400px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin-left: -5rem;
+    backface-visibility: hidden;
+   
+  }
+  
+  .front-content {
+    width: 300px;
+    height: 400px;
+    transform: rotateY(0deg); /* Muestra la cara frontal */
+    padding: 1rem;
+    margin-bottom: 1rem;
+    margin-left: -2rem;
+    position: absolute;
+    
+  }
+  
+  .back-content {
+    transform: rotateY(180deg); /* Inicialmente oculta la cara trasera */
+    padding: 1rem;
+    
+    position: absolute;
+    width: 300px;
+    height: 400px;
+    
+  }
+  
+  .flipped .custom-card-content {
+    transform: rotateY(180deg);
+  }
+  
+  .cardimg {
+    
+    perspective: 1000px;
+    background:#c8d4e3;
+    border: 1px solid ;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow:#305a85;
+    border-radius: 8px;
+    width: 365px;
+    height: 330px;
+    margin-left: -14px;
+    
+  }
+  
+
+  
+
+  
 
   

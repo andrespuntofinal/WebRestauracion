@@ -49,9 +49,7 @@ export class MiembrosService  implements OnInit {
    getMiembros():Observable<MiembrosResponse>{
 
     this.ngOnInit();
-
-    console.log("token desde el servicio", localStorage.getItem('token'));
-
+    
     return this.http.get<MiembrosResponse>(this.myAppUrl + this.myAppUrlApi, this.httpOptions )
     .pipe(map( data=> data),
     
@@ -70,17 +68,20 @@ export class MiembrosService  implements OnInit {
   }
 
   getMiembrosEmail(email: any):Observable<MiembroModel>{
-
-    console.log("55555555" + this.myAppUrl + this.myAppUrlApiBus + email)
-   
+     
     return this.http.get<MiembroModel>(this.myAppUrl + this.myAppUrlApiBus + email)
     .pipe(map( data=> data['results']));
     
   }
 
-  postMiembros(usuarios: MiembroModel):Observable<any>{
+  getMiembrosFiltro( termino: any):Observable<MiembrosResponse>{
+       
+    return this.http.get<MiembrosResponse>(this.myAppUrl + this.myAppUrlApiBus + termino)
+    .pipe(map( data=> data));
+    
+  }
 
-    console.log("ANTES DE POST miembros" ,localStorage.getItem('token'));
+  postMiembros(usuarios: MiembroModel):Observable<any>{
 
    return this.http.post(this.myAppUrl + this.myAppUrlApi, usuarios, this.httpOptions )
    .pipe(map((data: any) => {
@@ -115,9 +116,7 @@ export class MiembrosService  implements OnInit {
 
     const formData: FormData = new FormData();
     formData.append('archivo', file, file.name);
-
-    console.log("ANTES DE POST UPLOAD" , file);
-
+    
     return this.http.put<any>(this.myAppUrl + this.myAppUrlApiUpload + uid, formData);
 
   }

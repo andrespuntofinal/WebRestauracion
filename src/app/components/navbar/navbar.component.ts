@@ -11,6 +11,7 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  
   items: MenuItem[] | undefined;
   menuItems: MenuItem[] = [];
  
