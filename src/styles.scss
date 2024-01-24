@@ -11,7 +11,7 @@ $gutter: 1rem; //for primeflex grid system
 @import "../node_modules/primeicons/primeicons.css";
 
 body {
-    background: linear-gradient(to right, #b2b5b9, #97a7b7, #b2b5b9) !important;
+    background: linear-gradient(to right, #01151f, #5a7590, #01151f) !important;
 }
 
 h1,h2,h3,h4,h5 {
@@ -228,7 +228,7 @@ hr{
 	
   }
 
-  .terciarionombre {background: linear-gradient(to right, #7f9098, #2781AB, #7f9098); 
+  .terciarionombre {background: linear-gradient(to right, #a8c4e7, #55656c, #a8c4e7); 
     color:#f0f4f7; 
     margin-left: -1px;
     margin-top: -6px;
@@ -320,7 +320,7 @@ hr{
 .card {
     
     perspective: 1000px;
-    background:#46515e;
+    background:#8198AB;
     border: 1px solid ;
     padding: 1rem;
     margin-bottom: 1rem;

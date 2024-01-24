@@ -36,12 +36,12 @@ export class NavbarComponent implements OnInit {
 
      
        ngOnInit() {
-    console.log("paso param", this.usuarioapp);
+    
 
     if ( this.auth.estaAutenticado()) {
        
       
-                      
+                
         this.nombreusr = localStorage.getItem('nombreusr');
 
         
@@ -75,7 +75,9 @@ export class NavbarComponent implements OnInit {
 
    cargarUsuario(email){
 
+    console.log("paso 33333");    
 
+    
     this.usuariosService.getUsuariosEmail(email)
     .subscribe( data => {
     

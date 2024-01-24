@@ -38,8 +38,7 @@
                         [preview]="true">
                     </p-image>
                     <label class="terciarionombre">{{ miembros.nombre }} </label>
-                        &nbsp;
-                        &nbsp;
+                                      
                         
                <tr><td>&nbsp;</td> </tr>
                <tr>
@@ -65,7 +64,7 @@
 
                         <tr>
                             <td><p-avatar icon="pi pi-phone" pTooltip="Celular-fijo" styleClass="mr-2"
-                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
+                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
                             <td> {{ miembros.celular }} </td>
                             <td> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td> {{ miembros.telefono }} </td>
@@ -74,25 +73,25 @@
                         <p></p>
                         <tr>
                             <td><p-avatar icon="pi pi-map-marker" pTooltip="Dirección" styleClass="mr-2"
-                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
+                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
                             <td> {{ miembros.direccion }} </td>
                         </tr>
 
                         <p></p>
                     <tr>
-                    <td><p-avatar icon="pi pi-home" pTooltip="Barrio"  styleClass="mr-2" [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
+                    <td><p-avatar icon="pi pi-home" pTooltip="Barrio"  styleClass="mr-2" [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
                     <td>  {{ miembros.barrio }} </td>
                     </tr>
 
                     <p></p>
                     <tr>
-                    <td><p-avatar icon="pi pi-calendar" pTooltip="Fecha nacimiento" styleClass="mr-2" [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
+                    <td><p-avatar icon="pi pi-calendar" pTooltip="Fecha nacimiento" styleClass="mr-2" [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
                     <td>  {{ miembros.fecha_nacimiento }} </td>
                     </tr>
 
                     <p></p>
                     <tr>
-                    <td><p-avatar icon="pi pi-heart-fill" pTooltip="Estado civil" styleClass="mr-2" [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
+                    <td><p-avatar icon="pi pi-heart-fill" pTooltip="Estado civil" styleClass="mr-2" [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
                     <td>  {{ miembros.estado_civil }} </td>
                     </tr>
 
@@ -103,35 +102,38 @@
                     <div class="back-content">
                         <tr>
                             <td><p-avatar icon="pi pi-user" pTooltip="Tipo miembro" styleClass="mr-2"
-                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
-                            <td> {{ miembros.tipo_miembro }} </td>
+                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
+                            <td> {{ miembros.tipo_miembro }} </td> 
+                            <td *ngIf="miembros.tipo_miembro == 'LIDER' "> &nbsp; {{ miembros.ministerio }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td><p-avatar icon="pi pi-id-card" pTooltip="Bautizado" styleClass="mr-2"
-                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
-                            <td> BAUTIZADO: {{ miembros.bautizado }} </td>
+                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
+                            <td> {{ miembros.bautizado }} </td>
+                           
                         </tr>
                         <p></p>
-                        <tr>
-                            <td><p-avatar icon="pi pi-microphone" pTooltip="Ministerio" styleClass="mr-2"
-                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
-                            <td> {{ miembros.ministerio }} </td>
-                        </tr>
-
-                        <p></p>
+                       
                         <tr>
                             <td><p-avatar icon="pi pi-users" pTooltip="Población" styleClass="mr-2"
-                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
-                            <td> {{ miembros.poblacion }} </td>
+                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
+                            <td> {{ miembros.poblacion }} &nbsp; {{ miembros.sexo }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td><p-avatar icon="pi pi-question-circle" pTooltip="Contacto" styleClass="mr-2"
-                                    [style]="{'background-color': '#2781AB', 'color': '#ffffff'}"></p-avatar></td>
+                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
                             <td> {{ miembros.lider_contacto }} </td>
+                        </tr>
+
+                        <p></p>
+                        <tr>
+                            <td><p-avatar icon="pi pi-envelope" pTooltip="Email" styleClass="mr-2"
+                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
+                            <td> {{ miembros.email }} </td>
                         </tr>
 
                     </div>
@@ -281,12 +283,12 @@
                 <label class="mb-1">Bautizado</label>
                 <div class="formgrid grid">
                     <div class="field-radiobutton col-8">
-                        <p-radioButton id="bautizadoSI" name="bautizado" value="SI" [(ngModel)]="Miembro['bautizado']"
+                        <p-radioButton id="bautizadoSI" name="bautizado" value="BAUTIZADO" [(ngModel)]="Miembro['bautizado']"
                             required autofocus
                             [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['bautizado']}"></p-radioButton>
                         <label for="category1">SI</label>
                         &nbsp;
-                        <p-radioButton id="bautizadoNO" name="bautizado" value="NO" [(ngModel)]="Miembro['bautizado']"
+                        <p-radioButton id="bautizadoNO" name="bautizado" value="NO BAUTIZADO" [(ngModel)]="Miembro['bautizado']"
                             required autofocus
                             [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['bautizado']}"></p-radioButton>
                         <label for="category2">NO</label>

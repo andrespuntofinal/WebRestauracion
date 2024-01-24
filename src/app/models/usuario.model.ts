@@ -4,7 +4,7 @@ export class UsuarioModel {
     email?:string;
     rol?:string;
     uid?:string;
-    estado?: boolean;
+    estado?: string;
     password?:string;
     _id?:string;
     imagen?:string;

@@ -28,6 +28,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   uid: any;
   accion = 'CREAR USUARIO';
   controlError: number = 0;
+  cardStates: { [key: number]: boolean } = {};
    
 
     usuarios: UsuarioModel[] = [];
@@ -81,20 +82,9 @@ cargarUsuarios(){
 
     //this.Usuario = data.;
       
-  console.log( "data:", this.usuarios  );
+  console.log( "dataaa:", this.usuarios  );
 
-  this.cols = [
-    { field: 'nombre', header: 'Nombre' },
-    { field: 'email', header: 'Email' },
-    { field: 'rol', header: 'Rol' },
-    { field: 'estado', header: 'Estado' }
-  ];
-
-  this.statuses = [
-    { label: 'INSTOCK', value: 'instock' },
-    { label: 'LOWSTOCK', value: 'lowstock' },
-    { label: 'OUTOFSTOCK', value: 'outofstock' }
-  ];
+  
 
     
   },
@@ -206,11 +196,12 @@ const usuariosPut: UsuarioModel = {
   email:  this.Usuario['email'],
   rol:    this.Usuario['rol'],
   uid:    this.Usuario['uid'],
+  estado: this.Usuario['estado'],
 
   
 };
 
-if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usuario['email']?.trim() && this.Usuario['rol']?.trim()) {
+if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usuario['email']?.trim() && this.Usuario['rol']?.trim() && this.Usuario['estado']?.trim()) {
    
   this.usuariosService.putUsuarios(this.uid, usuariosPut).subscribe( data => {
        
@@ -225,11 +216,6 @@ if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usua
    })
 
    
-   //this.usuarios = [];
-   //this.Usuario =  {};
-   //this.cargarUsuarios();
-  //this.usuarios.push(usuariosPut);
-
   this.usuarios[this.findIndexById(this.Usuario._id)] = this.Usuario;
 
   console.log('iddd', this.Usuario['uid']);
@@ -254,7 +240,7 @@ crearUsuario(){
     rol:    this.Usuario['rol'],
     uid:    this.Usuario['uid'],
     password:    'Poder4017',
-    estado: true,
+    estado: "ACTIVO",
     
   };
 
@@ -344,10 +330,21 @@ findIndexById(_id: string): number {
   return index;
 }
 
+filtrar(termino: any){
+
+ 
+  this.miSuscripcion = this.usuariosService.getUsuariosFiltro(termino)
+  .subscribe( data => {
+
+    this.usuarios= data['results'];
+   
+                
+  })
+  
+}
+
 onUpload(event: any)  {
-  //for (const file of event.files) {
-     // this.uploadedFiles.push(file);
-  //}
+  
   this.uid = this.Usuario['_id'];
   const file: File = event.files[0];
 
@@ -373,5 +370,9 @@ onUpload(event: any)  {
  
 }
 
+
+toggleCard(index: number) {
+  this.cardStates[index] = !this.cardStates[index];
+}
   
 }

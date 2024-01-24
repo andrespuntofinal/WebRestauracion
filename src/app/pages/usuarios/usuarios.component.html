@@ -2,7 +2,7 @@
 
 
     <div class="panel">
-        <p-toolbar styleClass="mb-2 gap-2" [style]="{ 'background-color': '#8198AB' }">
+        <p-toolbar styleClass="mb-2 gap-2" [style]="{ 'background-color': '#8198AB', 'margin-top': '64px'}">
             <ng-template pTemplate="left">
                 <label class="terciario"> USUARIOS </label>
                 &nbsp;&nbsp;
@@ -13,86 +13,90 @@
                     &nbsp;&nbsp;&nbsp;
                     <span class="block mt-2 md:mt-0 p-input-icon-left">
                         <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
+                        <input #termino type="text" (keyup)="filtrar(termino.value)" pInputText type="text" placeholder="Buscar..." class="w-full sm:w-auto" />
+                        
                     </span>
-                    
+    
                 </div>
-                          
                            
             </ng-template>
         </p-toolbar>
        
 
-        <div class="card">
-            <p-table scrollDirection="both" [scrollable]="true" scrollHeight="365px" #dt [value]="usuarios" [columns]="cols" responsiveLayout="scroll" [globalFilterFields]="['nombre','ministerio']" dataKey="numero_id" rowGroupMode="subheader" groupRowsBy="nombre"  [rowHover]="true" [tableStyle]="{'min-width': '70rem'}">
+       
+    <div class="gridc">
+
+        <div class="col-12 lg:col-8 xl:col-3" *ngFor="let usuarios of usuarios; let i = index">
+            
+            <p-card class="card" [ngClass]="{'flipped': cardStates[i]}">
                 
+
                 <ng-template pTemplate="header">
-                    <tr>                                                                     
-                      
-                        <th style="width:30%; background-color:#6f7f8e; color:#f0f4f7" colspan="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nombre </th>
-                        <th style="width:15%; background-color:#6f7f8e; color:#f0f4f7" >Id </th>
-                        <th style="width:30%; background-color:#6f7f8e; color:#f0f4f7">Email </th>
-                        <th style="width:15%; background-color:#6f7f8e; color:#f0f4f7">Rol </th>
-                        <th style="width:15%; background-color:#6f7f8e; color:#f0f4f7">Estado </th>
-                        <th style="width:15%; background-color:#6f7f8e; color:#f0f4f7"></th>
-                     
+
+                    <p-image [src]="usuarios.imagen" alt="Image" [style]="{ width: '90px', height: '90px'  }"
+                        [preview]="true">
+                    </p-image>
+                    <label class="terciarionombre">{{ usuarios.nombre }} </label>
+                        &nbsp;
+                        &nbsp;
                         
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-usuario>
-                   
-                    <tr>
+               <tr><td>&nbsp;</td> </tr>
+               <tr>
+                <td style="background-color:#46515e;">
+                <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#5C9068', width:'25px', height:'25px' }" (click)="editUsuario(usuarios)"  pTooltip="Editar"></button>
+                &nbsp;
+                <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'25px', height:'25px' }"  (click)="deleteUsuario(usuarios)" pTooltip="Eliminar"></p-button>
+                &nbsp;
+                <p-button label="" icon="pi pi-image" [style]="{ 'background-color': '#C8C85D', width:'25px', height:'25px' }"  (click)="openNewimage(usuarios)" pTooltip="Imágen"></p-button>
+                
+               </td></tr>
 
-                        <td colspan="3" style="background-color:#ffffff">
+                        
+                </ng-template>
+
+                <div class="custom-card-content">
+
+
+                    <div class="front-content">
+
+                        <tr>
+                            <td><p-avatar icon="pi pi-id-card" pTooltip="Id" styleClass="mr-2"
+                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
+                            <td> {{ usuarios.uid }} </td>
                            
-                            <p-image [src]="usuario.imagen " alt="Image" width="70" [preview]="true">
-                                <ng-template pTemplate="indicator">
-                                    
-                                </ng-template>
-                            </p-image>
-                            <label class="cardnombre"> {{usuario.nombre}}</label>
-                            
-                        </td>
-                       
-                        <td style="width:15%; background-color:#ffffff">
-                           {{ usuario.uid }}
-                        </td>
-    
-                            
-                        <td style="width:30%; background-color:#ffffff">
-                            
-                            {{usuario.email}}
-                        </td>
-    
-                        <td style="width:15%; background-color:#ffffff">
-                          
-                            {{usuario.rol}}
-                        </td>
-    
-                        <td style="width:15%; background-color:#ffffff">
-                            
-                            {{usuario.estado}}
-                        </td>
-                        <td>
-                            <div class="flex">
-                                <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#50585F', width:'30px', height:'30px' }" (click)="editUsuario(usuario)"  pTooltip="Editar registro"></button>
-                                &nbsp;
-                                <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'30px', height:'30px' }"  (click)="deleteUsuario(usuario)" pTooltip="Eliminar registro"></p-button>
-                                &nbsp;
-                                <p-button label="" icon="pi pi-image" [style]="{ 'background-color': '#4979aa', width:'30px', height:'30px' }"  (click)="openNewimage(usuario)" pTooltip="Imágen"></p-button>
-                            </div>
-                        </td>
-                    </tr>
-              
-                </ng-template>
+                        </tr>
 
-             
-            </p-table>
+                        <p></p>
+                        <tr>
+                            <td><p-avatar icon="pi pi-envelope" pTooltip="Email" styleClass="mr-2"
+                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
+                            <td> {{ usuarios.email }} </td>
+                        </tr>
+
+                        <p></p>
+                        <tr>
+                            <td><p-avatar icon="pi pi-user" pTooltip="Tipo usuario" styleClass="mr-2"
+                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
+                            <td> {{ usuarios.rol }} </td>
+                        </tr>
+
+                        <p></p>
+                    <tr>
+                    <td><p-avatar icon="pi pi-verified" pTooltip="Estado"  styleClass="mr-2" [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
+                    <td>  {{ usuarios.estado }} </td>
+                    </tr>
+                   
+                    </div>
+                    
+                </div>
+            </p-card>
         </div>
 
 
-
     </div>
+
+
+</div>
 
     <p-dialog [(visible)]="usuarioDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid">
       
@@ -130,14 +134,37 @@
                         <p-radioButton id="rol2" name="rol" value="ADMIN_ROLE" [(ngModel)]="Usuario['rol']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['rol']}"></p-radioButton>
                         <label for="category2">Admin</label>
                         &nbsp;
-                        <p-radioButton id="rol3" name="category" value="CONTA_ROLE" [(ngModel)]="Usuario['rol']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['rol']}"></p-radioButton>
+                        <p-radioButton id="rol3" name="rol" value="CONTA_ROLE" [(ngModel)]="Usuario['rol']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['rol']}"></p-radioButton>
                         <label for="category3">Contable</label>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['rol']">Seleccione un rol</small>
                     </div>
                                      
                 
                 </div>
+                
             </div>
+           
+            <div class="field">
+                <label class="mb-1">Estado</label>
+                <div class="formgrid grid">
+                    <div class="field-radiobutton col-8">
+                        <p-radioButton id="activo" name="estado" value="ACTIVO" [(ngModel)]="Usuario['estado']"
+                            required autofocus
+                            [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['estado']}"></p-radioButton>
+                        <label for="activo">Activo</label>
+                        &nbsp;
+                        <p-radioButton id="inactivo" name="estado" value="INACTIVO" [(ngModel)]="Usuario['estado']"
+                            required autofocus
+                            [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['estado']}"></p-radioButton>
+                        <label for="inactivo">Inactivo</label>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+     
             
         </ng-template>
 

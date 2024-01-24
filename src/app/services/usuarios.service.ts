@@ -16,6 +16,7 @@ export class UsuariosService  implements OnInit {
   myAppUrlApiBus="api/buscar/usuarios/";
   myAppUrlApiUpload="api/uploads/usuarios/";
   
+  
   httpOptions={
 
     headers: new HttpHeaders({
@@ -119,5 +120,12 @@ export class UsuariosService  implements OnInit {
 
     return this.http.put<any>(this.myAppUrl + this.myAppUrlApiUpload + uid, formData);
 
+  }
+
+  getUsuariosFiltro( termino: any):Observable<UsuariosResponse>{
+       
+    return this.http.get<UsuariosResponse>(this.myAppUrl + this.myAppUrlApiBus + termino)
+    .pipe(map( data=> data));
+    
   }
 }

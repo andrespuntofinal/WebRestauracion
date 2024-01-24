@@ -10,7 +10,7 @@ export interface Usuarios {
     rol:    string;
     uid:    string;
     password: string;
-    estado: boolean;
+    estado: string;
     __v:    number;
     imagen: string;
 }
