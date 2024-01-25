@@ -126,16 +126,27 @@ hr{
 .gridc {
     display: flex;
     flex-wrap: wrap;
-    margin-right: 1rem;
-    margin-left: -0.5rem;
+    margin-right: 1.2rem;
+    margin-left: 5rem;
     margin-top: -0.5rem;
+   
     
   }
   
   .gridc > .col,
   .gridc > [class*=col] {
     box-sizing: border-box;
+    padding: 0.5rem;
+    flex: 0 0 100%;
   }
+
+  @media (min-width: 768px) {
+    .gridc > .col,
+    .gridc > [class*=col] {
+        flex: 0 0 calc(25% - 1rem);
+        margin-left: 1rem; /* 3 columnas, ajusta el porcentaje según sea necesario */
+    }
+}
   
   .gridc-nogutter {
     margin-right: 0;
@@ -147,6 +158,44 @@ hr{
   .gridc-nogutter > [class*=col-] {
     padding: 0;
   }
+
+  
+.gridcf {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 1.2rem;
+  margin-left: 1.2rem;
+  margin-top: -0.5rem;
+ 
+  
+}
+
+.gridcf > .col,
+.gridcf > [class*=col] {
+  box-sizing: border-box;
+  padding: 0.5rem;
+  flex: 0 0 100%;
+}
+
+@media (min-width: 768px) {
+  .gridcf > .col,
+  .gridcf > [class*=col] {
+      flex: 0 0 calc(25% - 1rem);
+     
+  }
+}
+
+.gridcf-nogutter {
+  margin-right: 0;
+  margin-left: 0;
+  margin-top: 0;
+}
+
+.gridcf-nogutter > .col,
+.gridcf-nogutter > [class*=col-] {
+  padding: 0;
+}
+
 
 .p-toast {
     &.p-toast-top-right,

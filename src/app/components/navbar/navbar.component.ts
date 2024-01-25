@@ -5,12 +5,15 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Router } from '@angular/router';
 import { UsuarioModel } from 'src/app/models/usuario.model';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
+ 
   
   items: MenuItem[] | undefined;
   menuItems: MenuItem[] = [];
@@ -104,13 +107,14 @@ export class NavbarComponent implements OnInit {
       {
           label: 'Home',
           icon: 'pi pi-fw pi-home',
-          command: ()=> this.salirApp(),
+          routerLink: '/home'
 
       },
       
       {
           label: 'Presupuesto',
           icon: 'pi pi-fw pi-dollar'
+          
           
    
       },
@@ -128,6 +132,8 @@ export class NavbarComponent implements OnInit {
     {
         label: 'Administración',
         icon: 'pi pi-fw pi-cog',
+        routerLink: '/homeadmin',
+        
        
         items: [
           {

@@ -5,7 +5,7 @@
     <p-toolbar styleClass="mb-2 gap-2" [style]="{ 'background-color': '#8198AB', 'margin-top': '64px'}">
     
         <ng-template pTemplate="left">
-            <label class="terciario"> MIEMBROS </label>
+            <label class="terciario"> MEMBRESIA </label>
             &nbsp;&nbsp;
             <p-button label="" icon="pi pi-plus" [style]="{ 'background-color': '#2781AB' }"
                 pTooltip="Agregar nuevo registro" (click)="openNew()"></p-button>
@@ -25,7 +25,7 @@
     </p-toolbar>
 
 
-    <div class="gridc">
+    <div class="gridcf">
 
         <div class="col-12 lg:col-8 xl:col-3" *ngFor="let miembros of miembros; let i = index">
             
@@ -149,11 +149,11 @@
 
 
 
-<p-dialog [(visible)]="miembroDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid">
+<p-dialog [(visible)]="miembroDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid" >
 
     <label class="acciones"> {{ accion }} </label>
 
-    <ng-template pTemplate="content">
+    <ng-template pTemplate="content" >
         <br>
 
         <br>
