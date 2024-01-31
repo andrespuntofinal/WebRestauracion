@@ -11,7 +11,7 @@ $gutter: 1rem; //for primeflex grid system
 @import "../node_modules/primeicons/primeicons.css";
 
 body {
-    background: linear-gradient(to right, #01151f, #5a7590, #01151f) !important;
+    background: linear-gradient(to right,  #c8d8ea, #bfd4e0) !important;
 }
 
 h1,h2,h3,h4,h5 {
@@ -47,12 +47,12 @@ hr{
 }
 
 .p-menubar {
-    background: linear-gradient(to right, #01151f, #305a85, #01151f) !important;
+    background: linear-gradient(to right, #305a85, #01151f) !important;
     padding:10px 20px;
-        font-size:10px;
-        text-decoration:none;
-        letter-spacing:1px;
-        text-transform:uppercase;
+    font-size:10px;
+    text-decoration:none;
+    letter-spacing:1px;
+    text-transform:uppercase;
 }
 
 .p-menuitem-text, .p-menuitem-icon, .p-submenu-icon {
@@ -128,8 +128,9 @@ hr{
     flex-wrap: wrap;
     margin-right: 1.2rem;
     margin-left: 5rem;
-    margin-top: -0.5rem;
-   
+    position: relative;
+    z-index: 100;
+    
     
   }
   
@@ -138,13 +139,15 @@ hr{
     box-sizing: border-box;
     padding: 0.5rem;
     flex: 0 0 100%;
+    
   }
 
   @media (min-width: 768px) {
     .gridc > .col,
     .gridc > [class*=col] {
         flex: 0 0 calc(25% - 1rem);
-        margin-left: 1rem; /* 3 columnas, ajusta el porcentaje según sea necesario */
+        margin-left: 1rem;
+         /* 3 columnas, ajusta el porcentaje según sea necesario */
     }
 }
   
@@ -165,7 +168,8 @@ hr{
   flex-wrap: wrap;
   margin-right: 1.2rem;
   margin-left: 1.2rem;
-  margin-top: -0.5rem;
+  margin-top: 8rem;
+ 
  
   
 }
@@ -181,6 +185,7 @@ hr{
   .gridcf > .col,
   .gridcf > [class*=col] {
       flex: 0 0 calc(25% - 1rem);
+     
      
   }
 }
@@ -210,7 +215,7 @@ hr{
     position: fixed;
     width: 900px;
     height: calc(100vh - 7rem);
-    z-index: 999;
+    z-index: 1;
     overflow-y: auto;
     user-select: none;
     top: 5rem;
@@ -259,7 +264,7 @@ hr{
         
   }
   
-    .terciario {background: linear-gradient(to right, #909da4, #305a85, #909da4); 
+    .terciario {background: linear-gradient(to right, #ebeef3, #55656c, #f0f2f4); 
     color:#f0f4f7; 
     margin-left: -11px;
     margin-top: -6px;
@@ -267,7 +272,7 @@ hr{
     padding: 8px;
     font-size: 16px;
     text-shadow: 2px 2px 4px #000000;
-	border-top-right-radius: 10px 10px;
+	  border-top-right-radius: 10px 10px;
     border-top-left-radius: 10px 10px;
     border-bottom-right-radius: 10px 10px;
     border-bottom-left-radius: 10px 10px;
@@ -277,7 +282,27 @@ hr{
 	
   }
 
-  .terciarionombre {background: linear-gradient(to right, #a8c4e7, #55656c, #a8c4e7); 
+  .terciarionombre {
+    background: linear-gradient(to right, #052A3D, #55656c, #052A3D); 
+    font-weight: bold;
+    color:#777b41; 
+    margin-left: -1px;
+    margin-top: -6px;
+    font-family: 'Roboto', sans-serif;
+    padding: 2px;
+    font-size: 12px;
+    text-shadow: 2px 2px 4px #000000;
+	  border-top-right-radius: 5px 5px;
+    border-top-left-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+    text-align: center;
+    width:160px;
+    top: 88px;
+	
+  }
+
+  .terciariotitulo {background: linear-gradient(to right, #ebeef3, #55656c, #f0f2f4); 
     color:#f0f4f7; 
     margin-left: -1px;
     margin-top: -6px;
@@ -285,12 +310,12 @@ hr{
     padding: 2px;
     font-size: 12px;
     text-shadow: 2px 2px 4px #000000;
-	border-top-right-radius: 10px 10px;
-    border-top-left-radius: 10px 10px;
-    border-bottom-right-radius: 10px 10px;
-    border-bottom-left-radius: 10px 10px;
+	  border-top-right-radius: 5px 5px;
+    border-top-left-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
     text-align: center;
-    width:160px;
+    width:200px;
     top: 88px;
 	
   }
@@ -303,17 +328,17 @@ hr{
     padding: 3px;
     font-size: 12px;
     text-shadow: 2px 2px 4px rgb(6, 6, 5);
-	border-top-right-radius: 10px 10px;
-    border-top-left-radius: 10px 10px;
-    border-bottom-right-radius: 10px 10px;
-    border-bottom-left-radius: 10px 10px;
+    border-top-right-radius: 5px 5px;
+    border-top-left-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
     text-align: center;
     width:200px;
     top: 88px;
 	
   }
 
-  .acciones {background: linear-gradient(to right, #909da4, #305a85, #909da4); 
+  .acciones {background: linear-gradient(to right, #ebeef3, #55656c, #f0f2f4);
     color:#f0f4f7; 
     margin-left: -3px;
     margin-top: -2px;
@@ -355,7 +380,7 @@ hr{
     padding: 8px;
     font-size: 16px;
     text-shadow: 2px 2px 4px #000000;
-	border-top-right-radius: 10px 10px;
+	  border-top-right-radius: 10px 10px;
     border-top-left-radius: 10px 10px;
     border-bottom-right-radius: 10px 10px;
     border-bottom-left-radius: 10px 10px;
@@ -369,18 +394,26 @@ hr{
 .card {
     
     perspective: 1000px;
-    background:#8198AB;
+    background:#052A3D;
     border: 1px solid ;
     padding: 1rem;
     margin-bottom: 1rem;
     box-shadow:#305a85;
     border-radius: 8px;
     width: 300px;
-    height: 400px;
-    
-   
+    height: 550px;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 1;
+       
   }
 
+  @media (min-width: 768px) {
+    .card {
+      margin-top: 2rem;
+    }
+  }
+  
   .cardform {
     
     border: 1px solid ;
@@ -393,7 +426,7 @@ hr{
     border-bottom-right-radius: 10px 10px;
     border-bottom-left-radius: 10px 10px;
 
-    background:#9aacb9;
+    background:#052A3D;
 
     margin-left: -12px;
 
@@ -404,10 +437,11 @@ hr{
   
   .custom-card-content {
     width: 200px;
-    height: 180px;
+    height: 320px;
     transition: transform 0.5s;
     transform-style: preserve-3d;
     margin-top: -0.9rem;
+    
     
   }
   
@@ -415,7 +449,7 @@ hr{
   .back-content {
    
     width: 50px;
-    height: 400px;
+    height: 500px;
     padding: 1rem;
     margin-bottom: 1rem;
     margin-left: -5rem;
@@ -431,6 +465,7 @@ hr{
     margin-bottom: 1rem;
     margin-left: -2rem;
     position: absolute;
+    
     
   }
   
@@ -465,9 +500,19 @@ hr{
 
   .labelform{ 
     color: rgb(96, 114, 119)  !important;
-    font-family:Arial, Helvetica, sans-serif !important;
+    font-family: 'Roboto', sans-serif !important;
     font-weight: bold;
 }
+
+.p-toolbar{ 
+  background: rgba(109, 123, 134, 0.5) !important;
+  margin-top: -48px; 
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+}
+
+
 
   
 

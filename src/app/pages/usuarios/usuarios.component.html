@@ -2,7 +2,7 @@
 
 
     <div class="panel">
-        <p-toolbar styleClass="mb-2 gap-2" [style]="{ 'background-color': '#8198AB', 'margin-top': '64px'}">
+        <p-toolbar styleClass="mb-2 gap-2">
             <ng-template pTemplate="left">
                 <label class="terciario"> USUARIOS </label>
                 &nbsp;&nbsp;
@@ -28,7 +28,7 @@
 
         <div class="col-12 lg:col-8 xl:col-3" *ngFor="let usuarios of usuarios; let i = index">
             
-            <p-card class="card" [ngClass]="{'flipped': cardStates[i]}">
+            <p-card [style]="{ 'background-color': '#052A3D' }" class="card" [ngClass]="{'flipped': cardStates[i]}">
                 
 
                 <ng-template pTemplate="header">
@@ -62,7 +62,7 @@
                         <tr>
                             <td><p-avatar icon="pi pi-id-card" pTooltip="Id" styleClass="mr-2"
                                     [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
-                            <td> {{ usuarios.uid }} </td>
+                            <td class="labelform"> {{ usuarios.uid }} </td>
                            
                         </tr>
 
@@ -70,20 +70,20 @@
                         <tr>
                             <td><p-avatar icon="pi pi-envelope" pTooltip="Email" styleClass="mr-2"
                                     [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
-                            <td> {{ usuarios.email }} </td>
+                            <td class="labelform"> {{ usuarios.email }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td><p-avatar icon="pi pi-user" pTooltip="Tipo usuario" styleClass="mr-2"
                                     [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
-                            <td> {{ usuarios.rol }} </td>
+                            <td class="labelform"> {{ usuarios.rol }} </td>
                         </tr>
 
                         <p></p>
                     <tr>
                     <td><p-avatar icon="pi pi-verified" pTooltip="Estado"  styleClass="mr-2" [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
-                    <td>  {{ usuarios.estado }} </td>
+                    <td class="labelform">  {{ usuarios.estado }} </td>
                     </tr>
                    
                     </div>
