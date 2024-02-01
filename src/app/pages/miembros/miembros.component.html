@@ -292,12 +292,12 @@
                             <p-radioButton id="sexoM" name="sexo" value="MASCULINO" [(ngModel)]="Miembro['sexo']"
                                 required autofocus
                                 [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['sexo']}"></p-radioButton>
-                            <label for="sexoM">Masculino</label>
+                            <label for="sexoM" class="labelform">Masculino</label>
                             &nbsp;
                             <p-radioButton id="sexoF" name="sexo" value="FEMENINO" [(ngModel)]="Miembro['sexo']"
                                 required autofocus
                                 [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['sexo']}"></p-radioButton>
-                            <label for="sexoF">Femenino</label>
+                            <label for="sexoF" class="labelform">Femenino</label>
 
                         </div>
 
@@ -311,12 +311,12 @@
                             <p-radioButton id="bautizadoSI" name="bautizado" value="BAUTIZADO"
                                 [(ngModel)]="Miembro['bautizado']" required autofocus
                                 [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['bautizado']}"></p-radioButton>
-                            <label for="category1">SI</label>
+                            <label for="category1" class="labelform">SI</label>
                             &nbsp;
                             <p-radioButton id="bautizadoNO" name="bautizado" value="NO BAUTIZADO"
                                 [(ngModel)]="Miembro['bautizado']" required autofocus
                                 [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['bautizado']}"></p-radioButton>
-                            <label for="category2">NO</label>
+                            <label for="category2" class="labelform">NO</label>
 
                         </div>
 

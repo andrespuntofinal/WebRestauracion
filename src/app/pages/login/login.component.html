@@ -1,59 +1,51 @@
 <app-navbar></app-navbar>
 
 <div [style]="{'margin-top': '90px'}">
-    <br>
+   <br>
 <div class="limiter animated fadeInLeft">
-    <div class="container-login100">    
-        <div class="wrap-login100 p-t-50 p-b-60">
+    <div class="container-login100" >    
+        <div class="wrap-login100 p-t-0 p-b-50" [style]="{'background-color': '#052A3D'}">
             <form (ngSubmit)="login( f  )"
             #f="ngForm"                       
             class="login100-form validate-form flex-sb flex-w">
 
                 <span class="login100-form-title p-b-51">
-                    INGRESO 
+                    <label class="terciariologin"> INGRESO ADMINISTRATIVO </label> 
                 </span>
+               
+               
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
 
-                <span *ngIf=" f.submitted && f.controls['email'].errors"
-                    class="text-danger animated fadeIn">El correo es obligatorio</span>
-                <div class="wrap-input100 m-b-16">
-                    <input class="input100" 
-                           type="email" 
-                           name="email" 
-                           [(ngModel)]="usuario.email"
-                           required
-                           email
-                           placeholder="Email">
+                           
+                            <input input pInputText id="email" name="email" type="text" class="w-full md:w-26rem mb-5" style="padding:1rem"
+                                [(ngModel)]="usuario['email']" required autofocus
+                                [ngClass]="{'ng-invalid ng-dirty' : f.submitted && !usuario['email']}" />
+                            <small class="ng-dirty ng-invalid" *ngIf="f.submitted && !usuario['email']">Email
+                                requerido</small>
+                            <label htmlFor="email" class="labelform" >Email</label>
+                        </span>
+                      
 
-                    <span class="focus-input100"></span>
-                </div>
-                
-                <span *ngIf=" f.submitted && f.controls['password'].errors"
-                    class="text-danger animated fadeIn">Ingrese la contraseña</span>
-                <div class="wrap-input100 m-b-16" data-validate = "Password is required">
-                    <input class="input100"
-                           type="password" 
-                           name="password" 
-                           [(ngModel)]="usuario.password"
-                            required
-                            placeholder="Password">
-                    <span class="focus-input100"></span>
-                </div>
-                
-                <div class="flex-sb-m w-full p-t-3 p-b-24">
-                    <div class="contact100-form-checkbox">
-                        <input [(ngModel)]="recordarme"
-                        
-                        class="input-checkbox100" id="ckb1" type="checkbox" name="recordarme">
-                        <label class="label-checkbox100" for="ckb1">
-                            Recordar mi usuario
-                        </label>
                     </div>
 
-                 
-                </div>
+                    <div class="field col-12 md:col-8">
+                        <span class="p-float-label">
 
+                           
+                            <input input pInputText id="password" name="password" type="password" class="w-full md:w-26rem mb-5" style="padding:1rem"
+                                [(ngModel)]="usuario['password']" required autofocus
+                                [ngClass]="{'ng-invalid ng-dirty' : f.submitted && !usuario['password']}" />
+                            <small class="ng-dirty ng-invalid" *ngIf="f.submitted && !usuario['password']">Contraseña
+                                requerida</small>
+                            <label htmlFor="password" class="labelform" >Contraseña</label>
+                        </span>
+
+                    </div>
+               
+          
                 <div class="container-login100-form-btn m-t-7">
-                    <button class="login100-form-btn" type="submit">
+                    <button  class="botton" type="submit">
                         Ingresar
                     </button>
                 </div>

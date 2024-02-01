@@ -11,7 +11,7 @@ $gutter: 1rem; //for primeflex grid system
 @import "../node_modules/primeicons/primeicons.css";
 
 body {
-    background: linear-gradient(to right,  #c8d8ea, #bfd4e0) !important;
+    background: #a0b0b8 !important;
 }
 
 h1,h2,h3,h4,h5 {
@@ -38,7 +38,7 @@ hr{
 }
 
 .btn-outline-success:hover {
-    background-color: #272a36;
+    background-color: #d5d9ec;
     color: white !important;
 }
 
@@ -47,7 +47,7 @@ hr{
 }
 
 .p-menubar {
-    background: linear-gradient(to right, #305a85, #01151f) !important;
+    background: #01151f !important;
     padding:10px 20px;
     font-size:10px;
     text-decoration:none;
@@ -60,7 +60,7 @@ hr{
 }
 
 .p-menu-list:hover {
-    background-color: #000 !important;
+    background-color: #0b0b0b !important;
 }
 
 
@@ -264,7 +264,7 @@ hr{
         
   }
   
-    .terciario {background: linear-gradient(to right, #ebeef3, #55656c, #f0f2f4); 
+    .terciario {background:#677F8C; 
     color:#f0f4f7; 
     margin-left: -11px;
     margin-top: -6px;
@@ -278,6 +278,24 @@ hr{
     border-bottom-left-radius: 10px 10px;
     text-align: center;
     width:130px;
+    top: 88px;
+	
+  }
+
+  .terciariologin {background: linear-gradient(to right, #ebeef3, #55656c, #f0f2f4); 
+    background: linear-gradient(to right, #052A3D, #55656c, #052A3D); 
+    font-weight: bold;
+    color:#777b41; 
+    margin-left: 0px;
+    margin-top: -6px;
+    font-family: 'Roboto', sans-serif;
+    padding: 8px;
+    font-size: 18px;
+    text-shadow: 2px 2px 4px #000000;
+    border-top-right-radius: 10px 10px;
+    border-top-left-radius: 10px 10px;
+    text-align: center;
+    width:400px;
     top: 88px;
 	
   }
@@ -302,7 +320,8 @@ hr{
 	
   }
 
-  .terciariotitulo {background: linear-gradient(to right, #ebeef3, #55656c, #f0f2f4); 
+  .terciariotitulo {
+    background:#677F8C; 
     color:#f0f4f7; 
     margin-left: -1px;
     margin-top: -6px;
@@ -315,7 +334,7 @@ hr{
     border-bottom-right-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
     text-align: center;
-    width:200px;
+    width:270px;
     top: 88px;
 	
   }
@@ -338,7 +357,7 @@ hr{
 	
   }
 
-  .acciones {background: linear-gradient(to right, #ebeef3, #55656c, #f0f2f4);
+  .acciones {background:#677F8C;
     color:#f0f4f7; 
     margin-left: -3px;
     margin-top: -2px;
@@ -502,6 +521,7 @@ hr{
     color: rgb(96, 114, 119)  !important;
     font-family: 'Roboto', sans-serif !important;
     font-weight: bold;
+    font-size: 13px;
 }
 
 .p-toolbar{ 
@@ -510,6 +530,28 @@ hr{
   position: fixed;
   z-index: 100;
   width: 100%;
+}
+
+.botton {
+  background-color: #8796a5; 
+  border: none;
+  color: #eaf1f7;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 400px;
+  font-weight: bold;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
+.botton:hover {
+
+  background-color: #b3cdeb;
 }
 
 
