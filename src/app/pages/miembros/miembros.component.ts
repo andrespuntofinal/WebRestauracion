@@ -3,13 +3,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MiembrosService } from 'src/app/services/miembros.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { MiembroModel } from 'src/app/models/miembro.model';
-import { MessageService } from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { AvatarModule } from 'primeng/avatar';
 import Swal from 'sweetalert2';
 import { state } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { Calendar, CalendarModule } from 'primeng/calendar';
+
 
 @Component({
   selector: 'app-miembros',
@@ -21,7 +23,7 @@ import { DatePipe } from '@angular/common';
 
 export class MiembrosComponent implements OnInit, OnDestroy {
 
-  
+ es: any;
   uploadedFiles: any[] = [];
   isFlipped: boolean = false;
   cardStates: { [key: number]: boolean } = {};
@@ -41,11 +43,19 @@ export class MiembrosComponent implements OnInit, OnDestroy {
 
     estadocivil: any[] = [];
 
+    tipo_id: any[] = [];
+
     tipomiembro: any[] = [];
 
     poblacion: any[] = [];
 
     ministerio: any[] = [];
+
+    ocupacion: any[] = [];
+
+    grupo_celular: any[] = [];
+
+    estado: any[] = [];
 
     selectedMiembros: MiembroModel[] = [];
 
@@ -74,41 +84,69 @@ export class MiembrosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.estadocivil = [
-      { label: 'CASADO', value: 'CASADO' },
-      { label: 'SOLTERO', value: 'SOLTERO' },
-      { label: 'UNION LIBRE', value: 'UNION LIBRE' },
-      { label: 'OTRO', value: 'OTRO' }
+      { label: 'Casado', value: 'Casado' },
+      { label: 'Soltero', value: 'Soltero' },
+      { label: 'Unión libre', value: 'Unión libre' },
+      { label: 'Otro', value: 'Otro' }
   ];
 
+  this.tipo_id = [
+    { label: 'Cédula', value: 'C.C' },
+    { label: 'Tarjeta de identidad', value: 'T.I' },
+    { label: 'Cédula extranjería', value: 'C.E' },
+    { label: 'Pasaporte', value: 'PAS' },
+    { label: 'Registro civil', value: 'R.C' }
+];
+
   this.tipomiembro = [
-    { label: 'LIDER', value: 'LIDER' },
-    { label: 'NUEVO', value: 'NUEVO' },
-    { label: 'ASISTENTE REGULAR', value: 'ASISTENTE REGULAR' },
-    { label: 'ASISTENTE IREGULAR', value: 'ASISTENTE IREGULAR' }
+    { label: 'Líder', value: 'Líder' },
+    { label: 'Nuevo', value: 'Nuevo' },
+    { label: 'Asistente regular', value: 'Asistente regular' },
+    { label: 'Asistente irregular', value: 'Asistente irregular' }
 ];
 
 this.poblacion = [
-  { label: 'INFANTE', value: 'INFANTE' },
-  { label: 'NIÑO', value: 'NIÑO' },
-  { label: 'ADOLESCENTE', value: 'ADOLESCENTE' },
-  { label: 'JOVEN', value: 'JOVEN' },
-  { label: 'ADULTO', value: 'ADULTO' },
-  { label: 'ANCIANO', value: 'ANCIANO' }
+  { label: 'Infante', value: 'Infante' },
+  { label: 'Niño', value: 'Niño' },
+  { label: 'Adolescente', value: 'Adolescente' },
+  { label: 'Jóven', value: 'Jóven' },
+  { label: 'Adulto', value: 'Adulto' },
+  { label: 'Anciano', value: 'Anciano' }
+];
+
+this.ocupacion = [
+  { label: 'Empleado', value: 'Empleado' },
+  { label: 'Desempleado', value: 'Desempleado' },
+  { label: 'Estudiante', value: 'Estudiante' },
+  { label: 'Hogar', value: 'Hogar' },
+  { label: 'Otro', value: 'Otro' }
+];
+
+this.grupo_celular = [
+  { label: 'Ninguno', value: 'Ninguno' },
+  { label: 'Central', value: 'Central' },
+  { label: 'San Javier', value: 'San Javier' },
+  { label: 'Norte', value: 'Norte' },
+  { label: 'Sur', value: 'Sur' }
+
 ];
 
 this.ministerio = [
-  { label: 'MAESTRO ED', value: 'MAESTRO ED' },
-  { label: 'JOVENES', value: 'JOVENES' },
-  { label: 'ALABANZA', value: 'ALABANZA' },
-  { label: 'DIACONADO', value: 'DIACONADO' },
-  { label: 'EVANGELISMO', value: 'EVANGELISMO' },
-  { label: 'MEDIOS', value: 'MEDIOS' },
-  { label: 'VENTAS', value: 'VENTAS' },
-  { label: 'LIDER CELULA', value: 'LIDER CELULA' },
-  { label: 'NINGUNO', value: 'NINGUNO' }
+  { label: 'Ninguno', value: 'Ninguno' },
+  { label: 'Maestro ED', value: 'Maestro ED' },
+  { label: 'Jóvenes', value: 'Jóvenes' },
+  { label: 'Alabanza', value: 'Alabanza' },
+  { label: 'Diaconado', value: 'Diaconado' },
+  { label: 'Evangelismo', value: 'Evangelismo' },
+  { label: 'Medios', value: 'Medios' },
+  { label: 'Ayuda Social', value: 'Ayuda Social' },
+  { label: 'Líder célula', value: 'Líder célula' }
+ 
 ];
 
     this.cargarMiembros();
+
+   
 
 
     }
@@ -258,6 +296,7 @@ const miembrosPut: MiembroModel = {
   nombre: this.Miembro['nombre'],
   email:  this.Miembro['email'],
   numero_id:  this.Miembro['numero_id'],
+  tipo_id:  this.Miembro['tipo_id'],
   telefono:  this.Miembro['telefono'],
   celular:  this.Miembro['celular'],
   barrio:  this.Miembro['barrio'],
@@ -271,7 +310,9 @@ const miembrosPut: MiembroModel = {
   fecha_nacimiento:  this.datePipe.transform(this.Miembro['fecha_nacimiento'], 'MM/dd/yyyy'),
   lider_contacto:  this.Miembro['lider_contacto'],
   ministerio:  this.Miembro['ministerio'],
-  estado:  true,
+  ocupacion:  this.Miembro['ocupacion'],
+  grupo_celular:  this.Miembro['grupo_celular'],
+  estado:  this.Miembro['estado'],
  
   
 };
@@ -290,17 +331,13 @@ if ( this.Miembro['numero_id'] != null  && this.Miembro['nombre']?.trim() && thi
     confirmButtonText: 'Aceptar'
    })
 
-   
-   //this.usuarios = [];
-   //this.Usuario =  {};
-   //this.cargarUsuarios();
-  //this.usuarios.push(usuariosPut);
+
 
   this.miembros[this.findIndexById(this.Miembro._id)] = this.Miembro;
 
   console.log('iddd', this.Miembro['numero_id']);
 
- // this.usuarios.push(this.Usuario);
+
   this.miembroDialog = false;
   this.accion = '';
 }
@@ -320,6 +357,7 @@ crearMiembro(){
     nombre: this.Miembro['nombre'],
     email:  this.Miembro['email'],
     numero_id:  this.Miembro['numero_id'],
+    tipo_id:  this.Miembro['tipo_id'],
     telefono:  this.Miembro['telefono'],
     celular:  this.Miembro['celular'],
     barrio:  this.Miembro['barrio'],
@@ -333,6 +371,9 @@ crearMiembro(){
     fecha_nacimiento:  this.datePipe.transform(this.Miembro['fecha_nacimiento'], 'MM/dd/yyyy'),
     lider_contacto:  this.Miembro['lider_contacto'],
     ministerio:  this.valoresSeleccionadosString,
+    ocupacion:  this.Miembro['ocupacion'],
+    grupo_celular:  this.Miembro['grupo_celular'],
+    estado:  this.Miembro['estado'],
     
   };
 

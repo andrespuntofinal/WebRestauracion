@@ -1,6 +1,7 @@
 export class MiembroModel {
 
     nombre?:string;
+    tipo_id?:string;
     numero_id?:string;
     email?:string;
     telefono?:string;
@@ -17,7 +18,9 @@ export class MiembroModel {
     fecha_membresia?:string;
     lider_contacto?:string;
     ministerio?:string;
-    estado?:boolean;
+    estado?:string;
+    ocupacion?:string;
+    grupo_celular?:string;
     _id?:string;
 
 }   

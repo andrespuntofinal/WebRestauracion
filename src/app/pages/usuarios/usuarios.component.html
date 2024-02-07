@@ -42,7 +42,7 @@
                         
                <tr><td>&nbsp;</td> </tr>
                <tr>
-                <td style="background-color:#46515e;">
+                <td >
                 <button pButton pRipple icon="pi pi-pencil" [style]="{ 'background-color': '#5C9068', width:'25px', height:'25px' }" (click)="editUsuario(usuarios)"  pTooltip="Editar"></button>
                 &nbsp;
                 <p-button label="" icon="pi pi-trash" [style]="{ 'background-color': '#BE6553', width:'25px', height:'25px' }"  (click)="deleteUsuario(usuarios)" pTooltip="Eliminar"></p-button>
@@ -82,6 +82,12 @@
 
                         <p></p>
                     <tr>
+                    <td><p-avatar icon="pi pi-key" pTooltip="Contraseña"  styleClass="mr-2" [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
+                    <td class="labelform">  {{ usuarios.password }} </td>
+                    </tr>
+
+                    <p></p>
+                    <tr>
                     <td><p-avatar icon="pi pi-verified" pTooltip="Estado"  styleClass="mr-2" [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar></td>
                     <td class="labelform">  {{ usuarios.estado }} </td>
                     </tr>
@@ -98,75 +104,91 @@
 
 </div>
 
-    <p-dialog [(visible)]="usuarioDialog" [style]="{width: '410px'}" header="" [modal]="true" class="p-fluid">
+    <p-dialog [(visible)]="usuarioDialog" [style]="{width: '490px'}" header="" [modal]="true" class="p-fluid">
       
        
         <label class="acciones"> {{ accion }} </label>
        
-        <ng-template pTemplate="content">
-            
-            <div class="field">
-                <label for="uid">Identificación</label>
-                <input input pInputText id="uid" [(ngModel)]="Usuario['uid']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['uid']}"/>
-                <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['uid']">Identificación requerida</small>
-             
-            </div>
-            <div class="field">
-                <label for="name">Name</label>
-                <input input pInputText id="nombre" [(ngModel)]="Usuario['nombre']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['nombre']}"/>
-                 <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['nombre']">Nombre requerido</small>
-             
-            </div>
-            <div class="field">
-                <label for="email">Email</label>
-                <input input pInputText id="email" type="email" [(ngModel)]="Usuario['email']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['email']}"/>
-                <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['email']">Email requerido</small>
-                
-            </div>
+        <div class="col-12">
 
-            <div class="field">
-                <label class="mb-1">Rol</label>
-                <div class="formgrid grid">
-                    <div class="field-radiobutton col-8">
-                        <p-radioButton id="rol1" name="rol" value="USER_ROLE" [(ngModel)]="Usuario['rol']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['rol']}"></p-radioButton>
-                        <label for="category1">Básico</label>
-                        &nbsp;
-                        <p-radioButton id="rol2" name="rol" value="ADMIN_ROLE" [(ngModel)]="Usuario['rol']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['rol']}"></p-radioButton>
-                        <label for="category2">Admin</label>
-                        &nbsp;
-                        <p-radioButton id="rol3" name="rol" value="CONTA_ROLE" [(ngModel)]="Usuario['rol']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['rol']}"></p-radioButton>
-                        <label for="category3">Contable</label>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['rol']">Seleccione un rol</small>
-                    </div>
-                                     
-                
-                </div>
-                
-            </div>
-           
-            <div class="field">
-                <label class="mb-1">Estado</label>
-                <div class="formgrid grid">
-                    <div class="field-radiobutton col-8">
-                        <p-radioButton id="activo" name="estado" value="ACTIVO" [(ngModel)]="Usuario['estado']"
-                            required autofocus
-                            [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['estado']}"></p-radioButton>
-                        <label for="activo">Activo</label>
-                        &nbsp;
-                        <p-radioButton id="inactivo" name="estado" value="INACTIVO" [(ngModel)]="Usuario['estado']"
-                            required autofocus
-                            [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['estado']}"></p-radioButton>
-                        <label for="inactivo">Inactivo</label>
+            <div class="cardform">
+                   
+                <div class="p-fluid p-formgrid grid">
 
+
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <input input pInputText id="uid" [(ngModel)]="Usuario['uid']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['uid']}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['uid']">Identificación requerida</small>
+                            <label htmlFor="uid" class="labelform" >Identificación</label>
+                        </span>
                     </div>
 
 
-                </div>
-            </div>
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <input input pInputText id="nombre" [(ngModel)]="Usuario['nombre']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['nombre']}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['nombre']">Nombre requerido</small>
+                            <label htmlFor="nombre" class="labelform">Nombre</label>
+                        </span>
+                    </div>
 
-     
-            
-        </ng-template>
+
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <input input pInputText id="email"
+                             type="email"
+                             [(ngModel)]="Usuario['email']"
+                             required autofocus
+                             [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['email']}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['email']">Email requerido</small>
+                            <label htmlFor="email" class="labelform">Email</label>
+                        </span>
+                    </div>
+
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <input input pInputText id="password" [(ngModel)]="Usuario['password']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['password']}"/>
+                            <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['password']">Contraseña requerida</small>
+                            <label htmlFor="password" class="labelform" >Contraseña</label>
+                        </span>
+                    </div>
+                    
+                    <div class="field col-12 md:col-6">
+                        <span class="p-float-label">
+                            <p-dropdown inputId="rol" [autoDisplayFirst]="false" [options]="rol"
+                                [(ngModel)]="Usuario['rol']" [appendTo]="'body'"></p-dropdown>
+                            <label for="rol" class="labelform">Tipo de usuario</label>
+                        </span>
+                    </div>
+                    
+
+                    <div class="field col-12 md:col-6">
+                        <label class="labelform">Estado</label>
+                        <div class="formgrid grid">
+                            <div class="field-radiobutton col-8">
+                                <p-radioButton id="activo" name="estado" value="ACTIVO" [(ngModel)]="Usuario['estado']"
+                                    required autofocus
+                                    [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['estado']}"></p-radioButton>
+                                <label for="activo" class="labelform">Activo</label>
+                                &nbsp;
+                                <p-radioButton id="inactivo" name="estado" value="INACTIVO" [(ngModel)]="Usuario['estado']"
+                                    required autofocus
+                                    [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['estado']}"></p-radioButton>
+                                <label for="inactivo" class="labelform">INACTIVO</label>
+    
+                            </div>
+    
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+        </div>
 
         <ng-template pTemplate="footer">
             <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>

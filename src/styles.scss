@@ -1,4 +1,5 @@
 $gutter: 1rem; //for primeflex grid system
+$azulfondo: #052A3D;
 @import "assets/layout/styles/layout/layout.scss";
 
 @import "primeng/resources/themes/lara-light-blue/theme.css";
@@ -14,22 +15,11 @@ body {
     background: #a0b0b8 !important;
 }
 
-h1,h2,h3,h4,h5 {
-    font-weight: 200;
-    color: white;
-}
 
-p {
-    color: white;
-}
-
-hr{
-    color: white;
-}
 
 .navbar-brand {
     font-weight: 200;
-    color: #bd4c5f !important;
+    color: #1e3752 !important;
 }
 
 .btn-outline-success {
@@ -38,8 +28,8 @@ hr{
 }
 
 .btn-outline-success:hover {
-    background-color: #d5d9ec;
-    color: white !important;
+    background-color: #585c74;
+    color: rgb(152, 168, 175) !important;
 }
 
 .block {
@@ -47,7 +37,7 @@ hr{
 }
 
 .p-menubar {
-    background: #01151f !important;
+    background: $azulfondo !important;
     padding:10px 20px;
     font-size:10px;
     text-decoration:none;
@@ -56,39 +46,11 @@ hr{
 }
 
 .p-menuitem-text, .p-menuitem-icon, .p-submenu-icon {
-    color:#b6bdc4 !important;
+    color:#BFCDD9 !important;
 }
 
 .p-menu-list:hover {
     background-color: #0b0b0b !important;
-}
-
-
-.puntero {
-    cursor: pointer;
-}
-
-.img-circle {
-    border-radius: 100%;
-    width: 150px;
-}
-
-.card-title,
-.card-text {
-    color: black;
-}
-
-.badge {
-    margin-left: 5px;
-}
-
-.btn-outline-success {
-    margin-left: 5px;
-}
-
-.img-thumb {
-    width: 50px;
-    height: 50px;
 }
 
 
@@ -184,7 +146,7 @@ hr{
 @media (min-width: 768px) {
   .gridcf > .col,
   .gridcf > [class*=col] {
-      flex: 0 0 calc(25% - 1rem);
+      flex: 0 0 calc(33% - 1rem);
      
      
   }
@@ -234,7 +196,7 @@ hr{
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      background-color: #3f474f; /* Color de fondo del panel */
+      background-color: #04293b6b; /* Color de fondo del panel */
   
       /* Estilos de la tabla */
       table {
@@ -334,7 +296,7 @@ hr{
     border-bottom-right-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
     text-align: center;
-    width:270px;
+    width:320px;
     top: 88px;
 	
   }
@@ -419,8 +381,8 @@ hr{
     margin-bottom: 1rem;
     box-shadow:#305a85;
     border-radius: 8px;
-    width: 300px;
-    height: 550px;
+    width: 360px;
+    height: 600px;
     margin-top: 4rem;
     position: relative;
     z-index: 1;
@@ -445,7 +407,7 @@ hr{
     border-bottom-right-radius: 10px 10px;
     border-bottom-left-radius: 10px 10px;
 
-    background:#052A3D;
+    background:#BFCDD9;
 
     margin-left: -12px;
 
@@ -455,8 +417,8 @@ hr{
 }
   
   .custom-card-content {
-    width: 200px;
-    height: 320px;
+    width: 360px;
+    height: 385px;
     transition: transform 0.5s;
     transform-style: preserve-3d;
     margin-top: -0.9rem;
@@ -477,7 +439,7 @@ hr{
   }
   
   .front-content {
-    width: 300px;
+    width: 360px;
     height: 400px;
     transform: rotateY(0deg); /* Muestra la cara frontal */
     padding: 1rem;
@@ -493,7 +455,7 @@ hr{
     padding: 1rem;
     
     position: absolute;
-    width: 300px;
+    width: 458px;
     height: 400px;
     
   }
@@ -520,12 +482,13 @@ hr{
   .labelform{ 
     color: rgb(96, 114, 119)  !important;
     font-family: 'Roboto', sans-serif !important;
-    font-weight: bold;
+    
     font-size: 13px;
+   
 }
 
 .p-toolbar{ 
-  background: rgba(109, 123, 134, 0.5) !important;
+  background: rgba(191, 205, 217, 0.5) !important;
   margin-top: -48px; 
   position: fixed;
   z-index: 100;
@@ -533,7 +496,7 @@ hr{
 }
 
 .botton {
-  background-color: #8796a5; 
+  background-color: #8796a594;   
   border: none;
   color: #eaf1f7;
   padding: 15px 32px;
@@ -551,8 +514,21 @@ hr{
 
 .botton:hover {
 
-  background-color: #b3cdeb;
+  background-color: #8796a5;
 }
+
+.tdtitulo {
+  background-color: #46515e7d;
+  color:#f0f4f7;
+  font-family: 'Roboto', sans-serif !important;
+  font-size: 13px;
+  border-top-right-radius: 10px 10px;
+  border-top-left-radius: 10px 10px;
+  border-bottom-right-radius: 10px 10px;
+  border-bottom-left-radius: 10px 10px;
+}
+
+
 
 
 

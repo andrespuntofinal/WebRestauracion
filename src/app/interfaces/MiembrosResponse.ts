@@ -6,6 +6,7 @@ export interface MiembrosResponse {
 export interface Miembros {
     _id:              string;
     nombre:           string;
+    tipo_id:          string;
     numero_id:        string;
     email:            string;
     telefono:         string;
@@ -22,6 +23,8 @@ export interface Miembros {
     fecha_membresia:  string;
     lider_contacto:   string;
     ministerio:       string;
-    estado:           boolean;
+    estado:           string;
+    ocupacion:        string;
+    grupo_celular:    string;
    
 }

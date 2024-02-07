@@ -33,6 +33,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
     usuarios: UsuarioModel[] = [];
 
+    rol: any[] = [];
+
     Usuario: UsuarioModel= {}
 
     selectedUsuarios: UsuarioModel[] = [];
@@ -55,6 +57,12 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit(): void {
+
+    this.rol = [
+      { label: 'BÁSICO', value: 'USER_ROLE' },
+      { label: 'ADMINISTRADOR', value: 'ADMIN_ROLE' },
+      { label: 'CONTABLE', value: 'CONTA_ROLE' }
+  ];
 
    
     this.cargarUsuarios();
@@ -139,7 +147,7 @@ confirmDelete() {
 
 this.uid = this.Usuario['_id'];
 
-//console.log("seleccionadoxxxxx", this.uid);
+console.log("seleccionadoxxxxx Eliinar", this.uid);
 
 this.usuariosService.deleteUsuarios(this.uid).subscribe(data => {
 this.cargarUsuarios();
@@ -197,11 +205,12 @@ const usuariosPut: UsuarioModel = {
   rol:    this.Usuario['rol'],
   uid:    this.Usuario['uid'],
   estado: this.Usuario['estado'],
+  password: this.Usuario['password'],
 
   
 };
 
-if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usuario['email']?.trim() && this.Usuario['rol']?.trim() && this.Usuario['estado']?.trim()) {
+if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usuario['email']?.trim() && this.Usuario['rol']?.trim() && this.Usuario['estado']?.trim() && this.Usuario['password']?.trim()) {
    
   this.usuariosService.putUsuarios(this.uid, usuariosPut).subscribe( data => {
        
@@ -239,12 +248,12 @@ crearUsuario(){
     email:  this.Usuario['email'],
     rol:    this.Usuario['rol'],
     uid:    this.Usuario['uid'],
-    password:    'Poder4017',
+    password:   this.Usuario['password'],
     estado: "ACTIVO",
     
   };
 
-  if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usuario['email']?.trim() && this.Usuario['rol']?.trim()) {
+  if ( this.Usuario['uid'] != null  && this.Usuario['nombre']?.trim() && this.Usuario['email']?.trim() && this.Usuario['rol']?.trim() && this.Usuario['password']?.trim()) {
    
    this.usuariosService.postUsuarios(usuariosPost).subscribe( data => {
 

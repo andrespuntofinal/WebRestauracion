@@ -30,10 +30,12 @@ const routes: Routes = [
   },
   {
     path: 'miembros', 
+    canActivate: [ AuthGuard ],
     component: MiembrosComponent
   },
   {
     path: 'usuarios',
+    canActivate: [ AuthGuard ],
     component: UsuariosComponent
   },
   {
