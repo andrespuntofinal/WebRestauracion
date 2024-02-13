@@ -1,5 +1,5 @@
 $gutter: 1rem; //for primeflex grid system
-$azulfondo: #052A3D;
+$azulfondo: #292f33;
 @import "assets/layout/styles/layout/layout.scss";
 
 @import "primeng/resources/themes/lara-light-blue/theme.css";
@@ -19,7 +19,7 @@ body {
 
 .navbar-brand {
     font-weight: 200;
-    color: #1e3752 !important;
+    color: #d1dfed !important;
 }
 
 .btn-outline-success {
@@ -263,9 +263,9 @@ body {
   }
 
   .terciarionombre {
-    background: linear-gradient(to right, #052A3D, #55656c, #052A3D); 
+   
     font-weight: bold;
-    color:#777b41; 
+    color:#e2ebee; 
     margin-left: -1px;
     margin-top: -6px;
     font-family: 'Roboto', sans-serif;
@@ -283,7 +283,7 @@ body {
   }
 
   .terciariotitulo {
-    background:#677F8C; 
+    background:#292f33; 
     color:#f0f4f7; 
     margin-left: -1px;
     margin-top: -6px;
@@ -375,7 +375,7 @@ body {
 .card {
     
     perspective: 1000px;
-    background:#052A3D;
+    background:#105c6c;
     border: 1px solid ;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -407,7 +407,7 @@ body {
     border-bottom-right-radius: 10px 10px;
     border-bottom-left-radius: 10px 10px;
 
-    background:#BFCDD9;
+    background:#ecf0f4;
 
     margin-left: -12px;
 
@@ -480,11 +480,19 @@ body {
   }
 
   .labelform{ 
-    color: rgb(96, 114, 119)  !important;
+    color: #F9FCFD !important;
     font-family: 'Roboto', sans-serif !important;
     
     font-size: 13px;
    
+}
+
+.labelformcre{ 
+  color: #292f33 !important;
+  font-family: 'Roboto', sans-serif !important;
+  
+  font-size: 13px;
+ 
 }
 
 .p-toolbar{ 
@@ -518,7 +526,7 @@ body {
 }
 
 .tdtitulo {
-  background-color: #46515e7d;
+  background-color: #717b89;
   color:#f0f4f7;
   font-family: 'Roboto', sans-serif !important;
   font-size: 13px;
@@ -527,6 +535,54 @@ body {
   border-bottom-right-radius: 10px 10px;
   border-bottom-left-radius: 10px 10px;
 }
+
+.botonacciones {
+
+background: #201E2B;
+width: 30px;
+height: 30px;
+
+}
+
+
+.p-dialog { 
+		width: 550px !important; 
+  
+} 
+
+.p-dialog-title { 
+  color: #f0f4f7 !important; 
+  margin-left: 12rem;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+ 
+  
+} 
+	
+.p-dialog-draggable .p-dialog-header { 
+  background-color:$azulfondo !important;
+} 
+
+button.p-ripple.p-element.p-dialog-header-icon.p-dialog-header-close { 
+  color: #b2bdc5 !important; 
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-icon:enabled:hover { 
+  background: rgb(156, 175, 192) !important; 
+  color: rgb(16, 68, 180) !important; 
+} 
+
+.p-dialog .p-dialog-content { 
+  background: #ecf0f4 !important; 
+  color: rgb(187, 201, 213)  !important; 
+  
+} 
+
+.p-dialog .p-dialog-footer { 
+  background: #ecf0f4 !important; 
+} 
+
+
 
 
 

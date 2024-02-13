@@ -36,6 +36,8 @@ import { NoimagePipe } from '../pipes/noimage.pipe';
 import { DatePipe } from '@angular/common';
 import { ImageModule } from 'primeng/image';
 
+
+
 @NgModule({
   declarations: [
     HomeComponent,

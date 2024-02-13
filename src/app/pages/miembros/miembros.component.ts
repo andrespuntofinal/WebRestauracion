@@ -189,11 +189,13 @@ cargarMiembros(){
   })
   
 
+  this.checkBirthday()
+
 }
 
 filtrar(termino: any){
 
- 
+  console.log('FILTRANDO', termino);
   this.miSuscripcion = this.miembrosService.getMiembrosFiltro(termino)
   .subscribe( data => {
 
@@ -317,7 +319,7 @@ const miembrosPut: MiembroModel = {
   
 };
 
-if ( this.Miembro['numero_id'] != null  && this.Miembro['nombre']?.trim() && this.Miembro['email']?.trim()) {
+if ( this.Miembro['numero_id'] != null  && this.Miembro['nombre']?.trim()) {
   console.log('data antes put', miembrosPut);
   this.miembrosService.putMiembros(this.numero_id, miembrosPut).subscribe( data => {
        
@@ -504,6 +506,36 @@ toggleCard(index: number) {
 }
 
 
+checkBirthday() {
+  const fechaNacimiento = '03/09/1984';
+  const indicador = this.compararFechaNacimiento(fechaNacimiento);
+  console.log('cumpleee', indicador); // Imprime el indicador basado en la comparación
+}
+
+compararFechaNacimiento(fechaNacimiento: string): { indicador: number, dia: number }  {
+  const hoy = new Date();
+  const partesFecha = fechaNacimiento.split('/');
+  // Asumiendo que fechaNacimiento está en formato MM/DD/YYYY
+  const nacimiento = new Date(hoy.getFullYear(), parseInt(partesFecha[0], 10) - 1, parseInt(partesFecha[1], 10));
+  
+  let indicador = 0;
+  // Comparar mes y día
+  if (hoy.getMonth() === nacimiento.getMonth() && hoy.getDate() === nacimiento.getDate()) {
+
+    indicador = 2;
+    
+    // Mes y día coinciden
+  } else if (hoy.getMonth() === nacimiento.getMonth()) {
+
+    indicador = 1;
+
+  } 
+
+  return {
+    indicador: indicador,
+    dia: nacimiento.getDate()
+  };
+}
 
   
 }

@@ -30,7 +30,7 @@
 
         <div class="col-12 lg:col-8 xl:col-3"  *ngFor="let miembros of miembros; let i = index">
 
-            <p-card [style]="{ 'background-color': '#052A3D' }" class="card"  [ngClass]="{'flipped': cardStates[i]}">
+            <p-card [style]="{ 'background-color': '#105c6c' }" class="card"  [ngClass]="{'flipped': cardStates[i]}">
 
 
                 <ng-template pTemplate="header" >
@@ -46,24 +46,38 @@
                     </tr>
                     <tr>
                         <td>
-                            <button pButton pRipple icon="pi pi-pencil"
-                                [style]="{ 'background-color': '#5C9068', width:'25px', height:'25px' }"
-                                (click)="editMiembro(miembros)" pTooltip="Editar"></button>
+                            <p-button  icon="pi pi-pencil"
+                                [style]="{ 'background-color': '#7DAB6F', width:'30px', height:'30px' }"
+                                (click)="editMiembro(miembros)" pTooltip="Editar"></p-button>
                             &nbsp;
-                            <p-button label="" icon="pi pi-trash"
-                                [style]="{ 'background-color': '#BE6553', width:'25px', height:'25px' }"
+                            <p-button  icon="pi pi-trash"
+                                [style]="{ 'background-color': '#B38E85', width:'30px', height:'30px' }"
                                 (click)="deleteMiembro(miembros)" pTooltip="Eliminar"></p-button>
                             &nbsp;
-                            <p-button label="" icon="pi pi-image"
-                                [style]="{ 'background-color': '#C8C85D', width:'25px', height:'25px' }"
+                            <p-button  icon="pi pi-image"
+                                [style]="{ 'background-color': '#67A4C8', width:'30px', height:'30px' }"
                                 (click)="openNewimage(miembros)" pTooltip="Imágen"></p-button>
                             &nbsp;
-                            <p-button label="" icon="pi pi-chevron-right"
-                                [style]="{ 'background-color': '#7D88B6', width:'25px', height:'25px' }"
+                            <p-button  icon="pi pi-chevron-right"
+                                [style]="{ 'background-color': '#9AA6D5', width:'30px', height:'30px' }"
                                 (click)="toggleCard(i)" pTooltip="Más información"></p-button>
 
 
                         </td>
+
+                        <td *ngIf="compararFechaNacimiento(miembros.fecha_nacimiento).indicador === 1" >
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="pi pi-gift mr-4 p-text-secondary" pBadge style="font-size: 2rem" [value]="compararFechaNacimiento(miembros.fecha_nacimiento).dia.toString()" ></i>
+                            
+
+                          </td>
+
+                          <td *ngIf="compararFechaNacimiento(miembros.fecha_nacimiento).indicador === 2" >
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i class="pi pi-gift mr-4 p-text-secondary" pBadge style="font-size: 2rem" [value]="compararFechaNacimiento(miembros.fecha_nacimiento).dia.toString()" severity="danger"></i>
+                            
+
+                          </td>
                     </tr>
                                                           
 
@@ -82,7 +96,7 @@
 
                        <tr>
                         <td class="tdtitulo"><p-avatar icon="pi pi-tag" pTooltip="Celular-fijo" styleClass="mr-2"
-                                [style]="{'background-color': '#46515e', 'color': '#F9FCFD'}"></p-avatar>Identificación &nbsp;&nbsp;</td>
+                                [style]="{'background-color': '#717b89', 'color': '#F9FCFD'}"></p-avatar>Identificación &nbsp;&nbsp;</td>
                         <td class="labelform">  &nbsp;{{ miembros.tipo_id }} </td>
                         
                         <td class="labelform"> &nbsp;&nbsp;{{ miembros.numero_id }} </td>
@@ -92,7 +106,7 @@
 
                     <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-phone" pTooltip="Celular-fijo" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#F9FCFD'}"></p-avatar>Celular &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#F9FCFD'}"></p-avatar>Celular &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform">  &nbsp;{{ miembros.celular }} </td>
                             
                             <td class="labelform"> &nbsp;&nbsp;{{ miembros.telefono }} </td>
@@ -101,7 +115,7 @@
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-map-marker" pTooltip="Dirección" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Dirección &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Dirección &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp;{{ miembros.direccion }} </td>
                         </tr>
 
@@ -109,7 +123,7 @@
 
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-envelope" pTooltip="Correo" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Correo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Correo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp;{{ miembros.email }} </td>
                         </tr>
 
@@ -117,35 +131,36 @@
                         
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-home" pTooltip="Barrio" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Barrio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Barrio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp;{{ miembros.barrio }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-calendar" pTooltip="Fecha nacimiento" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Nacimiento &nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Nacimiento &nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp;{{ miembros.fecha_nacimiento }} </td>
+                           
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-heart-fill" pTooltip="Estado civil" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Estado civil &nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Estado civil &nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.estado_civil }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-info-circle" pTooltip="Género" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Género &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Género &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.sexo }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-wrench" pTooltip="Género" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Ocupación &nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Ocupación &nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.ocupacion }} </td>
                         </tr>
 
@@ -162,7 +177,7 @@
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-user" pTooltip="Tipo miembro" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Tipo miembro &nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Tipo miembro &nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.tipo_miembro }} </td>
                             <td *ngIf="miembros.tipo_miembro == 'LIDER' ">  </td>
                         </tr>
@@ -170,7 +185,7 @@
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-microphone" pTooltip="Ministerio" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Ministerio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Ministerio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.ministerio }} </td>
 
                         </tr>
@@ -178,7 +193,7 @@
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-id-card" pTooltip="Bautizado" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Bautizado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Bautizado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.bautizado }} </td>
 
                         </tr>
@@ -186,28 +201,28 @@
 
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-users" pTooltip="Población" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Población &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Población &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.poblacion }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-sitemap" pTooltip="Grupo celular" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Grupo celular &nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Grupo celular &nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.grupo_celular }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-question-circle" pTooltip="Líder asignado" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Lider asignado &nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Lider asignado &nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.lider_contacto }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-check-circle" pTooltip="Estado" styleClass="mr-2"
-                                    [style]="{'background-color': '#46515e', 'color': '#ffffff'}"></p-avatar>Estado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Estado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.estado }} </td>
                         </tr>
                        
@@ -225,10 +240,10 @@
 
 
 
-<p-dialog [(visible)]="miembroDialog" [style]="{'width': '550px' , 'background-color': '#052A3D'}" header="" [modal]="true" class="p-fluid">
-
-    <label class="acciones"> {{ accion }} </label>
-
+<p-dialog 
+[(visible)]="miembroDialog"
+[header]="accion" 
+>   
     <div class="col-12">
 
         <div class="cardform">
@@ -240,7 +255,7 @@
                     <span class="p-float-label">
                         <p-dropdown inputId="tipo_id" [autoDisplayFirst]="false" [options]="tipo_id"
                             [(ngModel)]="Miembro['tipo_id']" [appendTo]="'body'"></p-dropdown>
-                        <label for="tipo_id" class="labelform">Tipo de documento</label>
+                        <label for="tipo_id" class="labelformcre">Tipo de documento</label>
                     </span>
                 </div>
 
@@ -252,7 +267,7 @@
                             [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['numero_id']}" />
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['numero_id']">Identifiación
                             requerida</small>
-                        <label htmlFor="numero_id" class="labelform" >Identificación</label>
+                        <label htmlFor="numero_id" class="labelformcre" >Identificación</label>
                     </span>
                 </div>
 
@@ -263,7 +278,7 @@
                             [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['nombre']}" />
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['nombre']">Nombre
                             requerido</small>
-                        <label htmlFor="nombre" class="labelform">Nombre</label>
+                        <label htmlFor="nombre" class="labelformcre">Nombre</label>
                     </span>
                 </div>
 
@@ -272,7 +287,7 @@
                         <input input pInputText id="telefono" type="text" class="input-con-fondo"
                             [(ngModel)]="Miembro['telefono']" />
 
-                        <label htmlFor="telefono" class="labelform">Teléfono</label>
+                        <label htmlFor="telefono" class="labelformcre">Teléfono</label>
                     </span>
                 </div>
 
@@ -281,9 +296,8 @@
                         <input input pInputText id="celular" type="text" class="input-con-fondo"
                             [(ngModel)]="Miembro['celular']" required autofocus
                             [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['celular']}" />
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['celular']">Celular
-                            requerido</small>
-                        <label htmlFor="celular" class="labelform">Celular</label>
+                      
+                        <label htmlFor="celular" class="labelformcre">Celular</label>
                     </span>
                 </div>
 
@@ -293,7 +307,7 @@
                     <span class="p-float-label">
                         <p-dropdown inputId="estado_civil" [autoDisplayFirst]="false" [options]="estadocivil"
                             [(ngModel)]="Miembro['estado_civil']" [appendTo]="'body'"></p-dropdown>
-                        <label for="estado_civil" class="labelform">Estado civil</label>
+                        <label for="estado_civil" class="labelformcre">Estado civil</label>
                     </span>
                 </div>
 
@@ -301,9 +315,8 @@
                 <div class="field col-12 md:col-6">
                     <span class="p-float-label">
                         <p-calendar [(ngModel)]="Miembro['fecha_nacimiento']" [showIcon]="true" [appendTo]="'body'" ></p-calendar>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['fecha_nacimiento']">Fecha
-                            nacimiento requerida</small>
-                        <label htmlFor="fecha_nacimiento" class="labelform">Fecha nacimiento </label>
+                        
+                        <label htmlFor="fecha_nacimiento" class="labelformcre">Fecha nacimiento </label>
                     </span>
                 </div>
 
@@ -312,9 +325,8 @@
                         <input input pInputText id="direccion" type="text" class="input-con-fondo"
                             [(ngModel)]="Miembro['direccion']" required autofocus
                             [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['direccion']}" />
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['direccion']">Dirección
-                            requerida</small>
-                        <label htmlFor="direccion" class="labelform">Dirección</label>
+                     
+                        <label htmlFor="direccion" class="labelformcre">Dirección</label>
                     </span>
                 </div>
 
@@ -323,9 +335,8 @@
                         <input input pInputText id="barrio" type="text" class="input-con-fondo"
                             [(ngModel)]="Miembro['barrio']" required autofocus
                             [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['barrio']}" />
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['barrio']">Barrio
-                            requerido</small>
-                        <label htmlFor="barrio" class="labelform">Barrio</label>
+                       
+                        <label htmlFor="barrio" class="labelformcre">Barrio</label>
                     </span>
                 </div>
 
@@ -333,24 +344,24 @@
                     <span class="p-float-label">
                         <input input pInputText id="email" type="text" class="input-con-fondo"
                             [(ngModel)]="Miembro['email']" />
-                        <label htmlFor="email" class="labelform">Email</label>
+                        <label htmlFor="email" class="labelformcre">Email</label>
                     </span>
                 </div>
 
 
                 <div class="field col-12 md:col-6">
-                    <label class="labelform">Género</label>
+                    <label class="labelformcre">Género</label>
                     <div class="formgrid grid">
                         <div class="field-radiobutton col-8">
                             <p-radioButton id="sexoM" name="sexo" value="Masculino" [(ngModel)]="Miembro['sexo']"
                                 required autofocus
                                 [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['sexo']}"></p-radioButton>
-                            <label for="sexoM" class="labelform">Masculino</label>
+                            <label for="sexoM" class="labelformcre">Masculino</label>
                             &nbsp;
                             <p-radioButton id="sexoF" name="sexo" value="Femenino" [(ngModel)]="Miembro['sexo']"
                                 required autofocus
                                 [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['sexo']}"></p-radioButton>
-                            <label for="sexoF" class="labelform">Femenino</label>
+                            <label for="sexoF" class="labelformcre">Femenino</label>
 
                         </div>
 
@@ -358,18 +369,18 @@
                 </div>
 
                 <div class="field col-12 md:col-6">
-                    <label class="labelform">Bautizado</label>
+                    <label class="labelformcre">Bautizado</label>
                     <div class="formgrid grid">
                         <div class="field-radiobutton col-8">
                             <p-radioButton id="Sí" name="bautizado" value="Sí"
                                 [(ngModel)]="Miembro['bautizado']" required autofocus
                                 [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['bautizado']}"></p-radioButton>
-                            <label for="category1" class="labelform">Sí</label>
+                            <label for="category1" class="labelformcre">Sí</label>
                             &nbsp;
                             <p-radioButton id="No" name="bautizado" value="No"
                                 [(ngModel)]="Miembro['bautizado']" required autofocus
                                 [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['bautizado']}"></p-radioButton>
-                            <label for="category2" class="labelform">No</label>
+                            <label for="category2" class="labelformcre">No</label>
 
                         </div>
 
@@ -381,7 +392,7 @@
                     <span class="p-float-label">
                         <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="tipomiembro"
                             [(ngModel)]="Miembro['tipo_miembro']" [appendTo]="'body'"></p-dropdown>
-                        <label for="dropdown" class="labelform">Tipo miembro</label>
+                        <label for="dropdown" class="labelformcre">Tipo miembro</label>
                     </span>
                 </div>
 
@@ -391,17 +402,15 @@
                             (onChange)="onMultiSelectChange($event)" [(ngModel)]="Miembro['ministerio']"
                             [selectedItemsLabel]="Miembro['ministerio']" optionLabel="label"
                             [filter]="false" [appendTo]="'body'"></p-multiSelect>
-                        <label for="ministerio" class="labelform">Ministerio</label>
+                        <label for="ministerio" class="labelformcre">Ministerio</label>
                     </span>
                 </div>
 
                 <div class="field col-12 md:col-6">
                     <span class="p-float-label">
                         <p-calendar [(ngModel)]="Miembro['fecha_membresia']" [showIcon]="true" [appendTo]="'body'"></p-calendar>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !Miembro['fecha_membresia']">Fecha
-                            membresía
-                            requerida</small>
-                        <label htmlFor="fecha_membresia" class="labelform">Fecha membresía </label>
+                       
+                        <label htmlFor="fecha_membresia" class="labelformcre">Fecha membresía </label>
                     </span>
                 </div>
 
@@ -409,7 +418,7 @@
                     <span class="p-float-label">
                         <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="poblacion"
                             [(ngModel)]="Miembro['poblacion']" [appendTo]="'body'"></p-dropdown>
-                        <label for="dropdown" class="labelform">Población</label>
+                        <label for="dropdown" class="labelformcre">Población</label>
                     </span>
                 </div>
 
@@ -419,7 +428,7 @@
                     <span class="p-float-label">
                         <p-dropdown inputId="ocupacion" [autoDisplayFirst]="false" [options]="ocupacion"
                             [(ngModel)]="Miembro['ocupacion']" [appendTo]="'body'"></p-dropdown>
-                        <label for="ocupacion" class="labelform">Ocupación</label>
+                        <label for="ocupacion" class="labelformcre">Ocupación</label>
                     </span>
                 </div>
 
@@ -427,7 +436,7 @@
                     <span class="p-float-label">
                         <input input pInputText id="lider_contacto" type="text" class="input-con-fondo"
                             [(ngModel)]="Miembro['lider_contacto']" />
-                        <label htmlFor="lider_contacto" class="labelform">Líder de contacto</label>
+                        <label htmlFor="lider_contacto" class="labelformcre">Líder de contacto</label>
                     </span>
                 </div>
 
@@ -435,23 +444,23 @@
                     <span class="p-float-label">
                         <p-dropdown inputId="grupo_celular" [autoDisplayFirst]="false" [options]="grupo_celular"
                             [(ngModel)]="Miembro['grupo_celular']" [appendTo]="'body'"></p-dropdown>
-                        <label for="grupo_celular" class="labelform">Grupo celular</label>
+                        <label for="grupo_celular" class="labelformcre">Grupo celular</label>
                     </span>
                 </div>
                 
                 <div class="field col-12 md:col-6">
-                    <label class="labelform">Estado</label>
+                    <label class="labelformcre">Estado</label>
                     <div class="formgrid grid">
                         <div class="field-radiobutton col-8">
                             <p-radioButton id="activo" name="estado" value="Activo" [(ngModel)]="Miembro['estado']"
                                 required autofocus
                                 [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['sexo']}"></p-radioButton>
-                            <label for="activo" class="labelform">Activo</label>
+                            <label for="activo" class="labelformcre">Activo</label>
                             &nbsp;
                             <p-radioButton id="retirado" name="estado" value="Retirado" [(ngModel)]="Miembro['estado']"
                                 required autofocus
                                 [ngClass]="{'ng-invalid ng-dirty' : submitted && !Miembro['estado']}"></p-radioButton>
-                            <label for="retirado" class="labelform">Retirado</label>
+                            <label for="retirado" class="labelformcre">Retirado</label>
 
                         </div>
 
@@ -465,18 +474,29 @@
     </div>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-        <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text" (click)="saveMiembro()"></button>
+       
+       
+        <p-button label="Aceptar" icon="pi pi-check" (click)="saveMiembro()"
+        [style]="{width: '120px',
+        background: '#677F8C'}"
+        ></p-button>
+
+        <p-button label="Cancelar" icon="pi pi-check" (click)="hideDialog()"
+        [style]="{width: '120px',
+        background: '#677F8C'}"
+        ></p-button>
+
+
     </ng-template>
 </p-dialog>
 
-<p-dialog [(visible)]="imageDialog" [style]="{'width': '380px'}" header="" [modal]="true" class="p-fluid">
+<p-dialog [(visible)]="imageDialog"  header="CARGAR IMAGEN" [modal]="true" class="p-fluid">
 
-    <label class="acciones" [style]="{'margin-left': '-13px'}"> CARGAR IMAGEN </label>
+  
     <div class="grid">
         <div class="col-12">
             <div class="cardimg">
-                <label class="imagen"> {{ Miembro['nombre'] }} </label>
+                
                 <p-fileUpload name="miembro" url="https://www.primefaces.org/cdn/api/upload.php"
                     (onUpload)="onUpload($event)" accept="image/*" [maxFileSize]="99999999999">
                     <ng-template pTemplate="content">

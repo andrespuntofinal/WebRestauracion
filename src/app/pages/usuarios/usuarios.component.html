@@ -6,7 +6,7 @@
             <ng-template pTemplate="left">
                 <label class="terciario"> USUARIOS </label>
                 &nbsp;&nbsp;
-                <p-button label="" icon="pi pi-plus" [style]="{ 'background-color': '#2781AB' }" pTooltip="Agregar nuevo registro" (click)="openNew()"></p-button>
+                <p-button label="" icon="pi pi-plus" [style]="{ 'background-color': '#677F8C' }" pTooltip="Agregar nuevo registro" (click)="openNew()"></p-button>
   
                 
                 <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
@@ -28,7 +28,7 @@
 
         <div class="col-12 lg:col-8 xl:col-3" *ngFor="let usuarios of usuarios; let i = index">
             
-            <p-card [style]="{ 'background-color': '#052A3D' }" class="card" [ngClass]="{'flipped': cardStates[i]}">
+            <p-card [style]="{ 'background-color': '#105c6c' }" class="card" [ngClass]="{'flipped': cardStates[i]}">
                 
 
                 <ng-template pTemplate="header">
@@ -104,10 +104,7 @@
 
 </div>
 
-    <p-dialog [(visible)]="usuarioDialog" [style]="{width: '490px'}" header="" [modal]="true" class="p-fluid">
-      
-       
-        <label class="acciones"> {{ accion }} </label>
+    <p-dialog [(visible)]="usuarioDialog" header="CREAR USUARIO" >
        
         <div class="col-12">
 
@@ -120,7 +117,7 @@
                         <span class="p-float-label">
                             <input input pInputText id="uid" [(ngModel)]="Usuario['uid']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['uid']}"/>
                             <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['uid']">Identificación requerida</small>
-                            <label htmlFor="uid" class="labelform" >Identificación</label>
+                            <label htmlFor="uid" class="labelformcre" >Identificación</label>
                         </span>
                     </div>
 
@@ -129,7 +126,7 @@
                         <span class="p-float-label">
                             <input input pInputText id="nombre" [(ngModel)]="Usuario['nombre']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['nombre']}"/>
                             <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['nombre']">Nombre requerido</small>
-                            <label htmlFor="nombre" class="labelform">Nombre</label>
+                            <label htmlFor="nombre" class="labelformcre">Nombre</label>
                         </span>
                     </div>
 
@@ -142,7 +139,7 @@
                              required autofocus
                              [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['email']}"/>
                             <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['email']">Email requerido</small>
-                            <label htmlFor="email" class="labelform">Email</label>
+                            <label htmlFor="email" class="labelformcre">Email</label>
                         </span>
                     </div>
 
@@ -150,7 +147,7 @@
                         <span class="p-float-label">
                             <input input pInputText id="password" [(ngModel)]="Usuario['password']" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['password']}"/>
                             <small class="ng-dirty ng-invalid" *ngIf="submitted && !Usuario['password']">Contraseña requerida</small>
-                            <label htmlFor="password" class="labelform" >Contraseña</label>
+                            <label htmlFor="password" class="labelformcre" >Contraseña</label>
                         </span>
                     </div>
                     
@@ -158,24 +155,24 @@
                         <span class="p-float-label">
                             <p-dropdown inputId="rol" [autoDisplayFirst]="false" [options]="rol"
                                 [(ngModel)]="Usuario['rol']" [appendTo]="'body'"></p-dropdown>
-                            <label for="rol" class="labelform">Tipo de usuario</label>
+                            <label for="rol" class="labelformcre">Tipo de usuario</label>
                         </span>
                     </div>
                     
 
                     <div class="field col-12 md:col-6">
-                        <label class="labelform">Estado</label>
+                        <label class="labelformcre">Estado</label>
                         <div class="formgrid grid">
                             <div class="field-radiobutton col-8">
                                 <p-radioButton id="activo" name="estado" value="ACTIVO" [(ngModel)]="Usuario['estado']"
                                     required autofocus
                                     [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['estado']}"></p-radioButton>
-                                <label for="activo" class="labelform">Activo</label>
+                                <label for="activo" class="labelformcre">Activo</label>
                                 &nbsp;
                                 <p-radioButton id="inactivo" name="estado" value="INACTIVO" [(ngModel)]="Usuario['estado']"
                                     required autofocus
                                     [ngClass]="{'ng-invalid ng-dirty' : submitted && !Usuario['estado']}"></p-radioButton>
-                                <label for="inactivo" class="labelform">INACTIVO</label>
+                                <label for="inactivo" class="labelformcre">INACTIVO</label>
     
                             </div>
     
@@ -191,8 +188,17 @@
         </div>
 
         <ng-template pTemplate="footer">
-            <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
-            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveUsuario()"></button>
+            
+            <p-button label="Aceptar" icon="pi pi-check" (click)="saveUsuario()"
+            [style]="{width: '120px',
+           
+            background: '#677F8C'}"
+            ></p-button>
+            <p-button label="Cancelar" icon="pi pi-times" (click)="hideDialog()"
+            [style]="{width: '120px',
+           
+            background: '#677F8C'}"
+            ></p-button>
         </ng-template>
     </p-dialog>
 

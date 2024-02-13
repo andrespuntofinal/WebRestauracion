@@ -27,9 +27,12 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## SUBIR IMAGEN A CONTAINER REGISTRY GCP
+1. docker login
+1. docker tag backresta andrespuntofinal/webrestauracion:backresta
+1. docker push andrespuntofinal/webrestauracion:backresta
+1. Ingresar a la consola de GCP y ejecutar: docker pull andrespuntofinal/webrestauracion:backresta
+1. docker tag andrespuntofinal/webrestauracion:backresta gcr.io/webrestauracion-3240c/backresta:v2
+1. docker push gcr.io/webrestauracion-3240c/backresta:v2
 
-1. Ingresar a la consola de GCP y ejecutar: docker push gcr.io/webrestauracion-3240c/backrest:v1
-2. Renombrar img: docker tag andrespuntofinal/webrestauracion:back gcr.io/webrestauracion-3240c/backrest:v1
-3. Subir imagen: docker push gcr.io/webrestauracion-3240c/backrest:v1
 4. En caso de error por pemisos ejecutar: gcloud auth configure-docker
 
