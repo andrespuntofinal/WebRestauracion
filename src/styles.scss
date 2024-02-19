@@ -285,18 +285,15 @@ body {
   .terciariotitulo {
     background:#292f33; 
     color:#f0f4f7; 
-    margin-left: -1px;
+    margin-left: -4px;
     margin-top: -6px;
     font-family: 'Roboto', sans-serif;
     padding: 2px;
     font-size: 12px;
     text-shadow: 2px 2px 4px #000000;
-	  border-top-right-radius: 5px 5px;
-    border-top-left-radius: 5px 5px;
-    border-bottom-right-radius: 5px 5px;
-    border-bottom-left-radius: 5px 5px;
+	 
     text-align: center;
-    width:320px;
+    width:335px;
     top: 88px;
 	
   }
@@ -375,14 +372,14 @@ body {
 .card {
     
     perspective: 1000px;
-    background:#105c6c;
+    background:#292f33;
     border: 1px solid ;
     padding: 1rem;
     margin-bottom: 1rem;
     box-shadow:#305a85;
     border-radius: 8px;
     width: 360px;
-    height: 600px;
+    height: 610px;
     margin-top: 4rem;
     position: relative;
     z-index: 1;
