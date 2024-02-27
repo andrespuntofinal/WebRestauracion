@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
 
-<div class="panel">
 
-    <p-toolbar styleClass="mb-2 gap-2">
+
+    <p-toolbar >
 
         <ng-template  pTemplate="left" >
             <label class="terciario"> MEMBRESIA </label>
@@ -30,77 +30,72 @@
 
         <div class="col-12 lg:col-8 xl:col-3"  *ngFor="let miembros of miembros; let i = index">
 
-            <p-card [style]="{ 'background-color': '#105c6c' }" class="card"  [ngClass]="{'flipped': cardStates[i]}">
+            <p-card   [ngClass]="{'flipped': cardStates[i]}">
 
 
-                <ng-template pTemplate="header" >
+                <ng-template pTemplate="header">
 
                     <p-image [src]="miembros.imagen" alt="Image" [style]="{ width: '90px', height: '90px'  }"
                         [preview]="true">
                     </p-image>
                     <label class="terciarionombre">{{ miembros.nombre }} </label>
-
-
+                          
+             
                     <tr>
-                        <td>&nbsp;</td>
-                    </tr>
-                    <tr>
+
                         <td>
-                            <p-button  icon="pi pi-pencil"
-                                [style]="{ 'background-color': '#7DAB6F', width:'30px', height:'30px' }"
-                                (click)="editMiembro(miembros)" pTooltip="Editar"></p-button>
-                            &nbsp;
-                            <p-button  icon="pi pi-trash"
-                                [style]="{ 'background-color': '#B38E85', width:'30px', height:'30px' }"
-                                (click)="deleteMiembro(miembros)" pTooltip="Eliminar"></p-button>
-                            &nbsp;
-                            <p-button  icon="pi pi-image"
-                                [style]="{ 'background-color': '#67A4C8', width:'30px', height:'30px' }"
-                                (click)="openNewimage(miembros)" pTooltip="Imágen"></p-button>
-                            &nbsp;
-                            <p-button  icon="pi pi-chevron-right"
-                                [style]="{ 'background-color': '#9AA6D5', width:'30px', height:'30px' }"
-                                (click)="toggleCard(i)" pTooltip="Más información"></p-button>
-
-
+                            <div class="dropdown">
+                                <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                >
+                                    <i class="pi pi-bars"></i>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><button class="dropdown-item" type="button" (click)="toggleSegmento(i, $event)">Ver información</button></li>
+                                  <li><button class="dropdown-item" type="button" (click)="editMiembro(miembros)">Editar</button></li>
+                                  <li><button class="dropdown-item" type="button" (click)="deleteMiembro(miembros)">Eliminar</button></li>
+                                  <li><button class="dropdown-item" type="button" (click)="openNewimage(miembros)">Imágen</button></li>
+                                  <li><button class="dropdown-item" type="button" (click)="toggleCard(i)">Información {{ informacionvar[i] || 'ministerial' }}</button></li>
+                                </ul>
+                              </div>
                         </td>
-
+                
                         <td *ngIf="compararFechaNacimiento(miembros.fecha_nacimiento).indicador === 1" >
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;
                             <i class="pi pi-gift mr-4 p-text-secondary"
                              pBadge style="font-size: 2rem"
                              pTooltip="Cumpleaños este mes"
                               [value]="compararFechaNacimiento(miembros.fecha_nacimiento).dia.toString()" ></i>
                             
-
+    
                           </td>
-
+    
                           <td *ngIf="compararFechaNacimiento(miembros.fecha_nacimiento).indicador === 2" >
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;
                             <i class="pi pi-gift mr-4 p-text-secondary"
                              pBadge style="font-size: 2rem"
                              pTooltip="Cumpleaños hoy"
                               [value]="compararFechaNacimiento(miembros.fecha_nacimiento).dia.toString()"
                                severity="danger"></i>
                             
-
-                          </td>
+    
+                          </td> 
                     </tr>
-                                                          
+                      
+                      
+
+   
 
                 </ng-template>
 
-                <div class="custom-card-content">
+                <div class="custom-card-content" *ngIf="segmentoVisible[i]">
 
 
-                    <div class="front-content">
-
+                    <div class="front-content">                                                                  
+                        
                        
                     <label class="terciariotitulo">INFORMACIÓN PERSONAL </label>
                        <p></p>
-                       <p></p>
-                       <p></p>
-
+                                           
                        <tr>
                         <td class="tdtitulo"><p-avatar icon="pi pi-tag"  styleClass="mr-2"
                                 [style]="{'background-color': '#717b89', 'color': '#F9FCFD'}"></p-avatar>Identificación &nbsp;&nbsp;</td>
@@ -178,10 +173,36 @@
 
 
                     <div class="back-content">
+
+                        <tr>
+                           
+    
+                            <td *ngIf="compararFechaNacimiento(miembros.fecha_nacimiento).indicador === 1" >
+                                &nbsp;&nbsp;&nbsp;
+                                <i class="pi pi-gift mr-4 p-text-secondary"
+                                 pBadge style="font-size: 2rem"
+                                 pTooltip="Cumpleaños este mes"
+                                  [value]="compararFechaNacimiento(miembros.fecha_nacimiento).dia.toString()" ></i>
+                                
+    
+                              </td>
+    
+                              <td *ngIf="compararFechaNacimiento(miembros.fecha_nacimiento).indicador === 2" >
+                                &nbsp;&nbsp;&nbsp;
+                                <i class="pi pi-gift mr-4 p-text-secondary"
+                                 pBadge style="font-size: 2rem"
+                                 pTooltip="Cumpleaños hoy"
+                                  [value]="compararFechaNacimiento(miembros.fecha_nacimiento).dia.toString()"
+                                   severity="danger"></i>
+                                
+    
+                              </td>
+                        </tr>    
+                     
+                        
                         <label class="terciariotitulo">INFORMACIÓN MINISTERIAL </label>
                         <p></p>
-                        <p></p>
-                        <p></p>
+                       
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-user"  styleClass="mr-2"
                                     [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Tipo miembro &nbsp;&nbsp;&nbsp;</td>
@@ -243,7 +264,7 @@
     </div>
 
 
-</div>
+
 
 
 
@@ -482,13 +503,15 @@
 
     <ng-template pTemplate="footer">
        
-       
-        <p-button label="Aceptar" icon="pi pi-check" (click)="saveMiembro()"
+      
+
+        <p-button label="Cancelar" icon="pi pi-check" (click)="hideDialog()"
         [style]="{width: '120px',
         background: '#677F8C'}"
         ></p-button>
 
-        <p-button label="Cancelar" icon="pi pi-check" (click)="hideDialog()"
+         
+        <p-button label="Aceptar" icon="pi pi-check" (click)="saveMiembro()"
         [style]="{width: '120px',
         background: '#677F8C'}"
         ></p-button>

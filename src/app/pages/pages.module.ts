@@ -35,6 +35,8 @@ import { MultiSelectModule } from "primeng/multiselect";
 import { NoimagePipe } from '../pipes/noimage.pipe';
 import { DatePipe } from '@angular/common';
 import { ImageModule } from 'primeng/image';
+import { TabViewModule } from 'primeng/tabview';
+import { MenuModule } from 'primeng/menu';
 
 
 
@@ -76,7 +78,9 @@ import { ImageModule } from 'primeng/image';
     FileUploadModule,
     CalendarModule,
     MultiSelectModule,
-    ImageModule
+    ImageModule,
+    TabViewModule,
+    MenuModule
   ],
   providers: [DatePipe],
 })

@@ -130,7 +130,7 @@ body {
   flex-wrap: wrap;
   margin-right: 1.2rem;
   margin-left: 1.2rem;
-  margin-top: 8rem;
+  margin-top: 113px;
  
  
   
@@ -196,7 +196,7 @@ body {
       border-radius: 10px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      background-color: #04293b6b; /* Color de fondo del panel */
+      background-color: #3e95c1ea; /* Color de fondo del panel */
   
       /* Estilos de la tabla */
       table {
@@ -293,7 +293,32 @@ body {
     text-shadow: 2px 2px 4px #000000;
 	 
     text-align: center;
-    width:335px;
+    width:375px;
+    top: 88px;
+	
+  }
+
+  @media (max-width: 768px) {
+    .terciariotitulo {
+      width:310px;
+     
+     
+    }
+  }
+
+
+  .terciariotools {
+    
+    color:#f0f4f7; 
+    margin-left: -910px;
+    margin-top: -6px;
+    font-family: 'Roboto', sans-serif;
+    padding: 2px;
+    font-size: 12px;
+    text-shadow: 2px 2px 4px #000000;
+	 
+   
+    width:450px;
     top: 88px;
 	
   }
@@ -313,6 +338,26 @@ body {
     text-align: center;
     width:200px;
     top: 88px;
+	
+  }
+
+  .carddata {
+    background:#64717d;
+    color:#f0f4f7; 
+    margin-left: 1px;
+    margin-top: 141px;
+    font-family: 'Roboto', sans-serif;
+    padding: 2px;
+    font-size: 12px;
+   
+    border-top-right-radius: 5px 5px;
+    border-top-left-radius: 5px 5px;
+    border-bottom-right-radius: 5px 5px;
+    border-bottom-left-radius: 5px 5px;
+    text-align: center;
+    width:1200px;
+    height: 672px;
+    top: 30px;
 	
   }
 
@@ -369,27 +414,17 @@ body {
   }
 
   /* app.component.css */
-.card {
-    
-    perspective: 1000px;
-    background:#292f33;
-    border: 1px solid ;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    box-shadow:#305a85;
-    border-radius: 8px;
-    width: 360px;
-    height: 610px;
-    margin-top: 4rem;
-    position: relative;
-    z-index: 1;
-       
-  }
+
 
   @media (min-width: 768px) {
-    .card {
-      margin-top: 2rem;
+    .p-card {
+      margin-top: 85px;
     }
+  }
+
+  .p-card {
+    margin-top: 25px;
+    background: linear-gradient(to right, #052A3D, #55656c, #052A3D) !important;
   }
   
   .cardform {
@@ -415,11 +450,11 @@ body {
   
   .custom-card-content {
     width: 360px;
-    height: 385px;
+    height: 450px;
     transition: transform 0.5s;
     transform-style: preserve-3d;
-    margin-top: -0.9rem;
-    
+    margin-top: -25px;
+        
     
   }
   
@@ -436,7 +471,7 @@ body {
   }
   
   .front-content {
-    width: 360px;
+    width: 460px;
     height: 400px;
     transform: rotateY(0deg); /* Muestra la cara frontal */
     padding: 1rem;
@@ -468,6 +503,7 @@ body {
     border: 1px solid ;
     padding: 1rem;
     margin-bottom: 1rem;
+    
     box-shadow:#305a85;
     border-radius: 8px;
     width: 365px;
@@ -477,10 +513,11 @@ body {
   }
 
   .labelform{ 
-    color: #F9FCFD !important;
+    color: #c4e7f3 !important;
     font-family: 'Roboto', sans-serif !important;
     
     font-size: 13px;
+    
    
 }
 
@@ -494,7 +531,7 @@ body {
 
 .p-toolbar{ 
   background: rgba(191, 205, 217, 0.5) !important;
-  margin-top: -48px; 
+  margin-top: -50px; 
   position: fixed;
   z-index: 100;
   width: 100%;
@@ -527,10 +564,10 @@ body {
   color:#f0f4f7;
   font-family: 'Roboto', sans-serif !important;
   font-size: 13px;
-  border-top-right-radius: 10px 10px;
-  border-top-left-radius: 10px 10px;
-  border-bottom-right-radius: 10px 10px;
-  border-bottom-left-radius: 10px 10px;
+  border-top-right-radius: 5px 5px;
+  border-top-left-radius: 5px 5px;
+  border-bottom-right-radius: 5px 5px;
+  border-bottom-left-radius: 5px 5px;
 }
 
 .botonacciones {
@@ -547,11 +584,18 @@ height: 30px;
   
 } 
 
+@media (max-width: 768px) {
+  .p-dialog { 
+		width: 400px !important; 
+  
+} 
+}
+
 .p-dialog-title { 
   color: #f0f4f7 !important; 
-  margin-left: 12rem;
+  margin-left: 8rem;
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
+  font-size: 10px;
  
   
 } 
@@ -580,15 +624,30 @@ button.p-ripple.p-element.p-dialog-header-icon.p-dialog-header-close {
 } 
 
 
-
-
-
-
+.responsive-table {
 
   
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto; /* Centra la tabla si es necesario y elimina márgenes externos */
+  box-sizing: border-box; /* Asegura que el ancho del contenedor también considere el padding y border */
+}
 
-  
+.table-cell {
+  flex: 0 0 50%; /* 100% / 8 columns = 12.5% for desktop */
+  box-sizing: border-box; /* Incluye padding y border dentro del ancho del elemento */
+  border: 1px solid #8d979e;
+  text-align: center;
+  padding: 10px;
+  margin: 0; /* Elimina margen exterior para evitar desbordamiento */
+  background-color: #dee6ed;
+}
 
-  
-
-  
+@media (max-width: 768px) {
+  .table-cell {
+    flex: 0 0 100%; /* 100% / 2 columns = 50% for mobile */
+    padding: 5px; /* Ajusta el padding si es necesario para asegurar que no haya desbordamiento */
+   
+  }
+}

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MiembrosService } from 'src/app/services/miembros.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { MiembroModel } from 'src/app/models/miembro.model';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { MessageService, MenuItem, PrimeNGConfig } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { AvatarModule } from 'primeng/avatar';
 import Swal from 'sweetalert2';
@@ -11,6 +11,7 @@ import { state } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import { Calendar, CalendarModule } from 'primeng/calendar';
+
 
 
 @Component({
@@ -23,13 +24,21 @@ import { Calendar, CalendarModule } from 'primeng/calendar';
 
 export class MiembrosComponent implements OnInit, OnDestroy {
 
- es: any;
+  es: any;
   uploadedFiles: any[] = [];
   isFlipped: boolean = false;
   cardStates: { [key: number]: boolean } = {};
+  cardSdown: { [key: number]: boolean } = {};
+  segmentoVisible: { [key: number]: boolean } = {};
+  
+  estados = ['personal', 'ministerial'];
+  informacionvar: { [key: number]: string } = {};
+
+
 
   private miSuscripcion: Subscription;
   miembroDialog: boolean = false;
+ 
   imageDialog: boolean = false;
 
   numero_id: any;
@@ -82,6 +91,9 @@ export class MiembrosComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit(): void {
+
+
+
 
     this.estadocivil = [
       { label: 'Casado', value: 'Casado' },
@@ -502,7 +514,22 @@ onUpload(event: any)  {
 }
 
 toggleCard(index: number) {
+
   this.cardStates[index] = !this.cardStates[index];
+  
+
+  if (this.informacionvar[index] === undefined) {
+    // Si es la primera vez, inicializa con el primer estado
+    this.informacionvar[index] = this.estados[0];
+  } else {
+    // Encuentra el índice actual del estado para este índice específico
+    let indiceEstadoActual = this.estados.indexOf(this.informacionvar[index]);
+    // Calcula el siguiente índice de estado y actualiza informacionvar para este índice
+    let siguienteIndiceEstado = (indiceEstadoActual + 1) % this.estados.length;
+    this.informacionvar[index] = this.estados[siguienteIndiceEstado];
+  }
+
+
 }
 
 
@@ -535,6 +562,13 @@ compararFechaNacimiento(fechaNacimiento: string): { indicador: number, dia: numb
     indicador: indicador,
     dia: nacimiento.getDate()
   };
+}
+
+toggleSegmento(indexcard: number, event: MouseEvent): void {
+
+  console.log('indexxx', indexcard);
+  event.preventDefault();
+  this.segmentoVisible[indexcard] = !this.segmentoVisible[indexcard]; // Cambia la visibilidad
 }
 
   
