@@ -4,7 +4,7 @@
    <br>
 <div class="limiter animated fadeInLeft">
     <div class="container-login100" >    
-        <div class="wrap-login100 p-t-0 p-b-50" [style]="{'background-color': '#052A3D'}">
+        <div class="wrap-login100 p-t-0 p-b-50" [style]="{'background-color': '#d1dfed'}">
             <form (ngSubmit)="login( f  )"
             #f="ngForm"                       
             class="login100-form validate-form flex-sb flex-w">
@@ -23,7 +23,7 @@
                                 [ngClass]="{'ng-invalid ng-dirty' : f.submitted && !usuario['email']}" />
                             <small class="ng-dirty ng-invalid" *ngIf="f.submitted && !usuario['email']">Email
                                 requerido</small>
-                            <label htmlFor="email" class="labelform" >Email</label>
+                            <label htmlFor="email" [style]="{'color': '#292f33'}" >Email</label>
                         </span>
                       
 
@@ -38,7 +38,7 @@
                                 [ngClass]="{'ng-invalid ng-dirty' : f.submitted && !usuario['password']}" />
                             <small class="ng-dirty ng-invalid" *ngIf="f.submitted && !usuario['password']">Contraseña
                                 requerida</small>
-                            <label htmlFor="password" class="labelform" >Contraseña</label>
+                            <label htmlFor="password" [style]="{'color': '#292f33'}" >Contraseña</label>
                         </span>
 
                     </div>

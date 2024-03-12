@@ -1,5 +1,5 @@
 $gutter: 1rem; //for primeflex grid system
-$azulfondo: #292f33;
+$azulfondo: #161f25;
 @import "assets/layout/styles/layout/layout.scss";
 
 @import "primeng/resources/themes/lara-light-blue/theme.css";
@@ -12,15 +12,12 @@ $azulfondo: #292f33;
 @import "../node_modules/primeicons/primeicons.css";
 
 body {
-    background: #a0b0b8 !important;
+    background: #a9bac5 !important;
 }
 
 
 
-.navbar-brand {
-    font-weight: 200;
-    color: #d1dfed !important;
-}
+
 
 .btn-outline-success {
     border-color: #bd4c5f !important;;
@@ -43,14 +40,27 @@ body {
     text-decoration:none;
     letter-spacing:1px;
     text-transform:uppercase;
+    
+
+    
 }
 
-.p-menuitem-text, .p-menuitem-icon, .p-submenu-icon {
-    color:#BFCDD9 !important;
+.p-menuitem-text {
+    color:#b5d0e8 !important;
+
+    
+}
+
+.p-menuitem-icon {
+
+  color: #aeb36c !important;
+
 }
 
 .p-menu-list:hover {
-    background-color: #0b0b0b !important;
+    background-color: #40545b !important;
+    
+   
 }
 
 
@@ -131,6 +141,7 @@ body {
   margin-right: 1.2rem;
   margin-left: 1.2rem;
   margin-top: 113px;
+  
  
  
   
@@ -244,10 +255,10 @@ body {
 	
   }
 
-  .terciariologin {background: linear-gradient(to right, #ebeef3, #55656c, #f0f2f4); 
-    background: linear-gradient(to right, #052A3D, #55656c, #052A3D); 
+  .terciariologin {
+    background: #292f33; 
     font-weight: bold;
-    color:#777b41; 
+    color:#e2e6ec; 
     margin-left: 0px;
     margin-top: -6px;
     font-family: 'Roboto', sans-serif;
@@ -265,25 +276,25 @@ body {
   .terciarionombre {
    
     font-weight: bold;
-    color:#e2ebee; 
+    color:#1b2b45; 
     margin-left: -1px;
     margin-top: -6px;
     font-family: 'Roboto', sans-serif;
     padding: 2px;
     font-size: 12px;
-    text-shadow: 2px 2px 4px #000000;
+    text-shadow: 2px 2px 4px #7e8e9f;
 	  border-top-right-radius: 5px 5px;
     border-top-left-radius: 5px 5px;
     border-bottom-right-radius: 5px 5px;
     border-bottom-left-radius: 5px 5px;
     text-align: center;
-    width:160px;
+    width:230px;
     top: 88px;
 	
   }
 
   .terciariotitulo {
-    background:#292f33; 
+    background:#161f25; 
     color:#f0f4f7; 
     margin-left: -4px;
     margin-top: -6px;
@@ -416,16 +427,23 @@ body {
   /* app.component.css */
 
 
-  @media (min-width: 768px) {
-    .p-card {
-      margin-top: 85px;
-    }
-  }
+
 
   .p-card {
     margin-top: 25px;
-    background: linear-gradient(to right, #052A3D, #55656c, #052A3D) !important;
+    background: linear-gradient(to bottom, #91a7b4, #ffffff) !important;
+   
+   
+    
   }
+
+  @media (max-width: 768px) {
+    .p-card {
+      margin-top: 55px;
+    }
+  }
+
+
   
   .cardform {
     
@@ -513,7 +531,7 @@ body {
   }
 
   .labelform{ 
-    color: #c4e7f3 !important;
+    color: #292f33 !important;
     font-family: 'Roboto', sans-serif !important;
     
     font-size: 13px;
@@ -530,7 +548,7 @@ body {
 }
 
 .p-toolbar{ 
-  background: rgba(191, 205, 217, 0.5) !important;
+  background: rgba(214, 225, 232, 0.916) !important;
   margin-top: -50px; 
   position: fixed;
   z-index: 100;
@@ -538,7 +556,7 @@ body {
 }
 
 .botton {
-  background-color: #8796a594;   
+  background-color: #27333f94;   
   border: none;
   color: #eaf1f7;
   padding: 15px 32px;
@@ -560,7 +578,7 @@ body {
 }
 
 .tdtitulo {
-  background-color: #717b89;
+  background-color: #677F8C;
   color:#f0f4f7;
   font-family: 'Roboto', sans-serif !important;
   font-size: 13px;

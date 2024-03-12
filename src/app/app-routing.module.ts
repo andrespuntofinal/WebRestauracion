@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { FinanzasComponent } from './pages/finanzas/finanzas.component';
 import { MiembrosComponent } from './pages/miembros/miembros.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -37,6 +38,11 @@ const routes: Routes = [
     path: 'usuarios',
     canActivate: [ AuthGuard ],
     component: UsuariosComponent
+  },
+  {
+    path: 'finanzas',
+    canActivate: [ AuthGuard ],
+    component: FinanzasComponent
   },
   {
     path: 'navbar',

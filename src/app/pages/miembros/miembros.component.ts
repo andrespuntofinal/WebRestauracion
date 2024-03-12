@@ -34,6 +34,9 @@ export class MiembrosComponent implements OnInit, OnDestroy {
   estados = ['personal', 'ministerial'];
   informacionvar: { [key: number]: string } = {};
 
+  infosubmenu = ['Ocultar', 'Ver'];
+  infosubmenuvar: { [key: number]: string } = {};
+
 
 
   private miSuscripcion: Subscription;
@@ -234,7 +237,9 @@ filtrar(termino: any){
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, Eliminar'
+      confirmButtonText: 'Si, Eliminar',
+      width: '350px'
+      
     }).then((result) => {
       if (result.isConfirmed) {
         this.confirmDelete();
@@ -340,9 +345,10 @@ if ( this.Miembro['numero_id'] != null  && this.Miembro['nombre']?.trim()) {
 
    Swal.fire({
      title: 'Actualización Usuario',
-    text: this.Miembro['nombre'],
+     text: this.Miembro['nombre'],
      icon: 'success',
-    confirmButtonText: 'Aceptar'
+     confirmButtonText: 'Aceptar',
+     width: '350px'
    })
 
 
@@ -400,9 +406,10 @@ crearMiembro(){
     
     Swal.fire({
       title: 'Creación Miembro',
-     text: this.Miembro['nombre'],
+      text: this.Miembro['nombre'],
       icon: 'success',
-     confirmButtonText: 'Aceptar'
+      confirmButtonText: 'Aceptar',
+      width: '350px'
     })
 
    this.ngOnInit();
@@ -419,7 +426,8 @@ crearMiembro(){
         title: 'Error',
         text: 'Creación registro Fallida',
         icon: 'error',
-        confirmButtonText: 'Aceptar'
+        confirmButtonText: 'Aceptar',
+        width: '350px'
     })
 
    this.miembroDialog = false;
@@ -500,9 +508,10 @@ onUpload(event: any)  {
 
     Swal.fire({
       title: 'Imágen actualizada',
-     text: this.Miembro['nombre'],
+      text: this.Miembro['nombre'],
       icon: 'success',
-     confirmButtonText: 'Aceptar'
+      confirmButtonText: 'Aceptar',
+      width: '350px'
     })
              
   }, error => {
@@ -569,6 +578,20 @@ toggleSegmento(indexcard: number, event: MouseEvent): void {
   console.log('indexxx', indexcard);
   event.preventDefault();
   this.segmentoVisible[indexcard] = !this.segmentoVisible[indexcard]; // Cambia la visibilidad
+
+
+  if (this.infosubmenuvar[indexcard] === undefined) {
+    // Si es la primera vez, inicializa con el primer estado
+    this.infosubmenuvar[indexcard] = this.infosubmenu[0];
+  } else {
+    // Encuentra el índice actual del estado para este índice específico
+    let indiceEstadoActualSm = this.infosubmenu.indexOf(this.infosubmenuvar[indexcard]);
+    // Calcula el siguiente índice de estado y actualiza informacionvar para este índice
+    let siguienteIndiceEstadoSm = (indiceEstadoActualSm + 1) % this.infosubmenu.length;
+    this.infosubmenuvar[indexcard] = this.infosubmenu[siguienteIndiceEstadoSm];
+  }
+
+
 }
 
   

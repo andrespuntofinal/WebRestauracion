@@ -1,12 +1,12 @@
-<app-navbar></app-navbar>
+<app-navbar [titulo]="'MEMBRESÍA'"></app-navbar>
 
 
 
     <p-toolbar >
 
         <ng-template  pTemplate="left" >
-            <label class="terciario"> MEMBRESIA </label>
-            &nbsp;&nbsp;
+            
+        
             <p-button label="" icon="pi pi-plus" [style]="{ 'background-color': '#677F8C' }"
                 pTooltip="Agregar nuevo registro" (click)="openNew()"></p-button>
 
@@ -35,22 +35,38 @@
 
                 <ng-template pTemplate="header">
 
-                    <p-image [src]="miembros.imagen" alt="Image" [style]="{ width: '90px', height: '90px'  }"
-                        [preview]="true">
-                    </p-image>
-                    <label class="terciarionombre">{{ miembros.nombre }} </label>
+                    <tr>
+                        <td>
+                            <p-image [src]="miembros.imagen" alt="Image" [style]="{ width: '70px', height: '70px'  }"
+                            [preview]="true">
+                        </p-image>
+                    </td>
+                    <td>
+                        <label class="terciarionombre">{{ miembros.nombre }} </label>
+
+                    </td>
+                     
+
+                       
+                    </tr>
+
+                   
                           
              
                     <tr>
+                        
+                        
 
                         <td>
+                        <p></p>
+                     
                             <div class="dropdown">
-                                <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                <button class="btn" [style]="{'background-color': '#677F8C', 'width': '35px'}" type="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 >
-                                    <i class="pi pi-bars"></i>
+                                    <i  [style]="{'background-color': '#677F8C', 'color': '#f0f4f7'}" class="pi pi-bars"></i>
                                 </button>
                                 <ul class="dropdown-menu">
-                                  <li><button class="dropdown-item" type="button" (click)="toggleSegmento(i, $event)">Ver información</button></li>
+                                  <li><button class="dropdown-item" type="button" (click)="toggleSegmento(i, $event)">{{ infosubmenuvar[i] || 'Ver' }}</button></li>
                                   <li><button class="dropdown-item" type="button" (click)="editMiembro(miembros)">Editar</button></li>
                                   <li><button class="dropdown-item" type="button" (click)="deleteMiembro(miembros)">Eliminar</button></li>
                                   <li><button class="dropdown-item" type="button" (click)="openNewimage(miembros)">Imágen</button></li>
@@ -58,9 +74,13 @@
                                 </ul>
                               </div>
                         </td>
+
+                        
                 
                         <td *ngIf="compararFechaNacimiento(miembros.fecha_nacimiento).indicador === 1" >
                             &nbsp;&nbsp;&nbsp;
+                            
+                     
                             <i class="pi pi-gift mr-4 p-text-secondary"
                              pBadge style="font-size: 2rem"
                              pTooltip="Cumpleaños este mes"
@@ -80,11 +100,8 @@
     
                           </td> 
                     </tr>
-                      
-                      
-
-   
-
+                                     
+                         
                 </ng-template>
 
                 <div class="custom-card-content" *ngIf="segmentoVisible[i]">
@@ -98,7 +115,7 @@
                                            
                        <tr>
                         <td class="tdtitulo"><p-avatar icon="pi pi-tag"  styleClass="mr-2"
-                                [style]="{'background-color': '#717b89', 'color': '#F9FCFD'}"></p-avatar>Identificación &nbsp;&nbsp;</td>
+                                [style]="{'background-color': '#677F8C', 'color': '#F9FCFD'}"></p-avatar>Identificación &nbsp;&nbsp;</td>
                         <td class="labelform">  &nbsp;{{ miembros.tipo_id }} </td>
                         
                         <td class="labelform"> &nbsp;&nbsp;{{ miembros.numero_id }} </td>
@@ -108,7 +125,7 @@
 
                     <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-phone"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#F9FCFD'}"></p-avatar>Celular &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#F9FCFD'}"></p-avatar>Celular &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform">  &nbsp;{{ miembros.celular }} </td>
                             
                             <td class="labelform"> &nbsp;&nbsp;{{ miembros.telefono }} </td>
@@ -117,7 +134,7 @@
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-map-marker"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Dirección &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Dirección &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp;{{ miembros.direccion }} </td>
                         </tr>
 
@@ -125,7 +142,7 @@
 
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-envelope"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Correo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Correo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp;{{ miembros.email }} </td>
                         </tr>
 
@@ -133,14 +150,14 @@
                         
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-home"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Barrio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Barrio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp;{{ miembros.barrio }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-calendar"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Nacimiento &nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Nacimiento &nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp;{{ miembros.fecha_nacimiento }} </td>
                            
                         </tr>
@@ -148,21 +165,21 @@
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-heart-fill"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Estado civil &nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Estado civil &nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.estado_civil }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-info-circle"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Género &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Género &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.sexo }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-wrench"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Ocupación &nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Ocupación &nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.ocupacion }} </td>
                         </tr>
 
@@ -205,7 +222,7 @@
                        
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-user"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Tipo miembro &nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Tipo miembro &nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.tipo_miembro }} </td>
                             <td *ngIf="miembros.tipo_miembro == 'LIDER' ">  </td>
                         </tr>
@@ -213,7 +230,7 @@
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-microphone"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Ministerio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Ministerio &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.ministerio }} </td>
 
                         </tr>
@@ -221,7 +238,7 @@
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-id-card"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Bautizado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Bautizado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.bautizado }} </td>
 
                         </tr>
@@ -229,28 +246,28 @@
 
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-users"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Población &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Población &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.poblacion }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-sitemap"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Grupo celular &nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Grupo celular &nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.grupo_celular }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-question-circle"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Lider asignado &nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Lider asignado &nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.lider_contacto }} </td>
                         </tr>
 
                         <p></p>
                         <tr>
                             <td class="tdtitulo"><p-avatar icon="pi pi-check-circle"  styleClass="mr-2"
-                                    [style]="{'background-color': '#717b89', 'color': '#ffffff'}"></p-avatar>Estado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    [style]="{'background-color': '#677F8C', 'color': '#ffffff'}"></p-avatar>Estado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                             <td class="labelform"> &nbsp; {{ miembros.estado }} </td>
                         </tr>
                        

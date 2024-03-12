@@ -13,7 +13,7 @@ import { UsuarioModel } from 'src/app/models/usuario.model';
 })
 export class NavbarComponent implements OnInit {
 
- 
+  @Input() titulo: string;
   
   items: MenuItem[] | undefined;
   menuItems: MenuItem[] = [];
@@ -39,6 +39,7 @@ export class NavbarComponent implements OnInit {
 
      
        ngOnInit() {
+
     
 
     if ( this.auth.estaAutenticado()) {
@@ -104,24 +105,29 @@ export class NavbarComponent implements OnInit {
 
 
     this.items = [
+
       {
-          label: 'Home',
-          icon: 'pi pi-fw pi-home',
-          routerLink: '/home'
+        label: 'Home',
+        icon: 'pi pi-fw pi-home',
+        routerLink: '/home'
+
+      },
+      {
+        label: 'Nosotros',
+        icon: 'pi pi-fw pi-eject'       
 
       },
       
       {
-          label: 'Presupuesto',
-          icon: 'pi pi-fw pi-dollar'
+        label: 'Ministerios',
+        icon: 'pi pi-fw pi-users'
           
           
    
       },
       {
-          label: 'Miembresía',
-          icon: 'pi pi-fw pi-users',
-          routerLink: '/miembros'
+        label: 'Poderosito',
+        icon: 'pi pi-fw pi-discord'
 
       },
       {
@@ -131,15 +137,32 @@ export class NavbarComponent implements OnInit {
     },
     {
         label: 'Administración',
-        icon: 'pi pi-fw pi-cog',
-        routerLink: '/homeadmin',
+        icon: 'pi pi-fw pi-cog', 
         
        
         items: [
           {
+            label: 'Administración',
+            icon: 'pi pi-fw pi-cog',
+            routerLink: '/homeadmin'
+  
+          },
+          {
+            label: 'Membresía',
+            icon: 'pi pi-fw pi-user',
+            routerLink: '/miembros'
+  
+          },
+          {
             label: 'Usuarios',
             icon: 'pi pi-fw pi-user',
             routerLink: '/usuarios'
+  
+          },
+          {
+            label: 'Finanzas',
+            icon: 'pi pi-fw pi-dollar',
+            routerLink: '/finanzas'
   
           } 
   

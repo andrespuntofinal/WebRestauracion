@@ -37,6 +37,7 @@ import { DatePipe } from '@angular/common';
 import { ImageModule } from 'primeng/image';
 import { TabViewModule } from 'primeng/tabview';
 import { MenuModule } from 'primeng/menu';
+import { FinanzasComponent } from './finanzas/finanzas.component';
 
 
 
@@ -49,7 +50,8 @@ import { MenuModule } from 'primeng/menu';
     MenuadminComponent,
     MenuitemComponent,
     UsuariosComponent,
-    NoimagePipe
+    NoimagePipe,
+    FinanzasComponent
   ],
   imports: [
     CommonModule,

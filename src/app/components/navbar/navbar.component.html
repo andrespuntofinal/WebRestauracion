@@ -1,12 +1,16 @@
 <p-menubar [model]="items">
     <ng-template pTemplate="start">
         <img src="../assets/img/logob.png" height="40" class="mr-2" />
+        &nbsp;&nbsp;&nbsp;
+        <label *ngIf="titulo" class="terciario"> {{titulo}} </label>
     </ng-template>
      
 
     <p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
     <p-avatar *ngIf="auth.estaAutenticado()" [image]="Usuario.imagen" (click)="menu.toggle($event)"  styleClass="mr-2" size="large" shape="circle"></p-avatar> 
-      
+    
    </p-menubar>
+
+ 
 
   

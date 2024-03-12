@@ -1,11 +1,11 @@
-<app-navbar></app-navbar>
+<app-navbar [titulo]="'USUARIOS'"></app-navbar>
+
 
 
     <div class="panel">
         <p-toolbar styleClass="mb-2 gap-2">
             <ng-template pTemplate="left">
-                <label class="terciario"> USUARIOS </label>
-                &nbsp;&nbsp;
+                
                 <p-button label="" icon="pi pi-plus" [style]="{ 'background-color': '#677F8C' }" pTooltip="Agregar nuevo registro" (click)="openNew()"></p-button>
   
                 
@@ -28,7 +28,7 @@
 
         <div class="col-12 lg:col-8 xl:col-3" *ngFor="let usuarios of usuarios; let i = index">
             
-            <p-card [style]="{ 'background-color': '#105c6c' }" class="card" [ngClass]="{'flipped': cardStates[i]}">
+            <p-card  [ngClass]="{'flipped': cardStates[i]}">
                 
 
                 <ng-template pTemplate="header">
