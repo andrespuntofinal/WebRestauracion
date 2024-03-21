@@ -1,8 +1,8 @@
-export interface FinanzasResponse {
+export interface AportesResponse {
     total: number;
-    aportes: Finanzas[];
+    aportes: Aportes[];
   }
-  export interface Finanzas {
+  export interface Aportes {
     _id: string;
     miembro: MiembrosResponse;
     tipo_aporte: string;

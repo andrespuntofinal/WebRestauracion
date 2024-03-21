@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { FinanzasComponent } from './pages/finanzas/finanzas.component';
+import { AportesComponent } from './pages/aportes/aportes.component';
 import { MiembrosComponent } from './pages/miembros/miembros.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -43,6 +44,11 @@ const routes: Routes = [
     path: 'finanzas',
     canActivate: [ AuthGuard ],
     component: FinanzasComponent
+  },
+  {
+    path: 'aportes',
+    canActivate: [ AuthGuard ],
+    component: AportesComponent
   },
   {
     path: 'navbar',

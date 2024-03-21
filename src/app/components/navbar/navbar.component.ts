@@ -162,7 +162,24 @@ export class NavbarComponent implements OnInit {
           {
             label: 'Finanzas',
             icon: 'pi pi-fw pi-dollar',
-            routerLink: '/finanzas'
+            routerLink: '/aportes',
+
+            items: [
+              {
+                label: 'Aportes',
+                icon: 'pi pi-fw pi-cog',
+                routerLink: '/aportes'
+      
+              },
+              {
+                label: 'Gastos',
+                icon: 'pi pi-fw pi-user',
+                routerLink: '/aportes'
+      
+              }
+      
+      
+            ]
   
           } 
   

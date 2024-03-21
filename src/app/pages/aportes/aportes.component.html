@@ -1,0 +1,171 @@
+<app-navbar [titulo]="'APORTES'"></app-navbar>
+<p>1</p>
+<p>1</p>
+
+
+<div >
+    <div class="col-12">
+        <div class="card px-2 py-2">
+            <p-toast></p-toast>
+           
+
+            <p-table #dt [value]="aportes" [columns]="cols" responsiveLayout="scroll" [rows]="10" [globalFilterFields]="['tipo_aporte','miembro.nombre','fecha_aporte', 'valor_aporte']" [paginator]="true" [rowsPerPageOptions]="[10,20,30]" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [(selection)]="selectedAportes" selectionMode="multiple" [rowHover]="true" dataKey="_id">
+                <ng-template pTemplate="caption">
+                    <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+                        
+                        <span class="block mt-2 md:mt-0 p-input-icon-left">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="onGlobalFilter(dt, $event)" placeholder="Buscar..."  class="w-full sm:w-auto"/>
+                            &nbsp;&nbsp;
+                            <button pButton pRipple label="" icon="pi pi-plus" class="p-button-success mr-2" (click)="openNew()"></button>
+                            <button pButton pRipple label="" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedAportes()" [disabled]="!selectedAportes || !selectedAportes.length"></button>
+                            &nbsp;
+                            <button pButton pRipple label="" icon="pi pi-file-excel" class="p-button-help" (click)="dt.exportCSV()"></button>
+                        </span>
+                       
+                   
+                    </div>
+
+                    
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="miembro.nombre">Aportante <p-sortIcon field="miembro.nombre"></p-sortIcon></th>
+                        <th pSortableColumn="valor_aporte">Valor <p-sortIcon field="valor_aporte"></p-sortIcon></th>
+                        <th pSortableColumn="tipo_aporte">Categoria <p-sortIcon field="tipo_aporte"></p-sortIcon></th>
+                        <th pSortableColumn="fecha_aporte">Fecha registro <p-sortIcon field="fecha_aporte"></p-sortIcon></th>
+                        <th>Observaciones </th>
+                       
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-aportes>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="aportes"></p-tableCheckbox>
+                        </td>
+
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">Aportante</span>
+                            {{aportes.miembro.nombre }}
+                        </td>
+
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">Valor</span>
+                            {{aportes.valor_aporte | currency:'USD'}}
+                        </td>
+                        
+                        <td style="width:14%; min-width:10rem;">
+                            <span class="p-column-title">Categoría</span>
+                            {{aportes.tipo_aporte}}
+                        </td>
+                  
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">Fecha registro</span>
+                            {{aportes.fecha_aporte }}
+                        </td>
+
+
+
+                   
+                        <td style="width:14%; min-width:8rem;">
+                            <span class="p-column-title">Observaciones</span>
+                            {{aportes.observaciones }}
+                        </td>
+                        
+                        <td>
+                            <div class="flex">
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2" (click)="editAport(aportes)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteAport(aportes)"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<p-dialog [(visible)]="aporteDialog" header="CREAR APORTE" >
+       
+    <div class="col-12">
+
+        <div class="cardform">
+               
+            <div class="p-fluid p-formgrid grid">
+
+
+
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-calendar [(ngModel)]="Aporte['fecha_aporte']" [showIcon]="true" [appendTo]="'body'" ></p-calendar>
+                        
+                        <label htmlFor="fecha_aporte" class="labelformcre">Fecha aporte </label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-inputNumber input  id="valor_aporte" 
+                        mode="currency"
+                        currency="USD"
+                        locale="en-US"
+                        [minFractionDigits]="0" [maxFractionDigits]="0"
+                         class="input-con-fondo"
+                            [(ngModel)]="Aporte['valor_aporte']">
+                        </p-inputNumber>
+                     
+                        <label htmlFor="valor_aporte" class="labelformcre">Valor Aporte</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-autoComplete [(ngModel)]="Aporte['miembro']" [suggestions]="filteredMiembros" (completeMethod)="filterMiembro($event)" field="nombre" [dropdown]="true">
+                        </p-autoComplete>
+                        
+                        <label htmlFor="fecha_aporte" class="labelformcre">Nombre aportante </label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <p-dropdown inputId="tipo_aporte" [autoDisplayFirst]="false" [options]="tipo_aporte"
+                            [(ngModel)]="Aporte['tipo_aporte']" [appendTo]="'body'"></p-dropdown>
+                        <label for="tipo_aporte" class="labelformcre">Tipo de aporte</label>
+                    </span>
+                </div>
+
+                <div class="field col-12 md:col-6">
+                    <span class="p-float-label">
+                        <input input pInputText id="observaciones" type="text" class="input-con-fondo"
+                            [(ngModel)]="Aporte['observaciones']">
+                       
+                        <label htmlFor="observaciones" class="labelformcre">Observaciones</label>
+                    </span>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        
+        <p-button label="Aceptar" icon="pi pi-check" (click)="saveAporte()"
+        [style]="{width: '120px',
+       
+        background: '#677F8C'}"
+        ></p-button>
+        <p-button label="Cancelar" icon="pi pi-times" (click)="hideDialog()"
+        [style]="{width: '120px',
+       
+        background: '#677F8C'}"
+        ></p-button>
+    </ng-template>
+</p-dialog>
+

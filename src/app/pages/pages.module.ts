@@ -38,6 +38,9 @@ import { ImageModule } from 'primeng/image';
 import { TabViewModule } from 'primeng/tabview';
 import { MenuModule } from 'primeng/menu';
 import { FinanzasComponent } from './finanzas/finanzas.component';
+import { AportesComponent } from './aportes/aportes.component';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+
 
 
 
@@ -51,7 +54,8 @@ import { FinanzasComponent } from './finanzas/finanzas.component';
     MenuitemComponent,
     UsuariosComponent,
     NoimagePipe,
-    FinanzasComponent
+    FinanzasComponent,
+    AportesComponent
   ],
   imports: [
     CommonModule,
@@ -82,7 +86,8 @@ import { FinanzasComponent } from './finanzas/finanzas.component';
     MultiSelectModule,
     ImageModule,
     TabViewModule,
-    MenuModule
+    MenuModule,
+    AutoCompleteModule
   ],
   providers: [DatePipe],
 })

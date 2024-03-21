@@ -12,7 +12,7 @@ $azulfondo: #161f25;
 @import "../node_modules/primeicons/primeicons.css";
 
 body {
-    background: #a9bac5 !important;
+    background: #c6d5db !important;
 }
 
 
@@ -432,7 +432,7 @@ body {
   .p-card {
     margin-top: 25px;
     background: linear-gradient(to bottom, #91a7b4, #ffffff) !important;
-   
+    border: 3px solid #677F8C;
    
     
   }
@@ -440,6 +440,7 @@ body {
   @media (max-width: 768px) {
     .p-card {
       margin-top: 55px;
+      
     }
   }
 

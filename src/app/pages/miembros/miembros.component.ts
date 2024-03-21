@@ -493,9 +493,7 @@ findIndexById(_id: string): number {
 }
 
 onUpload(event: any)  {
-  //for (const file of event.files) {
-     // this.uploadedFiles.push(file);
-  //}
+
   this.numero_id = this.Miembro['_id'];
   const file: File = event.files[0];
 
